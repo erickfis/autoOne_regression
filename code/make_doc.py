@@ -1,6 +1,7 @@
 import os
 import shutil
 
+
 def make_doc():
     """Run Sphinx to build the doc."""
     try:
