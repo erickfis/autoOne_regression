@@ -1,3 +1,14 @@
+"""
+# Project AutoOne_regression
+
+Run Sphinx and copy the html files to docs folder.
+
+- Erick Medeiros Anastácio
+- 2020-06-28
+- Python 3.7
+
+"""
+
 import os
 import shutil
 

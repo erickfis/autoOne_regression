@@ -14,3 +14,5 @@ AutoOne Price Prediction
    01-cleaning.ipynb
    02-analysis.ipynb
    03-ols.ipynb
+
+   index
