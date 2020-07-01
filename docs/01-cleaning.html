@@ -278,6 +278,9 @@ div.rendered_html tbody tr:hover {
 </style>
 <div class="section" id="Data-cleaning">
 <h1>Data cleaning<a class="headerlink" href="#Data-cleaning" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook we will explore the dataset characteristics in order to clean and prepare it for analysis and modeling.</p>
+<div class="section" id="Getting-the-data">
+<h2>Getting the data<a class="headerlink" href="#Getting-the-data" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -464,6 +467,9 @@ df_orign.head()
 <p>5 rows × 26 columns</p>
 </div></div>
 </div>
+<p>As we can see, the missing data is marked as ‘?’ in this dataset.</p>
+<p>Lets start by replacing it with proper missing data indicators.</p>
+<p>After that we can check the data types for each feature.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -520,7 +526,9 @@ memory usage: 41.8+ KB
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.describe()
+<span></span># fixing columns names
+df.columns = df.columns.str.replace(&quot;-&quot;, &quot;_&quot;)
+df.describe()
 </pre></div>
 </div>
 </div>
@@ -548,15 +556,15 @@ memory usage: 41.8+ KB
     <tr style="text-align: right;">
       <th></th>
       <th>symboling</th>
-      <th>wheel-base</th>
+      <th>wheel_base</th>
       <th>length</th>
       <th>width</th>
       <th>height</th>
-      <th>curb-weight</th>
-      <th>engine-size</th>
-      <th>compression-ratio</th>
-      <th>city-mpg</th>
-      <th>highway-mpg</th>
+      <th>curb_weight</th>
+      <th>engine_size</th>
+      <th>compression_ratio</th>
+      <th>city_mpg</th>
+      <th>highway_mpg</th>
     </tr>
   </thead>
   <tbody>
@@ -668,17 +676,16 @@ memory usage: 41.8+ KB
 </table>
 </div></div>
 </div>
+</div>
 <div class="section" id="Missing-data">
 <h2>Missing data<a class="headerlink" href="#Missing-data" title="Permalink to this headline">¶</a></h2>
+<p>With proper missing data indicators, we can have a better understanding of the quality of each record in the dataset and in each one of its features.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># fixing columns names
-df.columns = df.columns.str.replace(&quot;-&quot;, &quot;_&quot;)
-
-# looking for NAs
+<span></span># looking for NAs
 na_count = df.isnull().sum()/df.shape[0]
 na_count[na_count &gt;0]
 # No NAs here
@@ -701,8 +708,8 @@ price                0.019512
 dtype: float64
 </pre></div></div>
 </div>
-<p>With 20% of missing data for normalized_losses, we decided to just drop this feature entirely as it won’t help us creating any prediction model.</p>
-<p>For the other features, as they have only a small portion of missing data, we decided to use them but we are droping those records were they have missing data:</p>
+<p>With 20% of missing data for normalized_losses, we will just drop this feature entirely as it won’t help us creating any prediction model.</p>
+<p>For the other features, as they have only a small portion of missing data, we will use them. However, we will drop the records containing missing data.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -727,8 +734,8 @@ Series([], dtype: float64)
 </div>
 <div class="section" id="Exploring-and-transforming-the-features">
 <h2>Exploring and transforming the features<a class="headerlink" href="#Exploring-and-transforming-the-features" title="Permalink to this headline">¶</a></h2>
-<p>Now we will explore each feature individualy.</p>
-<p>The first thing to do is to understand what features should be considered as categories and what features should be considered as numeric.</p>
+<p>Now we will explore each feature individually.</p>
+<p>The first thing to do is to understand what features should be considered as categories and what features should be considered as numeric. This is very important for building predictive models later.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -1159,184 +1166,184 @@ df[temp_num].describe()
   </thead>
   <tbody>
     <tr>
-      <th>179</th>
-      <td>3</td>
-      <td>102.9</td>
-      <td>183.5</td>
-      <td>67.7</td>
-      <td>52.0</td>
-      <td>3016</td>
-      <td>171</td>
-      <td>3.27</td>
+      <th>5</th>
+      <td>2</td>
+      <td>99.8</td>
+      <td>177.3</td>
+      <td>66.3</td>
+      <td>53.1</td>
+      <td>2507</td>
+      <td>136</td>
+      <td>3.19</td>
+      <td>3.40</td>
+      <td>8.5</td>
+      <td>110.0</td>
+      <td>5500.0</td>
+      <td>19</td>
+      <td>25</td>
+      <td>15250.0</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>-1</td>
+      <td>102.4</td>
+      <td>175.6</td>
+      <td>66.5</td>
+      <td>54.9</td>
+      <td>2326</td>
+      <td>122</td>
+      <td>3.31</td>
+      <td>3.54</td>
+      <td>8.7</td>
+      <td>92.0</td>
+      <td>4200.0</td>
+      <td>29</td>
+      <td>34</td>
+      <td>8948.0</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>0</td>
+      <td>120.9</td>
+      <td>208.1</td>
+      <td>71.7</td>
+      <td>56.7</td>
+      <td>3900</td>
+      <td>308</td>
+      <td>3.80</td>
       <td>3.35</td>
-      <td>9.30</td>
-      <td>161.0</td>
-      <td>5200.0</td>
+      <td>8.0</td>
+      <td>184.0</td>
+      <td>4500.0</td>
+      <td>14</td>
+      <td>16</td>
+      <td>40960.0</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>3</td>
+      <td>95.9</td>
+      <td>173.2</td>
+      <td>66.3</td>
+      <td>50.2</td>
+      <td>2811</td>
+      <td>156</td>
+      <td>3.60</td>
+      <td>3.90</td>
+      <td>7.0</td>
+      <td>145.0</td>
+      <td>5000.0</td>
       <td>19</td>
       <td>24</td>
-      <td>15998.0</td>
+      <td>12964.0</td>
     </tr>
     <tr>
-      <th>101</th>
-      <td>0</td>
-      <td>100.4</td>
-      <td>181.7</td>
-      <td>66.5</td>
-      <td>55.1</td>
-      <td>3095</td>
-      <td>181</td>
-      <td>3.43</td>
-      <td>3.27</td>
-      <td>9.00</td>
-      <td>152.0</td>
-      <td>5200.0</td>
-      <td>17</td>
-      <td>22</td>
-      <td>13499.0</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>1</td>
+      <th>76</th>
+      <td>2</td>
       <td>93.7</td>
       <td>157.3</td>
-      <td>63.8</td>
+      <td>64.4</td>
       <td>50.8</td>
-      <td>1876</td>
-      <td>90</td>
+      <td>1918</td>
+      <td>92</td>
       <td>2.97</td>
       <td>3.23</td>
-      <td>9.41</td>
+      <td>9.4</td>
       <td>68.0</td>
       <td>5500.0</td>
       <td>37</td>
       <td>41</td>
-      <td>5572.0</td>
+      <td>5389.0</td>
     </tr>
     <tr>
-      <th>28</th>
-      <td>-1</td>
-      <td>103.3</td>
-      <td>174.6</td>
-      <td>64.6</td>
-      <td>59.8</td>
-      <td>2535</td>
-      <td>122</td>
-      <td>3.34</td>
-      <td>3.46</td>
-      <td>8.50</td>
-      <td>88.0</td>
-      <td>5000.0</td>
-      <td>24</td>
-      <td>30</td>
-      <td>8921.0</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>0</td>
-      <td>98.8</td>
-      <td>177.8</td>
-      <td>66.5</td>
-      <td>55.5</td>
-      <td>2410</td>
-      <td>122</td>
-      <td>3.39</td>
-      <td>3.39</td>
-      <td>8.60</td>
-      <td>84.0</td>
-      <td>4800.0</td>
-      <td>26</td>
-      <td>32</td>
-      <td>10245.0</td>
-    </tr>
-    <tr>
-      <th>100</th>
+      <th>141</th>
       <td>0</td>
       <td>97.2</td>
-      <td>173.4</td>
-      <td>65.2</td>
-      <td>54.7</td>
-      <td>2302</td>
-      <td>120</td>
-      <td>3.33</td>
-      <td>3.47</td>
-      <td>8.50</td>
-      <td>97.0</td>
-      <td>5200.0</td>
-      <td>27</td>
-      <td>34</td>
-      <td>9549.0</td>
+      <td>172.0</td>
+      <td>65.4</td>
+      <td>52.5</td>
+      <td>2145</td>
+      <td>108</td>
+      <td>3.62</td>
+      <td>2.64</td>
+      <td>9.5</td>
+      <td>82.0</td>
+      <td>4800.0</td>
+      <td>32</td>
+      <td>37</td>
+      <td>7126.0</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>2</td>
-      <td>99.4</td>
-      <td>176.6</td>
-      <td>66.4</td>
-      <td>54.3</td>
-      <td>2824</td>
-      <td>136</td>
-      <td>3.19</td>
-      <td>3.40</td>
-      <td>8.00</td>
-      <td>115.0</td>
-      <td>5500.0</td>
-      <td>18</td>
-      <td>22</td>
-      <td>17450.0</td>
-    </tr>
-    <tr>
-      <th>54</th>
-      <td>1</td>
-      <td>93.1</td>
-      <td>166.8</td>
-      <td>64.2</td>
-      <td>54.1</td>
-      <td>1950</td>
-      <td>91</td>
-      <td>3.08</td>
-      <td>3.15</td>
-      <td>9.00</td>
-      <td>68.0</td>
-      <td>5000.0</td>
-      <td>31</td>
-      <td>38</td>
-      <td>7395.0</td>
-    </tr>
-    <tr>
-      <th>105</th>
-      <td>3</td>
-      <td>91.3</td>
-      <td>170.7</td>
-      <td>67.9</td>
-      <td>49.7</td>
-      <td>3139</td>
-      <td>181</td>
-      <td>3.43</td>
-      <td>3.27</td>
-      <td>7.80</td>
-      <td>200.0</td>
-      <td>5200.0</td>
-      <td>17</td>
-      <td>23</td>
-      <td>19699.0</td>
-    </tr>
-    <tr>
-      <th>191</th>
+      <th>47</th>
       <td>0</td>
-      <td>100.4</td>
-      <td>180.2</td>
-      <td>66.9</td>
-      <td>55.1</td>
-      <td>2661</td>
-      <td>136</td>
-      <td>3.19</td>
-      <td>3.40</td>
-      <td>8.50</td>
-      <td>110.0</td>
-      <td>5500.0</td>
+      <td>113.0</td>
+      <td>199.6</td>
+      <td>69.6</td>
+      <td>52.8</td>
+      <td>4066</td>
+      <td>258</td>
+      <td>3.63</td>
+      <td>4.17</td>
+      <td>8.1</td>
+      <td>176.0</td>
+      <td>4750.0</td>
+      <td>15</td>
       <td>19</td>
-      <td>24</td>
-      <td>13295.0</td>
+      <td>32250.0</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>0</td>
+      <td>95.7</td>
+      <td>166.3</td>
+      <td>64.4</td>
+      <td>52.8</td>
+      <td>2122</td>
+      <td>98</td>
+      <td>3.19</td>
+      <td>3.03</td>
+      <td>9.0</td>
+      <td>70.0</td>
+      <td>4800.0</td>
+      <td>28</td>
+      <td>34</td>
+      <td>8358.0</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>1</td>
+      <td>94.5</td>
+      <td>165.3</td>
+      <td>63.8</td>
+      <td>54.5</td>
+      <td>1938</td>
+      <td>97</td>
+      <td>3.15</td>
+      <td>3.29</td>
+      <td>9.4</td>
+      <td>69.0</td>
+      <td>5200.0</td>
+      <td>31</td>
+      <td>37</td>
+      <td>6849.0</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>1</td>
+      <td>96.3</td>
+      <td>172.4</td>
+      <td>65.4</td>
+      <td>51.6</td>
+      <td>2403</td>
+      <td>110</td>
+      <td>3.17</td>
+      <td>3.46</td>
+      <td>7.5</td>
+      <td>116.0</td>
+      <td>5500.0</td>
+      <td>23</td>
+      <td>30</td>
+      <td>9279.0</td>
     </tr>
   </tbody>
 </table>
@@ -1372,7 +1379,7 @@ temp_categories
  &#39;symboling&#39;]
 </pre></div></div>
 </div>
-<p>Lets write down the list of categorical columns. This will be very important when modelling.</p>
+<p>Now that we have our categories properly addressed, lets write them down so we can use this information later.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
@@ -1383,7 +1390,8 @@ temp_categories
 </pre></div>
 </div>
 </div>
-<p>We will new save the treated data. Also, we will create a function for that on a python script, to be used for this data and for new data as well, when predicting prices.</p>
+<p>We will now export the treated data.</p>
+<p>Also, we will create a python script containing a function for running all the tasks we just did, so we can transform this and new data as well when the need arises.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
@@ -1406,6 +1414,7 @@ temp_categories
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Data cleaning</a><ul>
+<li><a class="reference internal" href="#Getting-the-data">Getting the data</a></li>
 <li><a class="reference internal" href="#Missing-data">Missing data</a></li>
 <li><a class="reference internal" href="#Exploring-and-transforming-the-features">Exploring and transforming the features</a></li>
 </ul>
