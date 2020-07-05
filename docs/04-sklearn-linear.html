@@ -1,39 +1,170 @@
-
 <!DOCTYPE html>
-
-<html>
+<html >
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modeling with linear regression &#8212; AutoOne Regression 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Modeling with linear regression</a></li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Linear regression - sklearn</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Modeling with machine learning" href="05-machine.html" />
+  <link rel="prev" title="Linear regression - OLS Model" href="03-ols.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="03-ols.html" class="reference internal ">Linear regression - OLS Model</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Linear regression - sklearn</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#Normalization-and-encoding-of-features" class="reference internal">Normalization and encoding of features</a></li>
+                
+                  <li class="toctree-l2"><a href="#Hyper-parameter-tuning-and-Cross-Validation" class="reference internal">Hyper-parameter tuning and Cross Validation</a></li>
+                
+                  <li class="toctree-l2"><a href="#Linear-regression-model" class="reference internal">Linear regression model</a></li>
+                
+                  <li class="toctree-l2"><a href="#Regularized-models---Ridge-regularization" class="reference internal">Regularized models - Ridge regularization</a></li>
+                
+                  <li class="toctree-l2"><a href="#Regularized-models---Lasso" class="reference internal">Regularized models - Lasso</a></li>
+                
+                  <li class="toctree-l2"><a href="#Huber-Regressor" class="reference internal">Huber Regressor</a></li>
+                
+                  <li class="toctree-l2"><a href="#Comparing-models---MSE-and-R^2" class="reference internal">Comparing models - MSE and R^2</a></li>
+                
+                  <li class="toctree-l2"><a href="#Most-important-features" class="reference internal">Most important features</a></li>
+                
+                  <li class="toctree-l2"><a href="#Comparing-the-models---conclusions" class="reference internal">Comparing the models - conclusions</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="05-machine.html" class="reference internal ">Modeling with machine learning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="06-scripts.html" class="reference internal ">Python scripts</a>
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Linear regression - sklearn</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="03-ols.html"
+       title="previous chapter">← Linear regression - OLS Model</a>
+  </li>
+  <li class="next">
+    <a href="05-machine.html"
+       title="next chapter">Modeling with machine learning →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
             
   
 <style>
@@ -268,39 +399,32 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<div class="section" id="Modeling-with-linear-regression">
-<h1>Modeling with linear regression<a class="headerlink" href="#Modeling-with-linear-regression" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Linear-regression---sklearn">
+<h1>Linear regression - sklearn<a class="headerlink" href="#Linear-regression---sklearn" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we will cover:</p>
 <ul class="simple">
-<li><p>fitting different linear repression models</p></li>
+<li><p>fitting different linear regression models with sklearn</p></li>
+<li><p>normalization and encoding of features</p></li>
 <li><p>score analysis: MSE and variance explained: <span class="math notranslate nohighlight">\(R^2\)</span></p></li>
 <li><p>residual analysis</p></li>
-<li><p>analysis of fitted values distribution</p></li>
 <li><p>most important features</p></li>
 <li><p>comparing the models: conclusions</p></li>
 </ul>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>import pandas as pd
 import numpy as np
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.read_csv(&#39;df_resample.csv&#39;)
+
+df = pd.read_csv(&#39;data/df_resample.csv&#39;)
 df.head()
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -348,102 +472,30 @@ df.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>mitsubishi</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>96.3</td>
-      <td>172.4</td>
-      <td>...</td>
-      <td>122</td>
-      <td>2bbl</td>
-      <td>3.35</td>
-      <td>3.46</td>
-      <td>8.5</td>
-      <td>88.0</td>
-      <td>5000.0</td>
-      <td>25</td>
-      <td>32</td>
-      <td>6989.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>2</td>
-      <td>subaru</td>
+      <td>mitsubishi</td>
       <td>gas</td>
       <td>std</td>
       <td>two</td>
       <td>hatchback</td>
       <td>fwd</td>
       <td>front</td>
-      <td>93.3</td>
+      <td>93.7</td>
       <td>157.3</td>
       <td>...</td>
-      <td>108</td>
+      <td>92</td>
       <td>2bbl</td>
-      <td>3.62</td>
-      <td>2.64</td>
-      <td>8.7</td>
-      <td>73.0</td>
-      <td>4400.0</td>
-      <td>26</td>
-      <td>31</td>
-      <td>7603.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>nissan</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>wagon</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>94.5</td>
-      <td>170.2</td>
-      <td>...</td>
-      <td>97</td>
-      <td>2bbl</td>
-      <td>3.15</td>
-      <td>3.29</td>
+      <td>2.97</td>
+      <td>3.23</td>
       <td>9.4</td>
-      <td>69.0</td>
-      <td>5200.0</td>
-      <td>31</td>
+      <td>68.0</td>
+      <td>5500.0</td>
       <td>37</td>
-      <td>7349.0</td>
+      <td>41</td>
+      <td>5389.0</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>subaru</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>97.2</td>
-      <td>172.0</td>
-      <td>...</td>
-      <td>108</td>
-      <td>2bbl</td>
-      <td>3.62</td>
-      <td>2.64</td>
-      <td>9.5</td>
-      <td>82.0</td>
-      <td>4800.0</td>
-      <td>32</td>
-      <td>37</td>
-      <td>7126.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
+      <th>1</th>
       <td>1</td>
       <td>dodge</td>
       <td>gas</td>
@@ -464,7 +516,79 @@ df.head()
       <td>5500.0</td>
       <td>31</td>
       <td>38</td>
-      <td>7609.0</td>
+      <td>6692.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>jaguar</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>two</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>102.0</td>
+      <td>191.7</td>
+      <td>...</td>
+      <td>326</td>
+      <td>mpfi</td>
+      <td>3.54</td>
+      <td>2.76</td>
+      <td>11.5</td>
+      <td>262.0</td>
+      <td>5000.0</td>
+      <td>13</td>
+      <td>17</td>
+      <td>36000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>peugot</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>107.9</td>
+      <td>186.7</td>
+      <td>...</td>
+      <td>120</td>
+      <td>mpfi</td>
+      <td>3.46</td>
+      <td>3.19</td>
+      <td>8.4</td>
+      <td>97.0</td>
+      <td>5000.0</td>
+      <td>19</td>
+      <td>24</td>
+      <td>11900.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>subaru</td>
+      <td>gas</td>
+      <td>turbo</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>97.0</td>
+      <td>172.0</td>
+      <td>...</td>
+      <td>108</td>
+      <td>mpfi</td>
+      <td>3.62</td>
+      <td>2.64</td>
+      <td>7.7</td>
+      <td>111.0</td>
+      <td>4800.0</td>
+      <td>24</td>
+      <td>29</td>
+      <td>11259.0</td>
     </tr>
   </tbody>
 </table>
@@ -472,25 +596,15 @@ df.head()
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>X = df.copy()
 X.drop(&#39;price&#39;, axis=1, inplace=True)
 y = np.log(df.price) # as discussed, we are going to use the log transform here
-</pre></div>
-</div>
-</div>
-<div class="section" id="Train-test-split">
-<h2>Train-test split<a class="headerlink" href="#Train-test-split" title="Permalink to this headline">¶</a></h2>
-<p>To validate out model, lets split the data on train and test sets, so we can evaluate the predictions on the test set later.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># now the split in a stratified way
+
+## Train-test split#
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -499,15 +613,25 @@ X_train, X_test, y_train, y_test = train_test_split(
 </pre></div>
 </div>
 </div>
+<div class="section" id="Normalization-and-encoding-of-features">
+<h2>Normalization and encoding of features<a class="headerlink" href="#Normalization-and-encoding-of-features" title="Permalink to this headline">¶</a></h2>
+<p>The range of the numeric features varies a lot for each one of them:</p>
+<ul class="simple">
+<li><p>bore range: ~2</p></li>
+<li><p>curb range: ~3500</p></li>
+</ul>
+<p>Also, its easy to see that they are measuring completely different things and therefore are in different scales.</p>
+<p>In order to properly fit linear regression models with regularization, we must account for those differences.</p>
+<p>Also, it is import to encode the categories, like fuel-type, to sklearn can use them.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import pickle
 
-with open(&#39;category_list&#39;, &#39;rb&#39;) as file:
+with open(&#39;data/category_list&#39;, &#39;rb&#39;) as file:
     cat_cols = pickle.load(file)
 
 # numeric columns
@@ -528,7 +652,7 @@ X_train_proc.shape
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -537,7 +661,7 @@ X_train_proc.shape
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -554,7 +678,7 @@ X_test_proc.shape
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -563,74 +687,27 @@ X_test_proc.shape
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="Regularized-models---Sklearn">
-<h2>Regularized models - Sklearn<a class="headerlink" href="#Regularized-models---Sklearn" title="Permalink to this headline">¶</a></h2>
-<p>Now lets fit some models that uses regularization for feature selection.</p>
-<p>Ridge regression uses a penalty L2 factor for the least important regressors.</p>
-<ul class="simple">
-<li><p>L2: least squared deviation <span class="math notranslate nohighlight">\(resid = \sum{(y_i - \hat y_i)^2} + \lambda \sum{\beta^2}\)</span></p></li>
-</ul>
-<p>However, the least squares regularization is not robust: it is sensitive to outliers.</p>
-<div class="section" id="Transformation-on-data">
-<h3>Transformation on data<a class="headerlink" href="#Transformation-on-data" title="Permalink to this headline">¶</a></h3>
-<p>Preprocessing will be required here:</p>
-<ul class="simple">
-<li><p>feature normalization / scaling</p></li>
-</ul>
+<div class="section" id="Hyper-parameter-tuning-and-Cross-Validation">
+<h2>Hyper-parameter tuning and Cross Validation<a class="headerlink" href="#Hyper-parameter-tuning-and-Cross-Validation" title="Permalink to this headline">¶</a></h2>
+<p>It is important to note that we are going to use the gridsearchCV method, so we can iterate over a series of hyper-parameters for each model in order to find the best combination of them through cross validation.</p>
+</div>
+<div class="section" id="Linear-regression-model">
+<h2>Linear regression model<a class="headerlink" href="#Linear-regression-model" title="Permalink to this headline">¶</a></h2>
+<p>Lets start trying a simple sklearn linear regression model, without regularization.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import regression
-import time
+<span></span>%load_ext autoreload
+%autoreload 2
 
-
-def make_regressor(model_name, model, grid_params):
-    start_time = time.time()
-    grid = GridSearchCV(
-        model, grid_params,
-        scoring=&#39;neg_mean_squared_error&#39;,
-        n_jobs=-1, cv=3
-        )
-    grid.fit(X_train_proc, y_train)
-
-    model = grid.best_estimator_
-    parameters = model.get_params()
-
-    y_predictions = np.exp(model.predict(X_test_proc))
-    mse = regression.mean_squared_error(np.exp(y_test), y_predictions)
-    r2 = model.score(X_test_proc, y_test)
-    end_time = time.time()
-    elapsed = end_time - start_time
-
-    message = f&#39;Score r2: {r2:.4} \nScore MSE: {mse:.4} \nTime: {elapsed:.2}s&#39;
-    print(model_name)
-    print(message)
-    print(parameters)
-
-    stats = {
-        &#39;model name&#39;: model_name,
-        &#39;r2&#39;: r2,
-        &#39;mse&#39;: mse,
-        &#39;parameters&#39;: parameters
-    }
-    return model, y_predictions, stats
+import aux_functions as aux
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -639,8 +716,9 @@ def make_regressor(model_name, model, grid_params):
 model = LinearRegression()
 grid_params = {&#39;fit_intercept&#39;: [True, False]}
 name = &#39;Linear Regression&#39;
+data = (X_train_proc, y_train, X_test_proc, y_test)
 
-linear_results = make_regressor(name, model, grid_params)
+linear_results = aux.make_regressor(name, model, grid_params, data)
 </pre></div>
 </div>
 </div>
@@ -650,23 +728,31 @@ linear_results = make_regressor(name, model, grid_params)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Linear Regression
-Score r2: 0.9706
-Score MSE: 1.912e+06
-Time: 0.17s
+Score r2: 0.9714
+Score MSE: 1.157e+06
+Time: 1.3e+01s
 {&#39;copy_X&#39;: True, &#39;fit_intercept&#39;: True, &#39;n_jobs&#39;: None, &#39;normalize&#39;: False}
 </pre></div></div>
 </div>
+</div>
+<div class="section" id="Regularized-models---Ridge-regularization">
+<h2>Regularized models - Ridge regularization<a class="headerlink" href="#Regularized-models---Ridge-regularization" title="Permalink to this headline">¶</a></h2>
+<p>Ridge regression uses a penalty L2 factor for the least important regressors.</p>
+<ul class="simple">
+<li><p>L2: least squared deviation <span class="math notranslate nohighlight">\(resid = \sum{(y_i - \hat y_i)^2} + \lambda \sum{\beta^2}\)</span></p></li>
+</ul>
+<p>However, the least squares regularization is not robust: it is sensitive to outliers.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>from sklearn.linear_model import Ridge
 
 model = Ridge()
-grid_params = {&#39;alpha&#39;: [.001, .01, .1, 1, 10]}
+grid_params = {&#39;alpha&#39;: [.001, .01, .1, 1]}
 name = &#39;Ridge Regression&#39;
-ridge_results = make_regressor(name, model, grid_params)
+ridge_results = aux.make_regressor(name, model, grid_params, data)
 </pre></div>
 </div>
 </div>
@@ -676,12 +762,11 @@ ridge_results = make_regressor(name, model, grid_params)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Ridge Regression
-Score r2: 0.9706
-Score MSE: 1.912e+06
-Time: 0.16s
-{&#39;alpha&#39;: 0.001, &#39;copy_X&#39;: True, &#39;fit_intercept&#39;: True, &#39;max_iter&#39;: None, &#39;normalize&#39;: False, &#39;random_state&#39;: None, &#39;solver&#39;: &#39;auto&#39;, &#39;tol&#39;: 0.001}
+Score r2: 0.9714
+Score MSE: 1.157e+06
+Time: 3.8s
+{&#39;alpha&#39;: 0.1, &#39;copy_X&#39;: True, &#39;fit_intercept&#39;: True, &#39;max_iter&#39;: None, &#39;normalize&#39;: False, &#39;random_state&#39;: None, &#39;solver&#39;: &#39;auto&#39;, &#39;tol&#39;: 0.001}
 </pre></div></div>
-</div>
 </div>
 </div>
 <div class="section" id="Regularized-models---Lasso">
@@ -692,16 +777,16 @@ Time: 0.16s
 <li><p>L1: least absolute deviation: <span class="math notranslate nohighlight">\(resid = \sum{(y_i - \hat y_i)^2} + \lambda \sum{|\beta|}\)</span></p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>from sklearn.linear_model import Lasso
 
 model = Lasso()
-grid_params = {&#39;alpha&#39;: [.001, .01, .1, 1, 10]}
-name = &#39;Lasse Regression&#39;
-lasso_results = make_regressor(name, model, grid_params)
+grid_params = {&#39;alpha&#39;: [.001, .01, .1, 1]}
+name = &#39;Lasso Regression&#39;
+lasso_results = aux.make_regressor(name, model, grid_params, data)
 </pre></div>
 </div>
 </div>
@@ -710,10 +795,10 @@ lasso_results = make_regressor(name, model, grid_params)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Lasse Regression
-Score r2: 0.9619
-Score MSE: 2.357e+06
-Time: 0.38s
+Lasso Regression
+Score r2: 0.962
+Score MSE: 1.618e+06
+Time: 0.47s
 {&#39;alpha&#39;: 0.001, &#39;copy_X&#39;: True, &#39;fit_intercept&#39;: True, &#39;max_iter&#39;: 1000, &#39;normalize&#39;: False, &#39;positive&#39;: False, &#39;precompute&#39;: False, &#39;random_state&#39;: None, &#39;selection&#39;: &#39;cyclic&#39;, &#39;tol&#39;: 0.0001, &#39;warm_start&#39;: False}
 </pre></div></div>
 </div>
@@ -722,7 +807,7 @@ Time: 0.38s
 <h2>Huber Regressor<a class="headerlink" href="#Huber-Regressor" title="Permalink to this headline">¶</a></h2>
 <p>Huber uses L2 and L1 penalty. This makes it specially strong against outliers:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -730,60 +815,75 @@ Time: 0.38s
 
 model = HuberRegressor(max_iter=1000)
 grid_params = {
-    &#39;alpha&#39;: [.001, .01, .1, 1, 10],
-    &#39;epsilon&#39;: [1, 2, 5, 10]
+    &#39;alpha&#39;: [.001, .01, .1],
+    &#39;epsilon&#39;: [1, 5, 10]
 }
 name = &#39;HUbber Regression&#39;
-hubber_results = make_regressor(name, model, grid_params)
+hubber_results = aux.make_regressor(name, model, grid_params, data)
 
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 HUbber Regression
-Score r2: 0.9706
-Score MSE: 1.912e+06
-Time: 1.4e+02s
+Score r2: 0.9714
+Score MSE: 1.157e+06
+Time: 7e+01s
 {&#39;alpha&#39;: 0.1, &#39;epsilon&#39;: 5, &#39;fit_intercept&#39;: True, &#39;max_iter&#39;: 1000, &#39;tol&#39;: 1e-05, &#39;warm_start&#39;: False}
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-C:\Users\BJ571WQ\Anaconda3\lib\site-packages\sklearn\linear_model\_huber.py:296: ConvergenceWarning: lbfgs failed to converge (status=1):
-STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
-
-Increase the number of iterations (max_iter) or scale the data as shown in:
-    https://scikit-learn.org/stable/modules/preprocessing.html
-  self.n_iter_ = _check_optimize_result(&#34;lbfgs&#34;, opt_res, self.max_iter)
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Comparing-models---MSE-and-R^2">
 <h2>Comparing models - MSE and <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#Comparing-models---MSE-and-R^2" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[181]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_comparisson = pd.DataFrame({&#39;model_ols&#39;: ols_predictions,
-                               &#39;ridge&#39;: ridge_predictions,
-                               &#39;lasso&#39;: lasso_predictions,
-                               &#39;hubber&#39;: huber_predictions,
-                              &#39;actual_price&#39;: np.exp(y_test)
-                             })
-df_comparisson.sample(10).round(2)
+<span></span>df_scores = pd.DataFrame({
+    &#39;MSE&#39;: [
+        linear_results[2][&#39;mse&#39;],
+        ridge_results[2][&#39;mse&#39;],
+        lasso_results[2][&#39;mse&#39;],
+        hubber_results[2][&#39;mse&#39;],
+
+        ],
+    &#39;r2&#39;: [
+        linear_results[2][&#39;r2&#39;],
+        ridge_results[2][&#39;r2&#39;],
+        lasso_results[2][&#39;r2&#39;],
+        hubber_results[2][&#39;r2&#39;],
+        ],
+    &#39;model name&#39;: [
+        linear_results[2][&#39;model name&#39;],
+        ridge_results[2][&#39;model name&#39;],
+        lasso_results[2][&#39;model name&#39;],
+        hubber_results[2][&#39;model name&#39;],
+        ],
+    &#39;time&#39;: [
+        linear_results[2][&#39;time&#39;],
+        ridge_results[2][&#39;time&#39;],
+        lasso_results[2][&#39;time&#39;],
+        hubber_results[2][&#39;time&#39;],
+        ],
+    },
+#     index=[&#39;linear&#39;, &#39;ridge&#39;, &#39;lasso&#39;, &#39;hubber&#39;]
+)
+
+# load ols results
+df_scores_ols = pd.read_csv(&#39;data/scores.csv&#39;)
+df_scores = pd.concat([df_scores, df_scores_ols], axis=0)
+df_scores.to_csv(&#39;data/sk_scores.csv&#39;, index=False)
+df_scores.sort_values(by=&#39;MSE&#39;).round(4)
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[181]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -805,1001 +905,136 @@ df_comparisson.sample(10).round(2)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>model_ols</th>
-      <th>ridge</th>
-      <th>lasso</th>
-      <th>hubber</th>
-      <th>actual_price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5841</th>
-      <td>14332.85</td>
-      <td>14772.02</td>
-      <td>11567.48</td>
-      <td>13885.70</td>
-      <td>15250.0</td>
-    </tr>
-    <tr>
-      <th>7108</th>
-      <td>6765.94</td>
-      <td>6603.32</td>
-      <td>7539.55</td>
-      <td>6750.47</td>
-      <td>6649.0</td>
-    </tr>
-    <tr>
-      <th>1383</th>
-      <td>9401.58</td>
-      <td>9584.22</td>
-      <td>10521.32</td>
-      <td>9511.52</td>
-      <td>10198.0</td>
-    </tr>
-    <tr>
-      <th>2502</th>
-      <td>12862.39</td>
-      <td>12648.45</td>
-      <td>12439.52</td>
-      <td>12889.71</td>
-      <td>13295.0</td>
-    </tr>
-    <tr>
-      <th>2710</th>
-      <td>11078.97</td>
-      <td>10924.65</td>
-      <td>11950.14</td>
-      <td>11339.05</td>
-      <td>9639.0</td>
-    </tr>
-    <tr>
-      <th>3047</th>
-      <td>6041.90</td>
-      <td>5940.80</td>
-      <td>7375.22</td>
-      <td>5500.33</td>
-      <td>6295.0</td>
-    </tr>
-    <tr>
-      <th>4285</th>
-      <td>8954.70</td>
-      <td>9037.73</td>
-      <td>10059.74</td>
-      <td>9181.44</td>
-      <td>9298.0</td>
-    </tr>
-    <tr>
-      <th>9630</th>
-      <td>6783.83</td>
-      <td>6872.21</td>
-      <td>7491.22</td>
-      <td>6487.58</td>
-      <td>6575.0</td>
-    </tr>
-    <tr>
-      <th>228</th>
-      <td>8725.74</td>
-      <td>8133.58</td>
-      <td>10736.26</td>
-      <td>7766.05</td>
-      <td>8921.0</td>
-    </tr>
-    <tr>
-      <th>8562</th>
-      <td>8695.72</td>
-      <td>8609.97</td>
-      <td>8446.36</td>
-      <td>8144.22</td>
-      <td>7995.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[182]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_comparisson.describe().round(2) # min and max prices are ok
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[182]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>model_ols</th>
-      <th>ridge</th>
-      <th>lasso</th>
-      <th>hubber</th>
-      <th>actual_price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3000.00</td>
-      <td>3000.00</td>
-      <td>3000.00</td>
-      <td>3000.00</td>
-      <td>3000.00</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>13092.66</td>
-      <td>13095.12</td>
-      <td>12361.63</td>
-      <td>13123.65</td>
-      <td>13152.12</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>7607.19</td>
-      <td>7633.48</td>
-      <td>5216.12</td>
-      <td>7608.87</td>
-      <td>7836.94</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>5151.00</td>
-      <td>5150.58</td>
-      <td>5581.04</td>
-      <td>5249.26</td>
-      <td>5118.00</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>7532.80</td>
-      <td>7703.26</td>
-      <td>8474.59</td>
-      <td>7446.55</td>
-      <td>7775.00</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>10276.94</td>
-      <td>10254.49</td>
-      <td>10429.53</td>
-      <td>10375.00</td>
-      <td>10198.00</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>16030.48</td>
-      <td>16015.68</td>
-      <td>15302.30</td>
-      <td>15618.80</td>
-      <td>16506.00</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>42302.85</td>
-      <td>45603.49</td>
-      <td>40385.31</td>
-      <td>44378.04</td>
-      <td>45400.00</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_comparisson.to_pickle(&#39;df_comparisson.pkl&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[183]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_scores = pd.DataFrame({&#39;mse&#39;: [ols_mse,
-                     ridge_mse,
-                     lasso_mse,
-                     huber_mse],
-                         &#39;r2&#39;: [ols_r2,
-                     ridge_r2,
-                     lasso_r2,
-                     huber_r2]
-                         },
-                         index=[&#39;model_ols&#39;, &#39;ridge&#39;, &#39;lasso&#39;, &#39;hubber&#39;]
-                        )
-
-df_scores.sort_values(by=&#39;mse&#39;).round(4)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[183]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mse</th>
+      <th>MSE</th>
       <th>r2</th>
+      <th>model name</th>
+      <th>time</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>ridge</th>
-      <td>1.802008e+06</td>
-      <td>0.9713</td>
+      <th>0</th>
+      <td>1.156840e+06</td>
+      <td>0.9714</td>
+      <td>Linear Regression</td>
+      <td>13.1890</td>
     </tr>
     <tr>
-      <th>model_ols</th>
-      <td>1.934713e+06</td>
-      <td>0.9689</td>
+      <th>3</th>
+      <td>1.156863e+06</td>
+      <td>0.9714</td>
+      <td>HUbber Regression</td>
+      <td>69.7017</td>
     </tr>
     <tr>
-      <th>hubber</th>
-      <td>3.277986e+06</td>
-      <td>0.9550</td>
+      <th>1</th>
+      <td>1.157179e+06</td>
+      <td>0.9714</td>
+      <td>Ridge Regression</td>
+      <td>3.7854</td>
     </tr>
     <tr>
-      <th>lasso</th>
-      <td>1.594458e+07</td>
-      <td>0.8181</td>
+      <th>0</th>
+      <td>1.211086e+06</td>
+      <td>0.9690</td>
+      <td>ols</td>
+      <td>0.7020</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.618442e+06</td>
+      <td>0.9620</td>
+      <td>Lasso Regression</td>
+      <td>0.4744</td>
     </tr>
   </tbody>
 </table>
 </div></div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_scores.to_pickle(&#39;df_scores.pkl&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="Residual-analysis">
-<h2>Residual analysis<a class="headerlink" href="#Residual-analysis" title="Permalink to this headline">¶</a></h2>
-<p>In a good model, what we should expect from the residuals: - their mean should be zero - they should be homoscedastic - they should be normal - they should have no correlation with the fitted values - they should have no correlation with any of the features</p>
-<div class="section" id="Residual-mean">
-<h3>Residual mean<a class="headerlink" href="#Residual-mean" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OLS
-model_ols.resid.mean() # good!
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
--6.615492420253224e-09
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Ridge
-model_ridge_resids = model_ridge.predict(X_train) - y_train
-model_ridge_resids.mean() # good!
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-2.7548562759637867e-12
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Lasso
-model_lasso_resids = model_lasso.predict(X_train) - y_train
-model_lasso_resids.mean() # good!
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
--2.898453435496783e-12
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Huber
-model_huber_resids = model_huber.predict(X_train) - y_train
-model_huber_resids.mean() # nope!
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
--84.10494030218992
-</pre></div></div>
-</div>
-</div>
-<div class="section" id="Residuals-vs-fitted-values">
-<h3>Residuals vs fitted values<a class="headerlink" href="#Residuals-vs-fitted-values" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from numpy.polynomial.polynomial import polyfit
-import matplotlib.pyplot as plt
-
-%matplotlib inline
-
-plt.figure(figsize=(12,10))
-plt.subplot(2, 2, 1)
-plt.title(&#39;fitted price vs resids for all models&#39;)
-plt.scatter(model_ols.fittedvalues, model_ols.resid, c=&quot;g&quot;, alpha=0.5, label=&quot;OLS model&quot;)
-b, m = polyfit(model_ols.fittedvalues, model_ols.resid, 1)
-plt.plot(model_ols.fittedvalues, b + m * model_ols.fittedvalues, &#39;-&#39;)
-plt.xlabel(&quot;&quot;)
-plt.ylabel(&quot;&quot;)
-plt.legend(loc=2)
-
-
-plt.subplot(2, 2, 2)
-plt.scatter(model_ridge.predict(X_train), model_ridge_resids, c=&quot;b&quot;, alpha=0.5, label=&quot;Ridge model&quot;)
-b, m = polyfit(model_ridge.predict(X_train), model_ridge_resids, 1)
-plt.plot(model_ridge.predict(X_train), b + m * model_ridge.predict(X_train), &#39;-&#39;)
-plt.xlabel(&quot;&quot;)
-plt.ylabel(&quot;&quot;)
-plt.legend(loc=2)
-
-
-plt.subplot(2, 2, 3)
-plt.scatter(model_lasso.predict(X_train), model_lasso_resids, c=&quot;y&quot;, alpha=0.5, label=&quot;Lasso model&quot;)
-b, m = polyfit(model_lasso.predict(X_train), model_lasso_resids, 1)
-plt.plot(model_lasso.predict(X_train), b + m * model_lasso.predict(X_train), &#39;-&#39;)
-plt.xlabel(&quot;&quot;)
-plt.ylabel(&quot;&quot;)
-plt.legend(loc=2)
-
-
-plt.subplot(2, 2, 4)
-plt.scatter(model_huber.predict(X_train), model_huber_resids, c=&quot;y&quot;, alpha=0.5, label=&quot;Hubber model&quot;)
-b, m = polyfit(model_huber.predict(X_train), model_huber_resids, 1)
-plt.plot(model_huber.predict(X_train), b + m * model_huber.predict(X_train), &#39;-&#39;)
-plt.xlabel(&quot;&quot;)
-plt.ylabel(&quot;&quot;)
-plt.legend(loc=2)
-
-plt.tight_layout()
-plt.show()
-
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/04-sklearn-linear_30_0.png" src="_images/04-sklearn-linear_30_0.png" />
-</div>
-</div>
-<p>Huber model residuals seems to have some correlation with <span class="math notranslate nohighlight">\(\hat y\)</span></p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from scipy.stats.stats import pearsonr
-
-pearsonr(model_huber.predict(X_train), model_huber_resids)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(-0.13000205379448529, 3.1774528951646964e-26)
-</pre></div></div>
-</div>
-<p>Nope, all ok for the Hubber model</p>
-</div>
-<div class="section" id="Testing-residuals-for-normality">
-<h3>Testing residuals for normality<a class="headerlink" href="#Testing-residuals-for-normality" title="Permalink to this headline">¶</a></h3>
-<p>The Shapiro’s test tests the null hypothesis of normality:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># OLS
-import scipy.stats as st
-st.shapiro(model_ols.resid) # not normal!
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/data-erick/anaconda3/lib/python3.6/site-packages/scipy/stats/morestats.py:1326: UserWarning: p-value may not be accurate for N &gt; 5000.
-  warnings.warn(&#34;p-value may not be accurate for N &gt; 5000.&#34;)
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(0.9467343688011169, 1.2471556332490872e-43)
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Ridge
-st.shapiro(model_ridge_resids) # not normal!
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/data-erick/anaconda3/lib/python3.6/site-packages/scipy/stats/morestats.py:1326: UserWarning: p-value may not be accurate for N &gt; 5000.
-  warnings.warn(&#34;p-value may not be accurate for N &gt; 5000.&#34;)
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[50]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(0.9506106376647949, 1.9632191485190687e-42)
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Lasso
-st.shapiro(model_lasso_resids) # not normal!
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/data-erick/anaconda3/lib/python3.6/site-packages/scipy/stats/morestats.py:1326: UserWarning: p-value may not be accurate for N &gt; 5000.
-  warnings.warn(&#34;p-value may not be accurate for N &gt; 5000.&#34;)
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(0.95025235414505, 1.5105997445421528e-42)
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># Hubber
-st.shapiro(model_huber_resids) # normal ...
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/data/data-erick/anaconda3/lib/python3.6/site-packages/scipy/stats/morestats.py:1326: UserWarning: p-value may not be accurate for N &gt; 5000.
-  warnings.warn(&#34;p-value may not be accurate for N &gt; 5000.&#34;)
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(0.851108968257904, 0.0)
-</pre></div></div>
-</div>
-</div>
-<div class="section" id="Correlation-between-residuals-and-features">
-<h3>Correlation between residuals and features<a class="headerlink" href="#Correlation-between-residuals-and-features" title="Permalink to this headline">¶</a></h3>
-<p>In a good model, residuals cannot be correlated to any feature.</p>
-<p>Lets check that for the Ridge model:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[53]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from scipy.stats.stats import pearsonr
-
-for feat in num_cols:
-    print(feat, &quot;\n&quot;, pearsonr(X_train_4later[feat], model_ridge_resids))
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-wheel_base
- (-1.4003582859898878e-06, 0.99990933517835479)
-length
- (1.756374185852324e-06, 0.99988628451912254)
-width
- (-1.2574826827668787e-06, 0.99991858445875048)
-height
- (7.8176824156691975e-07, 0.99994938430093361)
-curb_weight
- (-3.797454235559836e-06, 0.99975413629064946)
-engine_size
- (-3.8471709637247909e-06, 0.99975091772610181)
-bore
- (8.9786472595204995e-07, 0.99994186940128194)
-stroke
- (4.9476568951461345e-07, 0.99996797328663012)
-compression_ratio
- (3.6947997553470614e-06, 0.99976078300490479)
-horsepower
- (-2.5938799551408359e-07, 0.9999832064353672)
-peak_rpm
- (-9.9613065319792174e-07, 0.99993550850322954)
-city_mpg
- (-2.75655220193949e-08, 0.99999819508980514)
-highway_mpg
- (-7.8903570714943728e-07, 0.99994891297882671)
-</pre></div></div>
-</div>
-<p>All ok here: there is no correlation between resids and any of the features</p>
-</div>
-<div class="section" id="Correlation-between-residuals-and-\hat-y">
-<h3>Correlation between residuals and <span class="math notranslate nohighlight">\(\hat y\)</span><a class="headerlink" href="#Correlation-between-residuals-and-\hat-y" title="Permalink to this headline">¶</a></h3>
-<p>In a good model, residuals cannot be correlated to the fitted values.</p>
-<p>We have already saw before that the Ridge is ok in his regard:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from scipy.stats.stats import pearsonr
-pearsonr(model_ridge.predict(X_train), model_ridge_resids)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[54]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(-5.6538446317043605e-05, 0.9963394713107252)
-</pre></div></div>
-</div>
-</div>
-</div>
-<div class="section" id="Fitted-values-distribution-analysis">
-<h2>Fitted values distribution analysis<a class="headerlink" href="#Fitted-values-distribution-analysis" title="Permalink to this headline">¶</a></h2>
-<p>We expect that the fitted values follows the same distribution of the original prices.</p>
-<div class="section" id="Ridge-Model:">
-<h3>Ridge Model:<a class="headerlink" href="#Ridge-Model:" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import matplotlib.pyplot as plt
-
-fig, (ax, ax2) = plt.subplots(ncols=2, sharey=False)
-
-all_prices_pred = model_ridge.predict(X_proc)
-
-pd.Series(all_prices_pred).plot(kind=&#39;kde&#39;, legend=False, ax=ax,  figsize=(14,7), title=&#39;fitted y&#39;)
-pd.Series(y).plot(kind=&#39;kde&#39;, legend=False, figsize=(14,7), title=&#39;original y&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f25db5ae940&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/04-sklearn-linear_44_1.png" src="_images/04-sklearn-linear_44_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="OLS-Model">
-<h3>OLS Model<a class="headerlink" href="#OLS-Model" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import matplotlib.pyplot as plt
-
-fig, (ax, ax2) = plt.subplots(ncols=2, sharey=False)
-
-all_prices_pred = model_ols.predict(X)
-
-pd.Series(all_prices_pred).plot(kind=&#39;kde&#39;, legend=False, ax=ax,  figsize=(14,7), title=&#39;fitted y&#39;)
-pd.Series(y).plot(kind=&#39;kde&#39;, legend=False, figsize=(14,7), title=&#39;original y&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f25db4047b8&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/04-sklearn-linear_46_1.png" src="_images/04-sklearn-linear_46_1.png" />
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="Most-important-features">
 <h2>Most important features<a class="headerlink" href="#Most-important-features" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="OLS">
-<h3>OLS<a class="headerlink" href="#OLS" title="Permalink to this headline">¶</a></h3>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+<p>Lets check what are the most important features, aside from make:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>index = model_ols.pvalues[model_ols.pvalues&lt;.05].index
+<span></span>model = ridge_results[0]
 
-coefs = model_ols.params[index]
-
-df_coef_ols = pd.DataFrame({&#39;coefs_abs&#39;: np.abs(np.round(coefs,2)),
-                            &#39;coef_value&#39;: np.round(coefs,2),
-                            &#39;feats&#39;: coefs.index})
-
-df_coef_ols[~df_coef_ols.feats.str.startswith(&#39;make&#39;)].sort_values(&#39;coefs_abs&#39;, ascending=False).head(10)
+cat_list = []
+# make is the categories_[0]
+for item in encoder.categories_[1:]:
+    for cat in item:
+        cat_list.append(cat)
 </pre></div>
 </div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>features = cat_list + num_cols
+coefs = model.coef_
+
+# coefs 0 to 21 are the make coefs
+df_features = pd.DataFrame({&#39;feature&#39;: features, &#39;importance&#39;: coefs[21:]})
+(df_features.sort_values(by=&#39;importance&#39;, ascending=False)
+    .set_index(&#39;feature&#39;).head(10)
+    .plot(kind=&#39;bar&#39;, figsize=(13, 5), rot=0)
+)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x22f41760108&gt;
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>coef_value</th>
-      <th>coefs_abs</th>
-      <th>feats</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>C(fuel_system)[T.idi]</th>
-      <td>9925.11</td>
-      <td>9925.11</td>
-      <td>C(fuel_system)[T.idi]</td>
-    </tr>
-    <tr>
-      <th>C(fuel_system)[T.spfi]</th>
-      <td>7131.38</td>
-      <td>7131.38</td>
-      <td>C(fuel_system)[T.spfi]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.porsche]</th>
-      <td>6448.56</td>
-      <td>6448.56</td>
-      <td>C(make)[T.porsche]</td>
-    </tr>
-    <tr>
-      <th>Intercept</th>
-      <td>6340.05</td>
-      <td>6340.05</td>
-      <td>Intercept</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.isuzu]</th>
-      <td>-5859.51</td>
-      <td>5859.51</td>
-      <td>C(make)[T.isuzu]</td>
-    </tr>
-    <tr>
-      <th>C(num_of_cylinders)[T.twelve]</th>
-      <td>-5819.47</td>
-      <td>5819.47</td>
-      <td>C(num_of_cylinders)[T.twelve]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.mercedes-benz]</th>
-      <td>4860.42</td>
-      <td>4860.42</td>
-      <td>C(make)[T.mercedes-benz]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.plymouth]</th>
-      <td>-4753.42</td>
-      <td>4753.42</td>
-      <td>C(make)[T.plymouth]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.bmw]</th>
-      <td>4660.72</td>
-      <td>4660.72</td>
-      <td>C(make)[T.bmw]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.dodge]</th>
-      <td>-4635.57</td>
-      <td>4635.57</td>
-      <td>C(make)[T.dodge]</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+<div class="output_area docutils container">
+<img alt="_images/04-sklearn-linear_19_1.png" src="_images/04-sklearn-linear_19_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Comparing-the-models---conclusions">
 <h2>Comparing the models - conclusions<a class="headerlink" href="#Comparing-the-models---conclusions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>residual analysis shows better results for the ols, ridge and lasso models: their residual means are closer to zero (not normal though)</p></li>
-<li><p>all models have no correlation between fitted values and residuals</p></li>
 <li><p>MSE analysis shows better results for the Ridge model: smallest MSE</p></li>
-<li><p><span class="math notranslate nohighlight">\(R^2\)</span> analysis shows better results for the Ridge model</p></li>
-<li><p>OLS model gets a pretty close score to Ridge but it uses only 20 features, while Ridge uses 24</p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2\)</span> analysis shows a tie between Ridge, Hubber and Linear models</p></li>
 </ul>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_scores.sort_values(by=&#39;mse&#39;).round(4)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>mse</th>
-      <th>r2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>ridge</th>
-      <td>2.156401e+06</td>
-      <td>0.9676</td>
-    </tr>
-    <tr>
-      <th>lasso</th>
-      <td>2.156436e+06</td>
-      <td>0.9676</td>
-    </tr>
-    <tr>
-      <th>hubber</th>
-      <td>2.377322e+06</td>
-      <td>0.9643</td>
-    </tr>
-    <tr>
-      <th>model_ols</th>
-      <td>2.774196e+06</td>
-      <td>0.9579</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<p>Now lets proceed to the next step: machine learning!</p>
-<p><a class="reference external" href="https://github.com/erickfis/Challenges">back to github</a></p>
-<p><a class="reference external" href="mailto:erickfis&#37;&#52;&#48;gmail&#46;com">erickfis<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
 </div>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Modeling with linear regression</a><ul>
-<li><a class="reference internal" href="#Train-test-split">Train-test split</a></li>
-<li><a class="reference internal" href="#Regularized-models---Sklearn">Regularized models - Sklearn</a><ul>
-<li><a class="reference internal" href="#Transformation-on-data">Transformation on data</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Regularized-models---Lasso">Regularized models - Lasso</a></li>
-<li><a class="reference internal" href="#Huber-Regressor">Huber Regressor</a></li>
-<li><a class="reference internal" href="#Comparing-models---MSE-and-R^2">Comparing models - MSE and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
-<li><a class="reference internal" href="#Residual-analysis">Residual analysis</a><ul>
-<li><a class="reference internal" href="#Residual-mean">Residual mean</a></li>
-<li><a class="reference internal" href="#Residuals-vs-fitted-values">Residuals vs fitted values</a></li>
-<li><a class="reference internal" href="#Testing-residuals-for-normality">Testing residuals for normality</a></li>
-<li><a class="reference internal" href="#Correlation-between-residuals-and-features">Correlation between residuals and features</a></li>
-<li><a class="reference internal" href="#Correlation-between-residuals-and-\hat-y">Correlation between residuals and <span class="math notranslate nohighlight">\(\hat y\)</span></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Fitted-values-distribution-analysis">Fitted values distribution analysis</a><ul>
-<li><a class="reference internal" href="#Ridge-Model:">Ridge Model:</a></li>
-<li><a class="reference internal" href="#OLS-Model">OLS Model</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Most-important-features">Most important features</a><ul>
-<li><a class="reference internal" href="#OLS">OLS</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Comparing-the-models---conclusions">Comparing the models - conclusions</a></li>
-</ul>
-</li>
-</ul>
-
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/04-sklearn-linear.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="03-ols.html"
+       title="previous chapter">← Linear regression - OLS Model</a>
+  </li>
+  <li class="next">
+    <a href="05-machine.html"
+       title="next chapter">Modeling with machine learning →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
+            </div>
+          </div>
+      </page>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Modeling with linear regression</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Erick Medeiros Anastácio.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
-    </div>
+    
+    
   </body>
 </html>

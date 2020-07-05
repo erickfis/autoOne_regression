@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Python scripts</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="prev" title="Modeling with machine learning" href="05-machine.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="03-ols.html" class="reference internal ">Linear regression - OLS Model</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="04-sklearn-linear.html" class="reference internal ">Linear regression - sklearn</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="05-machine.html" class="reference internal ">Modeling with machine learning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Python scripts</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#python-scripts" class="reference internal">Python scripts</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Python scripts</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="05-machine.html"
+       title="previous chapter">← Modeling with machine learning</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
+            
+  <div class="section" id="python-scripts">
+<h1>Python scripts<a class="headerlink" href="#python-scripts" title="Permalink to this headline">¶</a></h1>
+<p>The following script was used to lighten the work done in the notebooks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"># Project AutoOne_regression</span>
+
+<span class="sd">Auxiliary functions for cleanning data and building regression models</span>
+
+<span class="sd">- Erick Medeiros Anastácio</span>
+<span class="sd">- 2020-06-28</span>
+<span class="sd">- Python 3.7</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">import</span> <span class="nn">sklearn.metrics</span> <span class="k">as</span> <span class="nn">metrics</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">clean_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cleans the incoming data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pands df): Incoming dat</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        df: Clean data.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;normalized_losses&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># fix numeric</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bore&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;horsepower&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_rpm&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">]:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+
+    <span class="c1"># lets replace drive_wheels 4wd with fwd</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;drive_wheels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;4wd&#39;</span><span class="p">,</span> <span class="s1">&#39;fwd&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+
+<span class="k">def</span> <span class="nf">make_regressor</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Trains and scores models using sklearn GridSearchCV.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model_name (str): the name of the model.</span>
+<span class="sd">        model (object): the sklearn instance of the model.</span>
+<span class="sd">        grid_params (dict): the grid parameters for the model.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: Contains the fitted model, the predictions on the test set and</span>
+<span class="sd">        a dict containing:</span>
+
+<span class="sd">        - &#39;r2&#39;: r2 score</span>
+<span class="sd">        - &#39;mse&#39;: mse score</span>
+<span class="sd">        - &#39;parameters&#39;: grid parameters for the best model</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">X_train_proc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_proc</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="c1"># the GridSearchCV</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_proc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># get the best model &amp; params</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">best_estimator_</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_params</span><span class="p">()</span>
+
+    <span class="c1"># lets score the model on the test set</span>
+    <span class="n">y_predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_proc</span><span class="p">))</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="n">y_predictions</span><span class="p">)</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test_proc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+
+    <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Score r2: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Score MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.4</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">Time: </span><span class="si">{</span><span class="n">elapsed</span><span class="si">:</span><span class="s1">.2</span><span class="si">}</span><span class="s1">s&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+
+    <span class="n">stats</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;model name&#39;</span><span class="p">:</span> <span class="n">model_name</span><span class="p">,</span>
+        <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="n">r2</span><span class="p">,</span>
+        <span class="s1">&#39;mse&#39;</span><span class="p">:</span> <span class="n">mse</span><span class="p">,</span>
+        <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="n">parameters</span><span class="p">,</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">elapsed</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">y_predictions</span><span class="p">,</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="05-machine.html"
+       title="previous chapter">← Modeling with machine learning</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
+</div>
+            </div>
+          </div>
+      </page>
+    </div>
+    
+    
+  </body>
+</html>

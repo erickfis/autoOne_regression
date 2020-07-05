@@ -18,8 +18,8 @@ def make_doc():
     try:
         # removing previous build
         print('removing previous build')
-        command_line_string = 'make clean'
-        os.system(command_line_string)
+        # command_line_string = 'make clean'
+        # os.system(command_line_string)
         shutil.rmtree('../docs/', ignore_errors=True)
 
         # new build

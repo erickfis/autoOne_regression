@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Modeling with machine learning</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Python scripts" href="06-scripts.html" />
+  <link rel="prev" title="Linear regression - sklearn" href="04-sklearn-linear.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="03-ols.html" class="reference internal ">Linear regression - OLS Model</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="04-sklearn-linear.html" class="reference internal ">Linear regression - sklearn</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Modeling with machine learning</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#Hyper-parameter-tuning-and-Cross-Validation" class="reference internal">Hyper-parameter tuning and Cross Validation</a></li>
+                
+                  <li class="toctree-l2"><a href="#Decision-Tree-Regressor" class="reference internal">Decision Tree Regressor</a></li>
+                
+                  <li class="toctree-l2"><a href="#k-Nearest-Neighbors" class="reference internal">k-Nearest Neighbors</a></li>
+                
+                  <li class="toctree-l2"><a href="#Random-Forests" class="reference internal">Random Forests</a></li>
+                
+                  <li class="toctree-l2"><a href="#Gradient-tree-boosting" class="reference internal">Gradient tree boosting</a></li>
+                
+                  <li class="toctree-l2"><a href="#AdaBoost" class="reference internal">AdaBoost</a></li>
+                
+                  <li class="toctree-l2"><a href="#Comparing-models---MSE-and-R^2" class="reference internal">Comparing models - MSE and R^2</a></li>
+                
+                  <li class="toctree-l2"><a href="#Conclusions" class="reference internal">Conclusions</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="06-scripts.html" class="reference internal ">Python scripts</a>
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Modeling with machine learning</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="04-sklearn-linear.html"
+       title="previous chapter">← Linear regression - sklearn</a>
+  </li>
+  <li class="next">
+    <a href="06-scripts.html"
+       title="next chapter">Python scripts →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background: #f5f5f5;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<div class="section" id="Modeling-with-machine-learning">
+<h1>Modeling with machine learning<a class="headerlink" href="#Modeling-with-machine-learning" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we will cover:</p>
+<ul class="simple">
+<li><p>fitting different machine learting regression models with sklearn</p></li>
+<li><p>score analysis: MSE and variance explained: <span class="math notranslate nohighlight">\(R^2\)</span></p></li>
+<li><p>comparing the models: conclusions</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import pandas as pd
+import numpy as np
+
+df = pd.read_csv(&#39;data/df_resample.csv&#39;)
+df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>symboling</th>
+      <th>make</th>
+      <th>fuel_type</th>
+      <th>aspiration</th>
+      <th>num_of_doors</th>
+      <th>body_style</th>
+      <th>drive_wheels</th>
+      <th>engine_location</th>
+      <th>wheel_base</th>
+      <th>length</th>
+      <th>...</th>
+      <th>engine_size</th>
+      <th>fuel_system</th>
+      <th>bore</th>
+      <th>stroke</th>
+      <th>compression_ratio</th>
+      <th>horsepower</th>
+      <th>peak_rpm</th>
+      <th>city_mpg</th>
+      <th>highway_mpg</th>
+      <th>price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>mitsubishi</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>two</td>
+      <td>hatchback</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>93.7</td>
+      <td>157.3</td>
+      <td>...</td>
+      <td>92</td>
+      <td>2bbl</td>
+      <td>2.97</td>
+      <td>3.23</td>
+      <td>9.4</td>
+      <td>68.0</td>
+      <td>5500.0</td>
+      <td>37</td>
+      <td>41</td>
+      <td>5389.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>dodge</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>93.7</td>
+      <td>157.3</td>
+      <td>...</td>
+      <td>90</td>
+      <td>2bbl</td>
+      <td>2.97</td>
+      <td>3.23</td>
+      <td>9.4</td>
+      <td>68.0</td>
+      <td>5500.0</td>
+      <td>31</td>
+      <td>38</td>
+      <td>6692.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>jaguar</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>two</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>102.0</td>
+      <td>191.7</td>
+      <td>...</td>
+      <td>326</td>
+      <td>mpfi</td>
+      <td>3.54</td>
+      <td>2.76</td>
+      <td>11.5</td>
+      <td>262.0</td>
+      <td>5000.0</td>
+      <td>13</td>
+      <td>17</td>
+      <td>36000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>peugot</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>107.9</td>
+      <td>186.7</td>
+      <td>...</td>
+      <td>120</td>
+      <td>mpfi</td>
+      <td>3.46</td>
+      <td>3.19</td>
+      <td>8.4</td>
+      <td>97.0</td>
+      <td>5000.0</td>
+      <td>19</td>
+      <td>24</td>
+      <td>11900.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>subaru</td>
+      <td>gas</td>
+      <td>turbo</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>97.0</td>
+      <td>172.0</td>
+      <td>...</td>
+      <td>108</td>
+      <td>mpfi</td>
+      <td>3.62</td>
+      <td>2.64</td>
+      <td>7.7</td>
+      <td>111.0</td>
+      <td>4800.0</td>
+      <td>24</td>
+      <td>29</td>
+      <td>11259.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 25 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>X = df.copy()
+X.drop(&#39;price&#39;, axis=1, inplace=True)
+y = np.log(df.price) # as discussed, we are going to use the log transform here
+
+## Train-test split#
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=.3, random_state=95276
+)
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># normalize and encode
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+import pickle
+
+with open(&#39;data/category_list&#39;, &#39;rb&#39;) as file:
+    cat_cols = pickle.load(file)
+
+# numeric columns
+num_cols = [col for col in X_train.columns if col not in cat_cols]
+
+# normalize numeric features
+scaler = StandardScaler()
+num_scaled = scaler.fit_transform(X_train[num_cols])
+
+# encode categories
+encoder = OneHotEncoder(sparse=False)
+cat_encoded = encoder.fit_transform(X_train[cat_cols])
+
+# all together
+X_train_proc = np.concatenate([cat_encoded, num_scaled] ,axis=1)
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span># apply transformations on test set
+num_scaled = scaler.transform(X_test[num_cols])
+
+# encode categories
+cat_encoded = encoder.transform(X_test[cat_cols])
+
+# all together
+X_test_proc = np.concatenate([cat_encoded, num_scaled] ,axis=1)
+X_test_proc.shape
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(3000, 73)
+</pre></div></div>
+</div>
+<div class="section" id="Hyper-parameter-tuning-and-Cross-Validation">
+<h2>Hyper-parameter tuning and Cross Validation<a class="headerlink" href="#Hyper-parameter-tuning-and-Cross-Validation" title="Permalink to this headline">¶</a></h2>
+<p>It is important to note that we are going to use the gridsearchCV method, so we can iterate over a series of hyper-parameters for each model in order to find the best combination of them through cross validation.</p>
+</div>
+<div class="section" id="Decision-Tree-Regressor">
+<h2>Decision Tree Regressor<a class="headerlink" href="#Decision-Tree-Regressor" title="Permalink to this headline">¶</a></h2>
+<p>Lets start trying a simple sklearn decision tree regression model.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>%load_ext autoreload
+%autoreload 2
+
+import aux_functions as aux
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from sklearn.tree import DecisionTreeRegressor
+
+model = DecisionTreeRegressor(random_state=95276)
+
+grid_params = {
+    &#39;min_samples_split&#39;: [2, 5],
+    &#39;min_samples_leaf&#39;: [2, 5],
+    &#39;max_depth&#39;: [20, 25, 30]
+}
+name = &#39;Decision tree&#39;
+data = (X_train_proc, y_train, X_test_proc, y_test)
+
+dt_results = aux.make_regressor(name, model, grid_params, data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Decision tree
+Score r2: 0.9986
+Score MSE: 7.89e+04
+Time: 1.8e+01s
+{&#39;ccp_alpha&#39;: 0.0, &#39;criterion&#39;: &#39;mse&#39;, &#39;max_depth&#39;: 20, &#39;max_features&#39;: None, &#39;max_leaf_nodes&#39;: None, &#39;min_impurity_decrease&#39;: 0.0, &#39;min_impurity_split&#39;: None, &#39;min_samples_leaf&#39;: 2, &#39;min_samples_split&#39;: 2, &#39;min_weight_fraction_leaf&#39;: 0.0, &#39;presort&#39;: &#39;deprecated&#39;, &#39;random_state&#39;: 95276, &#39;splitter&#39;: &#39;best&#39;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="k-Nearest-Neighbors">
+<h2>k-Nearest Neighbors<a class="headerlink" href="#k-Nearest-Neighbors" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from sklearn.neighbors import KNeighborsRegressor
+
+model = KNeighborsRegressor()
+
+grid_params = {
+    &#39;n_neighbors&#39;: [5, 10],
+    &#39;p&#39;: [1, 2]
+    }
+name = &#39;knn&#39;
+knn_results = aux.make_regressor(name, model, grid_params, data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+knn
+Score r2: 0.9984
+Score MSE: 1.006e+05
+Time: 2.2s
+{&#39;algorithm&#39;: &#39;auto&#39;, &#39;leaf_size&#39;: 30, &#39;metric&#39;: &#39;minkowski&#39;, &#39;metric_params&#39;: None, &#39;n_jobs&#39;: None, &#39;n_neighbors&#39;: 10, &#39;p&#39;: 1, &#39;weights&#39;: &#39;uniform&#39;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Random-Forests">
+<h2>Random Forests<a class="headerlink" href="#Random-Forests" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from sklearn.ensemble import RandomForestRegressor
+model = RandomForestRegressor()
+
+grid_params = {
+    &#39;max_features&#39;: [10, 15, 20],
+    &#39;max_depth&#39;: [20, 30],
+    &#39;min_samples_split&#39;: [2, 5],
+    &#39;min_samples_leaf&#39;: [2, 5],
+}
+name = &#39;RF&#39;
+rf_results = aux.make_regressor(name, model, grid_params, data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+RF
+Score r2: 0.9986
+Score MSE: 7.915e+04
+Time: 2.3e+01s
+{&#39;bootstrap&#39;: True, &#39;ccp_alpha&#39;: 0.0, &#39;criterion&#39;: &#39;mse&#39;, &#39;max_depth&#39;: 30, &#39;max_features&#39;: 20, &#39;max_leaf_nodes&#39;: None, &#39;max_samples&#39;: None, &#39;min_impurity_decrease&#39;: 0.0, &#39;min_impurity_split&#39;: None, &#39;min_samples_leaf&#39;: 2, &#39;min_samples_split&#39;: 5, &#39;min_weight_fraction_leaf&#39;: 0.0, &#39;n_estimators&#39;: 100, &#39;n_jobs&#39;: None, &#39;oob_score&#39;: False, &#39;random_state&#39;: None, &#39;verbose&#39;: 0, &#39;warm_start&#39;: False}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Gradient-tree-boosting">
+<h2>Gradient tree boosting<a class="headerlink" href="#Gradient-tree-boosting" title="Permalink to this headline">¶</a></h2>
+<p>The gradient tree boosting is an ensemble machine learning methods too, but this time we have the boosting class: several weak models are combined to produce a powerful estimator with reduced bias.</p>
+<p>This method is very robust because it uses regularization.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from sklearn.ensemble import GradientBoostingRegressor
+model = GradientBoostingRegressor()
+
+grid_params = {
+    &#39;min_samples_split&#39;: [5],
+}
+name = &#39;Gradient Boost&#39;
+gb_results = aux.make_regressor(name, model, grid_params, data)
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Gradient Boost
+Score r2: 0.9871
+Score MSE: 5.658e+05
+Time: 8.0s
+{&#39;alpha&#39;: 0.9, &#39;ccp_alpha&#39;: 0.0, &#39;criterion&#39;: &#39;friedman_mse&#39;, &#39;init&#39;: None, &#39;learning_rate&#39;: 0.1, &#39;loss&#39;: &#39;ls&#39;, &#39;max_depth&#39;: 3, &#39;max_features&#39;: None, &#39;max_leaf_nodes&#39;: None, &#39;min_impurity_decrease&#39;: 0.0, &#39;min_impurity_split&#39;: None, &#39;min_samples_leaf&#39;: 1, &#39;min_samples_split&#39;: 5, &#39;min_weight_fraction_leaf&#39;: 0.0, &#39;n_estimators&#39;: 100, &#39;n_iter_no_change&#39;: None, &#39;presort&#39;: &#39;deprecated&#39;, &#39;random_state&#39;: None, &#39;subsample&#39;: 1.0, &#39;tol&#39;: 0.0001, &#39;validation_fraction&#39;: 0.1, &#39;verbose&#39;: 0, &#39;warm_start&#39;: False}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="AdaBoost">
+<h2>AdaBoost<a class="headerlink" href="#AdaBoost" title="Permalink to this headline">¶</a></h2>
+<p>Adaboost is another ensemble machine learning method of the boosting class.</p>
+<p>This time, however, we can start with the best model we have so far. Then, copies of the original model will be fitted on the same dataset, but weights will be attributed to them according to the error of the prediction.</p>
+<p>Lets use our previously trained decision tree regressor.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>from sklearn.ensemble import AdaBoostRegressor
+model = AdaBoostRegressor(random_state=95276, base_estimator=dt_results[0])
+
+grid_params = {
+    &#39;learning_rate&#39;: [.5, 1],
+}
+name = &#39;AdaBoost&#39;
+ada_results = aux.make_regressor(name, model, grid_params, data)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AdaBoost
+Score r2: 0.9986
+Score MSE: 7.917e+04
+Time: 2.4s
+{&#39;base_estimator__ccp_alpha&#39;: 0.0, &#39;base_estimator__criterion&#39;: &#39;mse&#39;, &#39;base_estimator__max_depth&#39;: 20, &#39;base_estimator__max_features&#39;: None, &#39;base_estimator__max_leaf_nodes&#39;: None, &#39;base_estimator__min_impurity_decrease&#39;: 0.0, &#39;base_estimator__min_impurity_split&#39;: None, &#39;base_estimator__min_samples_leaf&#39;: 2, &#39;base_estimator__min_samples_split&#39;: 2, &#39;base_estimator__min_weight_fraction_leaf&#39;: 0.0, &#39;base_estimator__presort&#39;: &#39;deprecated&#39;, &#39;base_estimator__random_state&#39;: 95276, &#39;base_estimator__splitter&#39;: &#39;best&#39;, &#39;base_estimator&#39;: DecisionTreeRegressor(ccp_alpha=0.0, criterion=&#39;mse&#39;, max_depth=20,
+                      max_features=None, max_leaf_nodes=None,
+                      min_impurity_decrease=0.0, min_impurity_split=None,
+                      min_samples_leaf=2, min_samples_split=2,
+                      min_weight_fraction_leaf=0.0, presort=&#39;deprecated&#39;,
+                      random_state=95276, splitter=&#39;best&#39;), &#39;learning_rate&#39;: 0.5, &#39;loss&#39;: &#39;linear&#39;, &#39;n_estimators&#39;: 50, &#39;random_state&#39;: 95276}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Comparing-models---MSE-and-R^2">
+<h2>Comparing models - MSE and <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#Comparing-models---MSE-and-R^2" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>df_scores = pd.DataFrame({
+    &#39;MSE&#39;: [
+        dt_results[2][&#39;mse&#39;],
+        knn_results[2][&#39;mse&#39;],
+        rf_results[2][&#39;mse&#39;],
+        gb_results[2][&#39;mse&#39;],
+        ada_results[2][&#39;mse&#39;]
+
+        ],
+    &#39;r2&#39;: [
+        dt_results[2][&#39;r2&#39;],
+        knn_results[2][&#39;r2&#39;],
+        rf_results[2][&#39;r2&#39;],
+        gb_results[2][&#39;r2&#39;],
+        ada_results[2][&#39;r2&#39;]
+        ],
+    &#39;model name&#39;: [
+        dt_results[2][&#39;model name&#39;],
+        knn_results[2][&#39;model name&#39;],
+        rf_results[2][&#39;model name&#39;],
+        gb_results[2][&#39;model name&#39;],
+        ada_results[2][&#39;model name&#39;]
+        ],
+    &#39;time&#39;: [
+        dt_results[2][&#39;time&#39;],
+        knn_results[2][&#39;time&#39;],
+        rf_results[2][&#39;time&#39;],
+        gb_results[2][&#39;time&#39;],
+        ada_results[2][&#39;time&#39;],
+        ],
+    },
+#     index=[&#39;linear&#39;, &#39;ridge&#39;, &#39;lasso&#39;, &#39;hubber&#39;]
+)
+
+# load ols results
+df_scores_old = pd.read_csv(&#39;data/sk_scores.csv&#39;)
+df_scores = pd.concat([df_scores, df_scores_old], axis=0)
+
+# lets get the rmse
+df_scores[&#39;rmse&#39;] = np.sqrt(df_scores[&#39;MSE&#39;])
+
+# now lets measure the impact of processing time over RMSE
+df_scores = df_scores.sort_values(by=&#39;rmse&#39;, ascending=False)
+df_scores[&#39;dif_rmse&#39;] = df_scores[&#39;rmse&#39;].diff()
+df_scores[&#39;dif_time&#39;] = df_scores[&#39;time&#39;].diff()
+df_scores.to_csv(&#39;data/full_scores.csv&#39;, index=False)
+df_scores
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MSE</th>
+      <th>r2</th>
+      <th>model name</th>
+      <th>time</th>
+      <th>rmse</th>
+      <th>dif_rmse</th>
+      <th>dif_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1.618442e+06</td>
+      <td>0.962031</td>
+      <td>Lasso Regression</td>
+      <td>0.474396</td>
+      <td>1272.179898</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.211086e+06</td>
+      <td>0.968962</td>
+      <td>ols</td>
+      <td>0.701995</td>
+      <td>1100.493742</td>
+      <td>-171.686156</td>
+      <td>0.227598</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.157179e+06</td>
+      <td>0.971413</td>
+      <td>Ridge Regression</td>
+      <td>3.785377</td>
+      <td>1075.722459</td>
+      <td>-24.771283</td>
+      <td>3.083382</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.156863e+06</td>
+      <td>0.971421</td>
+      <td>HUbber Regression</td>
+      <td>69.701672</td>
+      <td>1075.575433</td>
+      <td>-0.147026</td>
+      <td>65.916295</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>1.156840e+06</td>
+      <td>0.971422</td>
+      <td>Linear Regression</td>
+      <td>13.188963</td>
+      <td>1075.565067</td>
+      <td>-0.010367</td>
+      <td>-56.512709</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.657781e+05</td>
+      <td>0.987106</td>
+      <td>Gradient Boost</td>
+      <td>7.981411</td>
+      <td>752.182200</td>
+      <td>-323.382866</td>
+      <td>-5.207552</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.005970e+05</td>
+      <td>0.998437</td>
+      <td>knn</td>
+      <td>2.226510</td>
+      <td>317.170259</td>
+      <td>-435.011942</td>
+      <td>-5.754901</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7.916639e+04</td>
+      <td>0.998595</td>
+      <td>AdaBoost</td>
+      <td>2.420043</td>
+      <td>281.365229</td>
+      <td>-35.805029</td>
+      <td>0.193533</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>7.915360e+04</td>
+      <td>0.998599</td>
+      <td>RF</td>
+      <td>23.239215</td>
+      <td>281.342490</td>
+      <td>-0.022739</td>
+      <td>20.819172</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>7.890253e+04</td>
+      <td>0.998604</td>
+      <td>Decision tree</td>
+      <td>17.802543</td>
+      <td>280.895950</td>
+      <td>-0.446540</td>
+      <td>-5.436672</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="Conclusions">
+<h2>Conclusions<a class="headerlink" href="#Conclusions" title="Permalink to this headline">¶</a></h2>
+<p>Considering the computation time and the error measured on the test set, we can conclude that:</p>
+<ul class="simple">
+<li><p>OLS, with proper feature selection, would be chosen over sklearn. However, its important to consider the time it takes to manually choose those features</p></li>
+<li><p>Given that all sklearn linear models have almost the same scores, Ridge Regression would be chosen due to the time it needs to be trained while automatically adjusting the weights of each feature, so we don’t need to manually select them</p></li>
+<li><p>among the ML models, its important to note that the KNN model took 6x less time to produce a model almost as good as the alternatives.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="04-sklearn-linear.html"
+       title="previous chapter">← Linear regression - sklearn</a>
+  </li>
+  <li class="next">
+    <a href="06-scripts.html"
+       title="next chapter">Python scripts →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
+</div>
+            </div>
+          </div>
+      </page>
+    </div>
+    
+    
+  </body>
+</html>

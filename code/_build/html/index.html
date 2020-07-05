@@ -1,50 +1,153 @@
-
 <!DOCTYPE html>
-
-<html>
+<html >
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoOne Price Prediction &#8212; AutoOne Regression 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Description" href="00-intro.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="00-intro.html" title="Description"
-             accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">AutoOne Price Prediction</a></li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>AutoOne Price Prediction</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Data cleaning" href="01-cleaning.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="#" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="03-ols.html" class="reference internal ">Linear regression - OLS Model</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="04-sklearn-linear.html" class="reference internal ">Linear regression - sklearn</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="05-machine.html" class="reference internal ">Modeling with machine learning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="06-scripts.html" class="reference internal ">Python scripts</a>
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+    
+    <li>AutoOne Price Prediction</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="next">
+    <a href="01-cleaning.html"
+       title="next chapter">Data cleaning →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
             
   <div class="section" id="autoone-price-prediction">
 <h1>AutoOne Price Prediction<a class="headerlink" href="#autoone-price-prediction" title="Permalink to this headline">¶</a></h1>
+<p>AutoOne is a company which buys and sells used cars in more than 30 countries across Europe.</p>
+<p>The heart of their business is to chose prices for buying and selling cars while making a profit.</p>
+<p>They have lots of information on car sales and they want to be able to make data driven decisions when deciding what are the best prices.</p>
+<p>Therefore, for this study  we will use the data available to build a statistical model for predicting prices for a given car.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Description</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01-cleaning.html">Data cleaning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="01-cleaning.html#Getting-the-data">Getting the data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01-cleaning.html#Missing-data">Missing data</a></li>
@@ -61,66 +164,59 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="03-ols.html">Linear regression - OLS Model</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="03-ols.html#Train-test-split">Train-test split</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-ols.html#Categories">Categories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03-ols.html#Feature-Selection">Feature Selection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-ols.html#Formula-for-OLS">Formula for OLS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-ols.html#Fitting-the-model">Fitting the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-ols.html#More-feature-selection:-p-values">More feature selection: p-values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03-ols.html#Model-Scoring-&amp;-Evaluation">Model Scoring &amp; Evaluation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-ols.html#Feature-selection-through-p-values">Feature selection through p-values</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03-ols.html#Residual-analysis">Residual analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03-ols.html#Most-important-features">Most important features</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="04-sklearn-linear.html">Linear regression - sklearn</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Normalization-and-encoding-of-features">Normalization and encoding of features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Hyper-parameter-tuning-and-Cross-Validation">Hyper-parameter tuning and Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Linear-regression-model">Linear regression model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Regularized-models---Ridge-regularization">Regularized models - Ridge regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Regularized-models---Lasso">Regularized models - Lasso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Huber-Regressor">Huber Regressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Comparing-models---MSE-and-R^2">Comparing models - MSE and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Most-important-features">Most important features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04-sklearn-linear.html#Comparing-the-models---conclusions">Comparing the models - conclusions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-machine.html">Modeling with machine learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Hyper-parameter-tuning-and-Cross-Validation">Hyper-parameter tuning and Cross Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Decision-Tree-Regressor">Decision Tree Regressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#k-Nearest-Neighbors">k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Random-Forests">Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Gradient-tree-boosting">Gradient tree boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#AdaBoost">AdaBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Comparing-models---MSE-and-R^2">Comparing models - MSE and <span class="math notranslate nohighlight">\(R^2\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-machine.html#Conclusions">Conclusions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06-scripts.html">Python scripts</a></li>
 </ul>
 </div>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Next topic</h4>
-  <p class="topless"><a href="00-intro.html"
-                        title="next chapter">Description</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="next">
+    <a href="01-cleaning.html"
+       title="next chapter">Data cleaning →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
+            </div>
+          </div>
+      </page>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="00-intro.html" title="Description"
-             >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">AutoOne Price Prediction</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Erick Medeiros Anastácio.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
-    </div>
+    
+    
   </body>
 </html>

@@ -1,47 +1,162 @@
-
 <!DOCTYPE html>
-
-<html>
+<html >
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analysis &#8212; AutoOne Regression 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Linear regression - OLS Model" href="03-ols.html" />
-    <link rel="prev" title="Data cleaning" href="01-cleaning.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="03-ols.html" title="Linear regression - OLS Model"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="01-cleaning.html" title="Data cleaning"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Data Analysis</a></li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Data Analysis</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Linear regression - OLS Model" href="03-ols.html" />
+  <link rel="prev" title="Data cleaning" href="01-cleaning.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Data Analysis</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#Analysis-of-sample-distribution" class="reference internal">Analysis of sample distribution</a></li>
+                
+                  <li class="toctree-l2"><a href="#Discussion-about-outliers" class="reference internal">Discussion about outliers</a></li>
+                
+                  <li class="toctree-l2"><a href="#Log-transformation-on-prices" class="reference internal">Log transformation on prices</a></li>
+                
+                  <li class="toctree-l2"><a href="#Balancing-the-data" class="reference internal">Balancing the data</a></li>
+                
+                  <li class="toctree-l2"><a href="#Conclusion" class="reference internal">Conclusion</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="03-ols.html" class="reference internal ">Linear regression - OLS Model</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="04-sklearn-linear.html" class="reference internal ">Linear regression - sklearn</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="05-machine.html" class="reference internal ">Modeling with machine learning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="06-scripts.html" class="reference internal ">Python scripts</a>
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Data Analysis</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="01-cleaning.html"
+       title="previous chapter">← Data cleaning</a>
+  </li>
+  <li class="next">
+    <a href="03-ols.html"
+       title="next chapter">Linear regression - OLS Model →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
             
   
 <style>
@@ -286,7 +401,7 @@ div.rendered_html tbody tr:hover {
 <li><p>Outliers</p></li>
 <li><p>Balancing the data</p></li>
 </ul>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -303,22 +418,13 @@ import aux_functions as aux
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-C:\Users\BJ571WQ\Anaconda3\lib\site-packages\sklearn\utils\deprecation.py:144: FutureWarning: The sklearn.metrics.regression module is  deprecated in version 0.22 and will be removed in version 0.24. The corresponding classes / functions should instead be imported from sklearn.metrics. Anything that cannot be imported from sklearn.metrics is now part of the private API.
-  warnings.warn(message, FutureWarning)
-</pre></div></div>
-</div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span># loading the data and testing our script
-df_old = pd.read_csv(&#39;df_transformed.csv&#39;)
+df_old = pd.read_csv(&#39;data/df_transformed.csv&#39;)
 df = pd.read_csv(&#39;data/Auto1-DS-TestData.csv&#39;)
 df = aux.clean_data(df)
 
@@ -392,7 +498,7 @@ plt.legend()
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x211246c8508&gt;
+&lt;matplotlib.legend.Legend at 0x1d34e2e7a48&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -417,7 +523,7 @@ plt.legend()
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x2112470ec08&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e51fa08&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -443,7 +549,7 @@ df.price[mask].plot(kind=&#39;hist&#39;, figsize=figsize, bins=20, title=&#39;Pr
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x21124782688&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e417d48&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -557,7 +663,9 @@ prob for prices bellow 32k: 0.99
 <li><p>standard deviation: \$8089.08</p></li>
 <li><p>range: \$40282.00</p></li>
 </ul>
-<p>The prices distribution is bimodal with peaks around \$8500.00 and \$34000.00 The prices go from \$5118.00 to \$45400.00. There are outliers included in this sample: prices above \$38000.00 have only two data points.</p>
+<p>The prices distribution is bimodal with peaks around \$8500.00 and \$34000.00. However, in this study we will consider that this happens due to data skew.</p>
+<p>The prices go from \$5118.00 to \$45400.00.</p>
+<p>There are outliers included in this sample: prices above \$38000.00 have only two data points.</p>
 </div>
 <div class="section" id="Discussion-about-outliers">
 <h2>Discussion about outliers<a class="headerlink" href="#Discussion-about-outliers" title="Permalink to this headline">¶</a></h2>
@@ -765,7 +873,7 @@ Name: class_range, dtype: int64
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x21124df3e88&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e778c88&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -836,7 +944,7 @@ df.class_range.value_counts(normalize=True).plot.bar(ax=ax2, title=&#39;bootstra
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x211256bca88&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34f2f34c8&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -867,12 +975,12 @@ df.class_range.value_counts(normalize=True).plot.bar(ax=ax2, title=&#39;bootstra
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 original
- almost-free        0.5172
-super-cheap        0.2039
-cheap              0.1721
-super-expensive    0.0438
-normal             0.0410
-expensive          0.0220
+ almost-free        0.5216
+super-cheap        0.2063
+cheap              0.1635
+super-expensive    0.0476
+normal             0.0417
+expensive          0.0193
 Name: class_range, dtype: float64
 #########
  bootstrap
@@ -897,11 +1005,11 @@ Name: class_range, dtype: float64
 <li><p>there is no balance on price ranges: we addressed that through bootstrap.</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.drop([&#39;log_price&#39;, &#39;class_range&#39;], axis=1).to_csv(&#39;df_resample.csv&#39;, index=False)
+<span></span>df.drop([&#39;log_price&#39;, &#39;class_range&#39;, &#39;price_cats&#39;], axis=1).to_csv(&#39;data/df_resample.csv&#39;, index=False)
 </pre></div>
 </div>
 </div>
@@ -909,74 +1017,27 @@ Name: class_range, dtype: float64
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Data Analysis</a><ul>
-<li><a class="reference internal" href="#Analysis-of-sample-distribution">Analysis of sample distribution</a></li>
-<li><a class="reference internal" href="#Discussion-about-outliers">Discussion about outliers</a></li>
-<li><a class="reference internal" href="#Log-transformation-on-prices">Log transformation on prices</a></li>
-<li><a class="reference internal" href="#Balancing-the-data">Balancing the data</a><ul>
-<li><a class="reference internal" href="#Splitting-cars-in-classes-according-to-its-price">Splitting cars in classes according to its price</a></li>
-<li><a class="reference internal" href="#Balancing-the-data:-bootstrap">Balancing the data: bootstrap</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Conclusion">Conclusion</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="01-cleaning.html"
-                        title="previous chapter">Data cleaning</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="03-ols.html"
-                        title="next chapter">Linear regression - OLS Model</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/02-analysis.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="01-cleaning.html"
+       title="previous chapter">← Data cleaning</a>
+  </li>
+  <li class="next">
+    <a href="03-ols.html"
+       title="next chapter">Linear regression - OLS Model →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
+            </div>
+          </div>
+      </page>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="03-ols.html" title="Linear regression - OLS Model"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="01-cleaning.html" title="Data cleaning"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Data Analysis</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Erick Medeiros Anastácio.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
-    </div>
+    
+    
   </body>
 </html>

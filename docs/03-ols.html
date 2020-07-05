@@ -1,43 +1,164 @@
-
 <!DOCTYPE html>
-
-<html>
+<html >
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linear regression - OLS Model &#8212; AutoOne Regression 1.0 documentation</title>
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Data Analysis" href="02-analysis.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="02-analysis.html" title="Data Analysis"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Linear regression - OLS Model</a></li> 
-      </ul>
-    </div>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Linear regression - OLS Model</title>
+    
+      <link rel="stylesheet" href="_static/pygments.css">
+      <link rel="stylesheet" href="_static/theme.css">
+      <link rel="stylesheet" href="_static/sphinx_press_theme.css">
+      
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+      <!-- sphinx script_files -->
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+
+      
+      <script src="_static/theme-vendors.js"></script>
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Linear regression - sklearn" href="04-sklearn-linear.html" />
+  <link rel="prev" title="Data Analysis" href="02-analysis.html" /> 
+  </head>
+
+  <body>
+    <div id="app" class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">AutoOne Regression</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#autoone-price-prediction">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 "><a href="01-cleaning.html" class="reference internal ">Data cleaning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Linear regression - OLS Model</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#Train-test-split" class="reference internal">Train-test split</a></li>
+                
+                  <li class="toctree-l2"><a href="#Feature-Selection" class="reference internal">Feature Selection</a></li>
+                
+                  <li class="toctree-l2"><a href="#Fitting-the-model" class="reference internal">Fitting the model</a></li>
+                
+                  <li class="toctree-l2"><a href="#More-feature-selection:-p-values" class="reference internal">More feature selection: p-values</a></li>
+                
+                  <li class="toctree-l2"><a href="#Model-Scoring-&-Evaluation" class="reference internal">Model Scoring & Evaluation</a></li>
+                
+                  <li class="toctree-l2"><a href="#Residual-analysis" class="reference internal">Residual analysis</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="04-sklearn-linear.html" class="reference internal ">Linear regression - sklearn</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="05-machine.html" class="reference internal ">Modeling with machine learning</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="06-scripts.html" class="reference internal ">Python scripts</a>
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Linear regression - OLS Model</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="02-analysis.html"
+       title="previous chapter">← Data Analysis</a>
+  </li>
+  <li class="next">
+    <a href="04-sklearn-linear.html"
+       title="next chapter">Linear regression - sklearn →</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main">
             
   
 <style>
@@ -276,12 +397,9 @@ div.rendered_html tbody tr:hover {
 <h1>Linear regression - OLS Model<a class="headerlink" href="#Linear-regression---OLS-Model" title="Permalink to this headline">¶</a></h1>
 <p>In this section, we will cover:</p>
 <ul class="simple">
-<li><p>fitting different linear repression models</p></li>
+<li><p>fitting an OLS linear regression model</p></li>
 <li><p>score analysis: MSE and variance explained: <span class="math notranslate nohighlight">\(R^2\)</span></p></li>
 <li><p>residual analysis</p></li>
-<li><p>analysis of fitted values distribution</p></li>
-<li><p>most important features</p></li>
-<li><p>comparing the models: conclusions</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -290,6 +408,8 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>import pandas as pd
 import numpy as np
+import pickle
+import time
 </pre></div>
 </div>
 </div>
@@ -298,7 +418,7 @@ import numpy as np
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.read_csv(&#39;df_resample.csv&#39;)
+<span></span>df = pd.read_csv(&#39;data/df_resample.csv&#39;)
 df.head()
 </pre></div>
 </div>
@@ -352,102 +472,6 @@ df.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>mitsubishi</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>96.3</td>
-      <td>172.4</td>
-      <td>...</td>
-      <td>122</td>
-      <td>2bbl</td>
-      <td>3.35</td>
-      <td>3.46</td>
-      <td>8.5</td>
-      <td>88.0</td>
-      <td>5000.0</td>
-      <td>25</td>
-      <td>32</td>
-      <td>6989.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>volkswagen</td>
-      <td>diesel</td>
-      <td>std</td>
-      <td>two</td>
-      <td>sedan</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>97.3</td>
-      <td>171.7</td>
-      <td>...</td>
-      <td>97</td>
-      <td>idi</td>
-      <td>3.01</td>
-      <td>3.40</td>
-      <td>23.0</td>
-      <td>52.0</td>
-      <td>4800.0</td>
-      <td>37</td>
-      <td>46</td>
-      <td>7775.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>bmw</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>rwd</td>
-      <td>front</td>
-      <td>110.0</td>
-      <td>197.0</td>
-      <td>...</td>
-      <td>209</td>
-      <td>mpfi</td>
-      <td>3.62</td>
-      <td>3.39</td>
-      <td>8.0</td>
-      <td>182.0</td>
-      <td>5400.0</td>
-      <td>15</td>
-      <td>20</td>
-      <td>36880.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>mazda</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>two</td>
-      <td>hatchback</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>93.1</td>
-      <td>159.1</td>
-      <td>...</td>
-      <td>91</td>
-      <td>2bbl</td>
-      <td>3.03</td>
-      <td>3.15</td>
-      <td>9.0</td>
-      <td>68.0</td>
-      <td>5000.0</td>
-      <td>30</td>
-      <td>31</td>
-      <td>5195.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
       <td>2</td>
       <td>mitsubishi</td>
       <td>gas</td>
@@ -466,56 +490,198 @@ df.head()
       <td>9.4</td>
       <td>68.0</td>
       <td>5500.0</td>
+      <td>37</td>
+      <td>41</td>
+      <td>5389.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>dodge</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>93.7</td>
+      <td>157.3</td>
+      <td>...</td>
+      <td>90</td>
+      <td>2bbl</td>
+      <td>2.97</td>
+      <td>3.23</td>
+      <td>9.4</td>
+      <td>68.0</td>
+      <td>5500.0</td>
       <td>31</td>
       <td>38</td>
-      <td>6189.0</td>
+      <td>6692.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>jaguar</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>two</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>102.0</td>
+      <td>191.7</td>
+      <td>...</td>
+      <td>326</td>
+      <td>mpfi</td>
+      <td>3.54</td>
+      <td>2.76</td>
+      <td>11.5</td>
+      <td>262.0</td>
+      <td>5000.0</td>
+      <td>13</td>
+      <td>17</td>
+      <td>36000.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>peugot</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>107.9</td>
+      <td>186.7</td>
+      <td>...</td>
+      <td>120</td>
+      <td>mpfi</td>
+      <td>3.46</td>
+      <td>3.19</td>
+      <td>8.4</td>
+      <td>97.0</td>
+      <td>5000.0</td>
+      <td>19</td>
+      <td>24</td>
+      <td>11900.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>subaru</td>
+      <td>gas</td>
+      <td>turbo</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>97.0</td>
+      <td>172.0</td>
+      <td>...</td>
+      <td>108</td>
+      <td>mpfi</td>
+      <td>3.62</td>
+      <td>2.64</td>
+      <td>7.7</td>
+      <td>111.0</td>
+      <td>4800.0</td>
+      <td>24</td>
+      <td>29</td>
+      <td>11259.0</td>
     </tr>
   </tbody>
 </table>
 <p>5 rows × 25 columns</p>
 </div></div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X = df.copy()
-X.drop(&#39;price&#39;, axis=1, inplace=True)
-y = np.log(df.price) # as discussed, we are going to use the log transform here
+<span></span>df.info()
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 25 columns):
+ #   Column             Non-Null Count  Dtype
+---  ------             --------------  -----
+ 0   symboling          10000 non-null  int64
+ 1   make               10000 non-null  object
+ 2   fuel_type          10000 non-null  object
+ 3   aspiration         10000 non-null  object
+ 4   num_of_doors       10000 non-null  object
+ 5   body_style         10000 non-null  object
+ 6   drive_wheels       10000 non-null  object
+ 7   engine_location    10000 non-null  object
+ 8   wheel_base         10000 non-null  float64
+ 9   length             10000 non-null  float64
+ 10  width              10000 non-null  float64
+ 11  height             10000 non-null  float64
+ 12  curb_weight        10000 non-null  int64
+ 13  engine_type        10000 non-null  object
+ 14  num_of_cylinders   10000 non-null  object
+ 15  engine_size        10000 non-null  int64
+ 16  fuel_system        10000 non-null  object
+ 17  bore               10000 non-null  float64
+ 18  stroke             10000 non-null  float64
+ 19  compression_ratio  10000 non-null  float64
+ 20  horsepower         10000 non-null  float64
+ 21  peak_rpm           10000 non-null  float64
+ 22  city_mpg           10000 non-null  int64
+ 23  highway_mpg        10000 non-null  int64
+ 24  price              10000 non-null  float64
+dtypes: float64(10), int64(5), object(10)
+memory usage: 1.9+ MB
+</pre></div></div>
+</div>
 <div class="section" id="Train-test-split">
 <h2>Train-test split<a class="headerlink" href="#Train-test-split" title="Permalink to this headline">¶</a></h2>
-<p>To validate out model, lets split the data on train and test sets, so we can evaluate the predictions on the test set later.</p>
+<p>To avoid overfitting, we will split our data on train and test sets.</p>
+<p>The model will be trained with the train dataset and later we will evaluate it with the test set.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># now the split in a stratified way
-from sklearn.model_selection import train_test_split
+<span></span>from sklearn.model_selection import train_test_split
+
+X = df.copy()
+X.drop(&#39;price&#39;, axis=1, inplace=True)
+y = np.log(df.price) # as discussed, we are going to use the log transformation here
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=.3, random_state=95276
 )
-
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="Categories">
-<h2>Categories<a class="headerlink" href="#Categories" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Feature-Selection">
+<h2>Feature Selection<a class="headerlink" href="#Feature-Selection" title="Permalink to this headline">¶</a></h2>
+<p>It is very important to carefully chose which features will be included into the model, because:</p>
+<ul class="simple">
+<li><p>including unnecessary features increases the standard error of the coefficients</p></li>
+<li><p>excluding necessary features results in bias</p></li>
+</ul>
+<div class="section" id="Selection-through-correlation">
+<h3>Selection through correlation<a class="headerlink" href="#Selection-through-correlation" title="Permalink to this headline">¶</a></h3>
+<p>We will start selecting features through their correlation with the dependent variable price: if it has correlation, the feature will be included in the model.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.preprocessing import OneHotEncoder
-import pickle
-
-with open(&#39;category_list&#39;, &#39;rb&#39;) as file:
+<span></span># categorical features
+with open(&#39;data/category_list&#39;, &#39;rb&#39;) as file:
     cat_cols = pickle.load(file)
 
 # numeric columns
@@ -545,15 +711,6 @@ num_cols
  &#39;highway_mpg&#39;]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="Feature-Selection">
-<h2>Feature Selection<a class="headerlink" href="#Feature-Selection" title="Permalink to this headline">¶</a></h2>
-<p>This is the proper way of fitting a OLS model: carefully choosing which feature will be included into the model, because:</p>
-<ul class="simple">
-<li><p>including unnecessary features (that are correlated to the features already in the model) increases the standard error of the coefficients</p></li>
-<li><p>excluding necessary features results in bias</p></li>
-</ul>
-<p>So lets chose only numeric features which are correlated to the price:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -562,7 +719,7 @@ num_cols
 <span></span>X_train[&#39;price&#39;] = y_train
 cols = num_cols + [&#39;price&#39;]
 cor = X_train[cols].corr().abs()
-cor.loc[cor.price &gt; .7, &#39;price&#39;].sort_values()
+cor.loc[cor.price &gt; .5, &#39;price&#39;].sort_values()
 </pre></div>
 </div>
 </div>
@@ -585,13 +742,15 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-length         0.778576
-city_mpg       0.796573
-highway_mpg    0.797305
-width          0.798628
-horsepower     0.839862
-engine_size    0.856983
-curb_weight    0.892790
+bore           0.598414
+wheel_base     0.613096
+length         0.771923
+city_mpg       0.786216
+highway_mpg    0.787066
+width          0.792462
+horsepower     0.825041
+engine_size    0.848821
+curb_weight    0.886872
 price          1.000000
 Name: price, dtype: float64
 </pre></div></div>
@@ -601,7 +760,7 @@ Name: price, dtype: float64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mask = (cor.price &gt; .7 ) &amp; (cor.price &lt; 1)
+<span></span>mask = (cor.price &gt; .5 ) &amp; (cor.price &lt; 1)
 correlated = cor[mask].sort_values(by=&#39;price&#39;).index
 not_correlated = [col for col in num_cols if col not in correlated]
 
@@ -615,15 +774,18 @@ print(&#39;not correlated: &#39;, not_correlated)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-correlated:  Index([&#39;length&#39;, &#39;city_mpg&#39;, &#39;highway_mpg&#39;, &#39;width&#39;, &#39;horsepower&#39;,
-       &#39;engine_size&#39;, &#39;curb_weight&#39;],
+correlated:  Index([&#39;bore&#39;, &#39;wheel_base&#39;, &#39;length&#39;, &#39;city_mpg&#39;, &#39;highway_mpg&#39;, &#39;width&#39;,
+       &#39;horsepower&#39;, &#39;engine_size&#39;, &#39;curb_weight&#39;],
       dtype=&#39;object&#39;)
-not correlated:  [&#39;wheel_base&#39;, &#39;height&#39;, &#39;bore&#39;, &#39;stroke&#39;, &#39;compression_ratio&#39;, &#39;peak_rpm&#39;]
+not correlated:  [&#39;height&#39;, &#39;stroke&#39;, &#39;compression_ratio&#39;, &#39;peak_rpm&#39;]
 </pre></div></div>
 </div>
 </div>
+</div>
+<div class="section" id="Fitting-the-model">
+<h2>Fitting the model<a class="headerlink" href="#Fitting-the-model" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="Formula-for-OLS">
-<h2>Formula for OLS<a class="headerlink" href="#Formula-for-OLS" title="Permalink to this headline">¶</a></h2>
+<h3>Formula for OLS<a class="headerlink" href="#Formula-for-OLS" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -644,7 +806,7 @@ formula
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;price ~ C(make) + C(fuel_type) + C(aspiration) + C(num_of_doors) + C(body_style) + C(drive_wheels) + C(engine_location) + C(engine_type) + C(num_of_cylinders) + C(fuel_system) + C(symboling) + length + city_mpg + highway_mpg + width + horsepower + engine_size + curb_weight&#39;
+&#39;price ~ C(make) + C(fuel_type) + C(aspiration) + C(num_of_doors) + C(body_style) + C(drive_wheels) + C(engine_location) + C(engine_type) + C(num_of_cylinders) + C(fuel_system) + C(symboling) + bore + wheel_base + length + city_mpg + highway_mpg + width + horsepower + engine_size + curb_weight&#39;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -654,7 +816,11 @@ formula
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>import statsmodels.formula.api as smf
 
+start = time.time()
 model = smf.ols(formula=formula, data=X_train)
+stop = time.time()
+
+elapsed = stop - start
 res = model.fit()
 print(res.summary())
 </pre></div>
@@ -669,117 +835,146 @@ print(res.summary())
 ==============================================================================
 Dep. Variable:                  price   R-squared:                       0.969
 Model:                            OLS   Adj. R-squared:                  0.969
-Method:                 Least Squares   F-statistic:                     4107.
-Date:                Sun, 28 Jun 2020   Prob (F-statistic):               0.00
-Time:                        17:32:27   Log-Likelihood:                 6863.9
-No. Observations:                7000   AIC:                        -1.362e+04
-Df Residuals:                    6946   BIC:                        -1.325e+04
-Df Model:                          53
+Method:                 Least Squares   F-statistic:                     3974.
+Date:                Sun, 05 Jul 2020   Prob (F-statistic):               0.00
+Time:                        17:32:34   Log-Likelihood:                 7310.9
+No. Observations:                7000   AIC:                        -1.451e+04
+Df Residuals:                    6944   BIC:                        -1.413e+04
+Df Model:                          55
 Covariance Type:            nonrobust
 =================================================================================================
                                     coef    std err          t      P&gt;|t|      [0.025      0.975]
 -------------------------------------------------------------------------------------------------
-Intercept                         4.7173      0.071     66.377      0.000       4.578       4.857
-C(make)[T.audi]                   0.2932      0.020     14.557      0.000       0.254       0.333
-C(make)[T.bmw]                    0.3137      0.016     19.835      0.000       0.283       0.345
-C(make)[T.chevrolet]             -0.0987      0.017     -5.978      0.000      -0.131      -0.066
-C(make)[T.dodge]                 -0.1483      0.014    -10.901      0.000      -0.175      -0.122
-C(make)[T.honda]                  0.1203      0.018      6.777      0.000       0.086       0.155
-C(make)[T.isuzu]                 -0.4742      0.022    -21.219      0.000      -0.518      -0.430
-C(make)[T.jaguar]                -0.0965      0.021     -4.524      0.000      -0.138      -0.055
-C(make)[T.mazda]                 -0.0645      0.013     -4.962      0.000      -0.090      -0.039
-C(make)[T.mercedes-benz]          0.0044      0.021      0.211      0.833      -0.036       0.045
-C(make)[T.mercury]               -0.1400      0.021     -6.739      0.000      -0.181      -0.099
-C(make)[T.mitsubishi]            -0.1640      0.014    -11.694      0.000      -0.192      -0.137
-C(make)[T.nissan]                -0.0381      0.012     -3.118      0.002      -0.062      -0.014
-C(make)[T.peugot]                -0.1930      0.015    -12.885      0.000      -0.222      -0.164
-C(make)[T.plymouth]              -0.1831      0.014    -13.523      0.000      -0.210      -0.157
-C(make)[T.porsche]                0.2422      0.021     11.324      0.000       0.200       0.284
-C(make)[T.saab]                   0.1197      0.016      7.334      0.000       0.088       0.152
-C(make)[T.subaru]                -0.2343      0.013    -18.044      0.000      -0.260      -0.209
-C(make)[T.toyota]                -0.1809      0.012    -15.201      0.000      -0.204      -0.158
-C(make)[T.volkswagen]            -0.0348      0.015     -2.397      0.017      -0.063      -0.006
-C(make)[T.volvo]                 -0.0561      0.015     -3.749      0.000      -0.085      -0.027
-C(fuel_type)[T.gas]               2.2437      0.035     63.478      0.000       2.174       2.313
-C(aspiration)[T.turbo]            0.1246      0.006     19.169      0.000       0.112       0.137
-C(num_of_doors)[T.two]           -0.0228      0.004     -5.128      0.000      -0.032      -0.014
-C(body_style)[T.hardtop]         -0.1183      0.010    -11.744      0.000      -0.138      -0.099
-C(body_style)[T.hatchback]       -0.1560      0.009    -16.973      0.000      -0.174      -0.138
-C(body_style)[T.sedan]           -0.1610      0.010    -15.851      0.000      -0.181      -0.141
-C(body_style)[T.wagon]           -0.2284      0.011    -21.195      0.000      -0.250      -0.207
-C(drive_wheels)[T.rwd]            0.1557      0.007     23.356      0.000       0.143       0.169
-C(engine_location)[T.rear]        0.2896      0.016     17.870      0.000       0.258       0.321
-C(engine_type)[T.l]              -0.1625      0.012    -13.379      0.000      -0.186      -0.139
-C(engine_type)[T.ohc]            -0.0325      0.009     -3.762      0.000      -0.049      -0.016
-C(engine_type)[T.ohcf]            0.0553      0.008      6.732      0.000       0.039       0.071
-C(engine_type)[T.ohcv]           -0.1271      0.011    -11.982      0.000      -0.148      -0.106
-C(num_of_cylinders)[T.five]      -0.3049      0.019    -15.750      0.000      -0.343      -0.267
-C(num_of_cylinders)[T.four]      -0.2728      0.024    -11.319      0.000      -0.320      -0.226
-C(num_of_cylinders)[T.six]       -0.2525      0.022    -11.740      0.000      -0.295      -0.210
-C(num_of_cylinders)[T.three]      0.0305      0.022      1.393      0.164      -0.012       0.073
-C(num_of_cylinders)[T.twelve]    -0.1096      0.031     -3.480      0.001      -0.171      -0.048
-C(fuel_system)[T.2bbl]            0.1739      0.013     13.176      0.000       0.148       0.200
-C(fuel_system)[T.idi]             2.4736      0.037     66.486      0.000       2.401       2.547
-C(fuel_system)[T.mfi]             0.2207      0.023      9.392      0.000       0.175       0.267
-C(fuel_system)[T.mpfi]            0.2554      0.014     18.310      0.000       0.228       0.283
-C(fuel_system)[T.spdi]            0.1995      0.016     12.279      0.000       0.168       0.231
-C(fuel_system)[T.spfi]            0.5440      0.028     19.576      0.000       0.490       0.598
-C(symboling)[T.-1]                0.1320      0.012     11.435      0.000       0.109       0.155
-C(symboling)[T.0]                 0.1301      0.013     10.064      0.000       0.105       0.155
-C(symboling)[T.1]                 0.0504      0.013      3.743      0.000       0.024       0.077
-C(symboling)[T.2]                 0.0036      0.014      0.258      0.797      -0.024       0.031
-C(symboling)[T.3]                 0.0673      0.015      4.554      0.000       0.038       0.096
-length                           -0.0014      0.000     -3.645      0.000      -0.002      -0.001
-city_mpg                         -0.0180      0.001    -15.776      0.000      -0.020      -0.016
-highway_mpg                       0.0129      0.001     13.158      0.000       0.011       0.015
-width                             0.0242      0.002     12.144      0.000       0.020       0.028
-horsepower                    -6.363e-06      0.000     -0.036      0.972      -0.000       0.000
-engine_size                       0.0011      0.000      7.112      0.000       0.001       0.001
-curb_weight                       0.0004   1.23e-05     35.345      0.000       0.000       0.000
+Intercept                         4.6632      0.069     68.022      0.000       4.529       4.798
+C(make)[T.audi]                   0.2956      0.019     15.375      0.000       0.258       0.333
+C(make)[T.bmw]                    0.3424      0.017     20.031      0.000       0.309       0.376
+C(make)[T.chevrolet]             -0.0681      0.017     -3.992      0.000      -0.102      -0.035
+C(make)[T.dodge]                 -0.1279      0.013     -9.512      0.000      -0.154      -0.102
+C(make)[T.honda]                  0.1801      0.017     10.442      0.000       0.146       0.214
+C(make)[T.isuzu]                 -0.4496      0.020    -21.959      0.000      -0.490      -0.409
+C(make)[T.jaguar]                -0.0461      0.023     -2.045      0.041      -0.090      -0.002
+C(make)[T.mazda]                 -0.0055      0.013     -0.415      0.678      -0.031       0.020
+C(make)[T.mercedes-benz]          0.0272      0.020      1.374      0.169      -0.012       0.066
+C(make)[T.mercury]               -0.0428      0.022     -1.935      0.053      -0.086       0.001
+C(make)[T.mitsubishi]            -0.1235      0.014     -8.977      0.000      -0.150      -0.097
+C(make)[T.nissan]                 0.0136      0.013      1.071      0.284      -0.011       0.038
+C(make)[T.peugot]                -0.2410      0.015    -16.161      0.000      -0.270      -0.212
+C(make)[T.plymouth]              -0.1567      0.013    -11.827      0.000      -0.183      -0.131
+C(make)[T.porsche]                0.3308      0.023     14.121      0.000       0.285       0.377
+C(make)[T.saab]                   0.1715      0.016     10.707      0.000       0.140       0.203
+C(make)[T.subaru]                -0.2159      0.013    -16.104      0.000      -0.242      -0.190
+C(make)[T.toyota]                -0.1388      0.012    -11.412      0.000      -0.163      -0.115
+C(make)[T.volkswagen]            -0.0227      0.014     -1.620      0.105      -0.050       0.005
+C(make)[T.volvo]                 -0.0245      0.016     -1.539      0.124      -0.056       0.007
+C(fuel_type)[T.gas]               2.2090      0.034     64.306      0.000       2.142       2.276
+C(aspiration)[T.turbo]            0.1450      0.006     23.509      0.000       0.133       0.157
+C(num_of_doors)[T.two]           -0.0467      0.004    -10.799      0.000      -0.055      -0.038
+C(body_style)[T.hardtop]         -0.1813      0.010    -18.215      0.000      -0.201      -0.162
+C(body_style)[T.hatchback]       -0.1730      0.009    -19.543      0.000      -0.190      -0.156
+C(body_style)[T.sedan]           -0.1713      0.010    -17.712      0.000      -0.190      -0.152
+C(body_style)[T.wagon]           -0.2424      0.010    -23.417      0.000      -0.263      -0.222
+C(drive_wheels)[T.rwd]            0.1974      0.006     30.737      0.000       0.185       0.210
+C(engine_location)[T.rear]        0.3251      0.016     19.825      0.000       0.293       0.357
+C(engine_type)[T.l]              -0.1174      0.013     -8.956      0.000      -0.143      -0.092
+C(engine_type)[T.ohc]            -0.0469      0.009     -5.183      0.000      -0.065      -0.029
+C(engine_type)[T.ohcf]            0.1092      0.008     12.869      0.000       0.093       0.126
+C(engine_type)[T.ohcv]           -0.0731      0.010     -7.206      0.000      -0.093      -0.053
+C(num_of_cylinders)[T.five]      -0.1078      0.023     -4.660      0.000      -0.153      -0.062
+C(num_of_cylinders)[T.four]      -0.0978      0.029     -3.387      0.001      -0.154      -0.041
+C(num_of_cylinders)[T.six]       -0.1420      0.021     -6.704      0.000      -0.184      -0.101
+C(num_of_cylinders)[T.three]      0.1236      0.023      5.424      0.000       0.079       0.168
+C(num_of_cylinders)[T.twelve]     0.0422      0.031      1.352      0.176      -0.019       0.103
+C(fuel_system)[T.2bbl]            0.2101      0.013     16.521      0.000       0.185       0.235
+C(fuel_system)[T.idi]             2.4543      0.036     68.950      0.000       2.384       2.524
+C(fuel_system)[T.mfi]             0.3084      0.022     13.772      0.000       0.264       0.352
+C(fuel_system)[T.mpfi]            0.3012      0.013     22.682      0.000       0.275       0.327
+C(fuel_system)[T.spdi]            0.2448      0.015     15.895      0.000       0.215       0.275
+C(fuel_system)[T.spfi]            0.6067      0.026     23.575      0.000       0.556       0.657
+C(symboling)[T.-1]                0.0912      0.010      8.811      0.000       0.071       0.111
+C(symboling)[T.0]                 0.0977      0.012      8.436      0.000       0.075       0.120
+C(symboling)[T.1]                 0.0058      0.012      0.475      0.635      -0.018       0.030
+C(symboling)[T.2]                -0.0021      0.013     -0.166      0.868      -0.027       0.023
+C(symboling)[T.3]                 0.0956      0.014      7.016      0.000       0.069       0.122
+bore                             -0.1315      0.015     -8.541      0.000      -0.162      -0.101
+wheel_base                        0.0075      0.001      9.770      0.000       0.006       0.009
+length                           -0.0031      0.000     -7.449      0.000      -0.004      -0.002
+city_mpg                         -0.0193      0.001    -18.415      0.000      -0.021      -0.017
+highway_mpg                       0.0134      0.001     14.778      0.000       0.012       0.015
+width                             0.0236      0.002     12.433      0.000       0.020       0.027
+horsepower                       -0.0004      0.000     -2.489      0.013      -0.001   -9.17e-05
+engine_size                       0.0014      0.000      6.032      0.000       0.001       0.002
+curb_weight                       0.0004   1.11e-05     36.620      0.000       0.000       0.000
 ==============================================================================
-Omnibus:                       12.442   Durbin-Watson:                   1.994
-Prob(Omnibus):                  0.002   Jarque-Bera (JB):               12.433
-Skew:                          -0.100   Prob(JB):                      0.00200
-Kurtosis:                       3.050   Cond. No.                     1.02e+16
+Omnibus:                       43.470   Durbin-Watson:                   2.040
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               39.363
+Skew:                          -0.142   Prob(JB):                     2.83e-09
+Kurtosis:                       2.766   Cond. No.                     1.02e+16
 ==============================================================================
 
 Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The smallest eigenvalue is 4.65e-22. This might indicate that there are
+[2] The smallest eigenvalue is 4.53e-22. This might indicate that there are
 strong multicollinearity problems or that the design matrix is singular.
 </pre></div></div>
 </div>
 </div>
-<div class="section" id="Model-Scoring-&amp;-Evaluation">
-<h2>Model Scoring &amp; Evaluation<a class="headerlink" href="#Model-Scoring-&-Evaluation" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="More-feature-selection:-p-values">
+<h2>More feature selection: p-values<a class="headerlink" href="#More-feature-selection:-p-values" title="Permalink to this headline">¶</a></h2>
+<p>When we fit a linear regression model, we have to test the hypothesis that the evaluated coefficients for each regressor is actually zero, meaning we don’t need the regressor at all.</p>
+<p>In other words, we have:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_0\)</span>: the coefficient is zero</p></li>
+<li><p><span class="math notranslate nohighlight">\(H_1\)</span>: the coefficient is not zero</p></li>
+</ul>
+<p>Therefore, let’s look into the p-values for each coefficient for each regressor to understand if they should be zero:</p>
+<p><em>if a p-value of a given coefficient is larger than 5%, then we fail to reject the null hypothesis that the coefficient actually is zero</em></p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>r2 = res.rsquared_adj
-print(f&#39;R^2: {r2:.4}&#39;)
+<span></span>res.pvalues[res.pvalues &gt; .05]
+# we are not taking out make just because a few rotten apples
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-R^2: 0.9688
+C(make)[T.mazda]                 0.678023
+C(make)[T.mercedes-benz]         0.169382
+C(make)[T.mercury]               0.053000
+C(make)[T.nissan]                0.284175
+C(make)[T.volkswagen]            0.105253
+C(make)[T.volvo]                 0.123909
+C(num_of_cylinders)[T.twelve]    0.176399
+C(symboling)[T.1]                0.635092
+C(symboling)[T.2]                0.868250
+dtype: float64
 </pre></div></div>
 </div>
+<p>As we can see, only the p-values for some makers are larger than 5%. We are not removing this feature.</p>
+<p>All other p-values are smaller than 5%, so no additional feature selection will be done.</p>
+</div>
+<div class="section" id="Model-Scoring-&amp;-Evaluation">
+<h2>Model Scoring &amp; Evaluation<a class="headerlink" href="#Model-Scoring-&-Evaluation" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>predictions = np.exp(res.predict(X_test)) # back transformation
+<span></span>r2 = res.rsquared_adj
 
+predictions = np.exp(res.predict(X_test)) # back transformation
 mse = np.mean(
     (predictions - np.exp(y_test))**2
 )
+
+print(f&#39;R^2: {r2:.4}&#39;)
 print(f&#39;MSE: {mse:.4}&#39;)
 </pre></div>
 </div>
@@ -789,7 +984,8 @@ print(f&#39;MSE: {mse:.4}&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-MSE: 2.098e+06
+R^2: 0.969
+MSE: 1.211e+06
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -800,11 +996,12 @@ MSE: 2.098e+06
 <span></span>data = {
     &#39;model name&#39;: [&#39;ols&#39;],
     &#39;r2&#39;: [r2],
-    &#39;MSE&#39;: [mse]
+    &#39;MSE&#39;: [mse],
+    &#39;time&#39;: elapsed
        }
 
 score_df = pd.DataFrame(data)
-score_df.to_csv(&#39;scores.csv&#39;)
+score_df.to_csv(&#39;data/scores.csv&#39;, index=False)
 score_df
 </pre></div>
 </div>
@@ -835,63 +1032,36 @@ score_df
       <th>model name</th>
       <th>r2</th>
       <th>MSE</th>
+      <th>time</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>ols</td>
-      <td>0.968839</td>
-      <td>2.098474e+06</td>
+      <td>0.968962</td>
+      <td>1.211086e+06</td>
+      <td>0.701995</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
-<p>With an adjusted <span class="math notranslate nohighlight">\(R^2\)</span> score of 0.9691 we can say that it is a really good model already!</p>
-</div>
-<div class="section" id="Feature-selection-through-p-values">
-<h2>Feature selection through p-values<a class="headerlink" href="#Feature-selection-through-p-values" title="Permalink to this headline">¶</a></h2>
-<p>When we fit a linear regression model, we have to test the hypothesis that the evaluated coefficients for each regressor is actually zero.</p>
-<p>In other words, we have:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(H_0\)</span>: the coefficient is zero</p></li>
-<li><p><span class="math notranslate nohighlight">\(H_1\)</span> : the coefficient is not zero</p></li>
-</ul>
-<p>Therefore, let’s look into the p-values for each coefficient for each regressor to see if they shouldn’t be zero:</p>
-<p><em>if a p-value of a given coefficient is larger than 5%, then we fail to reject the null hypothesis that the coefficient actually is zero</em></p>
-<p>However, all p-values here are smaller than 5%, so no additional feature selection will be done.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.pvalues[res.pvalues&gt;.05]
-# we are not taking out make just because a few rotten apples
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-C(make)[T.mercedes-benz]        0.833019
-C(num_of_cylinders)[T.three]    0.163597
-C(symboling)[T.2]               0.796757
-horsepower                      0.971511
-dtype: float64
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Residual-analysis">
 <h2>Residual analysis<a class="headerlink" href="#Residual-analysis" title="Permalink to this headline">¶</a></h2>
-<p>In a good model, what we should expect from the residuals: - their mean should be zero - they should be homoscedastic - they should be normal - they should have no correlation with the fitted values - they should have no correlation with any of the features</p>
+<p>In a good model, we should expect that the residuals:</p>
+<ul class="simple">
+<li><p>have mean zero</p></li>
+<li><p>to be homoscedastic</p></li>
+<li><p>to be normal</p></li>
+<li><p>to have no correlation with the fitted values</p></li>
+<li><p>to have no correlation with any of the features</p></li>
+</ul>
 <div class="section" id="Residual-mean">
 <h3>Residual mean<a class="headerlink" href="#Residual-mean" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -900,19 +1070,19 @@ dtype: float64
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--4.826902052660183e-13
+3.466027465037769e-13
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Residuals-vs-fitted-values">
 <h3>Residuals vs fitted values<a class="headerlink" href="#Residuals-vs-fitted-values" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -921,7 +1091,7 @@ import matplotlib.pyplot as plt
 
 %matplotlib inline
 
-plt.figure(figsize=(5, 5))
+plt.figure(figsize=(12, 5))
 plt.title(&#39;fitted price vs resids&#39;)
 plt.scatter(res.fittedvalues, res.resid, c=&quot;g&quot;, alpha=0.5, label=&quot;OLS model&quot;)
 b, m = polyfit(res.fittedvalues, res.resid, 1)
@@ -933,28 +1103,27 @@ plt.legend(loc=2)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x1b99ea07d48&gt;
+&lt;matplotlib.legend.Legend at 0x1a7827ec8c8&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/03-ols_24_1.png" src="_images/03-ols_24_1.png" />
+<img alt="_images/03-ols_23_1.png" src="_images/03-ols_23_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="Correlation-between-residuals-and-\hat-y">
 <h3>Correlation between residuals and <span class="math notranslate nohighlight">\(\hat y\)</span><a class="headerlink" href="#Correlation-between-residuals-and-\hat-y" title="Permalink to this headline">¶</a></h3>
 <p>In a good model, residuals cannot be correlated to the fitted values.</p>
-<p>We have already saw before that the Ridge is ok in his regard:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -964,196 +1133,89 @@ pearsonr(res.predict(X_train), res.resid)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(7.525074313674551e-13, 0.9999999999534074)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Test-for-normality">
+<h3>Test for normality<a class="headerlink" href="#Test-for-normality" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>import scipy.stats as st
+st.shapiro(res.resid)
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+C:\Users\BJ571WQ\Anaconda3\lib\site-packages\scipy\stats\morestats.py:1676: UserWarning: p-value may not be accurate for N &gt; 5000.
+  warnings.warn(&#34;p-value may not be accurate for N &gt; 5000.&#34;)
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(-8.759130573632312e-13, 0.9999999999451344)
+(0.9936643838882446, 4.235666338594954e-17)
 </pre></div></div>
 </div>
-</div>
-</div>
-<div class="section" id="Most-important-features">
-<h2>Most important features<a class="headerlink" href="#Most-important-features" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>index = res.pvalues[res.pvalues &lt; .05].index
-coefs = res.params[index]
-df_coef_ols = pd.DataFrame({&#39;coefs_abs&#39;: np.abs(np.round(coefs,2)),
-                            &#39;coef_value&#39;: np.round(coefs,2),
-                            &#39;feats&#39;: coefs.index})
+<span></span>from statsmodels.graphics.gofplots import qqplot
 
-df_coef_ols[~df_coef_ols.feats.str.startswith(&#39;make&#39;)].sort_values(&#39;coefs_abs&#39;, ascending=False).head(10)
+qqplot(res.resid, line=&#39;s&#39;);
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
+<div class="prompt empty docutils container">
 </div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>coefs_abs</th>
-      <th>coef_value</th>
-      <th>feats</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Intercept</th>
-      <td>4.72</td>
-      <td>4.72</td>
-      <td>Intercept</td>
-    </tr>
-    <tr>
-      <th>C(fuel_system)[T.idi]</th>
-      <td>2.47</td>
-      <td>2.47</td>
-      <td>C(fuel_system)[T.idi]</td>
-    </tr>
-    <tr>
-      <th>C(fuel_type)[T.gas]</th>
-      <td>2.24</td>
-      <td>2.24</td>
-      <td>C(fuel_type)[T.gas]</td>
-    </tr>
-    <tr>
-      <th>C(fuel_system)[T.spfi]</th>
-      <td>0.54</td>
-      <td>0.54</td>
-      <td>C(fuel_system)[T.spfi]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.isuzu]</th>
-      <td>0.47</td>
-      <td>-0.47</td>
-      <td>C(make)[T.isuzu]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.bmw]</th>
-      <td>0.31</td>
-      <td>0.31</td>
-      <td>C(make)[T.bmw]</td>
-    </tr>
-    <tr>
-      <th>C(num_of_cylinders)[T.five]</th>
-      <td>0.30</td>
-      <td>-0.30</td>
-      <td>C(num_of_cylinders)[T.five]</td>
-    </tr>
-    <tr>
-      <th>C(engine_location)[T.rear]</th>
-      <td>0.29</td>
-      <td>0.29</td>
-      <td>C(engine_location)[T.rear]</td>
-    </tr>
-    <tr>
-      <th>C(make)[T.audi]</th>
-      <td>0.29</td>
-      <td>0.29</td>
-      <td>C(make)[T.audi]</td>
-    </tr>
-    <tr>
-      <th>C(num_of_cylinders)[T.four]</th>
-      <td>0.27</td>
-      <td>-0.27</td>
-      <td>C(num_of_cylinders)[T.four]</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+<div class="output_area docutils container">
+<img alt="_images/03-ols_28_0.png" src="_images/03-ols_28_0.png" />
+</div>
+</div>
 </div>
 </div>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Linear regression - OLS Model</a><ul>
-<li><a class="reference internal" href="#Train-test-split">Train-test split</a></li>
-<li><a class="reference internal" href="#Categories">Categories</a></li>
-<li><a class="reference internal" href="#Feature-Selection">Feature Selection</a></li>
-<li><a class="reference internal" href="#Formula-for-OLS">Formula for OLS</a></li>
-<li><a class="reference internal" href="#Model-Scoring-&amp;-Evaluation">Model Scoring &amp; Evaluation</a></li>
-<li><a class="reference internal" href="#Feature-selection-through-p-values">Feature selection through p-values</a></li>
-<li><a class="reference internal" href="#Residual-analysis">Residual analysis</a><ul>
-<li><a class="reference internal" href="#Residual-mean">Residual mean</a></li>
-<li><a class="reference internal" href="#Residuals-vs-fitted-values">Residuals vs fitted values</a></li>
-<li><a class="reference internal" href="#Correlation-between-residuals-and-\hat-y">Correlation between residuals and <span class="math notranslate nohighlight">\(\hat y\)</span></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Most-important-features">Most important features</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="02-analysis.html"
-                        title="previous chapter">Data Analysis</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/03-ols.ipynb.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="02-analysis.html"
+       title="previous chapter">← Data Analysis</a>
+  </li>
+  <li class="next">
+    <a href="04-sklearn-linear.html"
+       title="next chapter">Linear regression - sklearn →</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2020, Erick Medeiros Anastácio.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
+            </div>
+          </div>
+      </page>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="02-analysis.html" title="Data Analysis"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">AutoOne Regression 1.0 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Linear regression - OLS Model</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Erick Medeiros Anastácio.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.1.
-    </div>
+    
+    
   </body>
 </html>

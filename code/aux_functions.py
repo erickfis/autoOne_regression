@@ -12,7 +12,7 @@ Auxiliary functions for cleanning data and building regression models
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import regression
+import sklearn.metrics as metrics
 import time
 
 
@@ -41,7 +41,7 @@ def clean_data(df):
     return df
 
 
-def make_regressor(model_name, model, grid_params):
+def make_regressor(model_name, model, grid_params, data):
     """Trains and scores models using sklearn GridSearchCV.
 
     Args:
@@ -59,6 +59,9 @@ def make_regressor(model_name, model, grid_params):
 
     """
     start_time = time.time()
+    X_train_proc, y_train, X_test_proc, y_test = data
+
+    # the GridSearchCV
     grid = GridSearchCV(
         model, grid_params,
         scoring='neg_mean_squared_error',
@@ -66,11 +69,13 @@ def make_regressor(model_name, model, grid_params):
         )
     grid.fit(X_train_proc, y_train)
 
+    # get the best model & params
     model = grid.best_estimator_
     parameters = model.get_params()
 
+    # lets score the model on the test set
     y_predictions = np.exp(model.predict(X_test_proc))
-    mse = regression.mean_squared_error(np.exp(y_test), y_predictions)
+    mse = metrics.mean_squared_error(np.exp(y_test), y_predictions)
     r2 = model.score(X_test_proc, y_test)
     end_time = time.time()
     elapsed = end_time - start_time
@@ -81,8 +86,10 @@ def make_regressor(model_name, model, grid_params):
     print(parameters)
 
     stats = {
+        'model name': model_name,
         'r2': r2,
         'mse': mse,
-        'parameters': parameters
+        'parameters': parameters,
+        'time': elapsed
     }
     return model, y_predictions, stats

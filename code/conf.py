@@ -31,6 +31,10 @@ release = '1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['nbsphinx']
+nbsphinx_execute = 'auto'
+suppress_warnings = [
+    'nbsphinx',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -48,8 +52,11 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 pygments_style = 'sphinx'
 
-master_doc = 'index'
-html_theme = 'nature'
+# master_doc = 'index'
+# html_theme = 'nature' # no menu
+# html_theme = 'nervproject'  # almost
+html_theme = 'press'
+
 # menu ok, but dark
 # html_theme = 'sphinx_pdj_theme'
 # import sphinx_pdj_theme
