@@ -27,7 +27,7 @@
   <link rel="index" title="Index" href="genindex.html" />
   <link rel="search" title="Search" href="search.html" />
   <link rel="next" title="Linear regression - sklearn" href="04-sklearn-linear.html" />
-  <link rel="prev" title="Data Analysis" href="02-analysis.html" /> 
+  <link rel="prev" title="Exploratory data analysis - price" href="02-analysis-price.html" /> 
   </head>
 
   <body>
@@ -83,7 +83,13 @@
           </li>
 
         
-          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Exploratory data analysis - features</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis-price.html" class="reference internal ">Exploratory data analysis - price</a>
 
             
           </li>
@@ -147,8 +153,8 @@
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="02-analysis.html"
-       title="previous chapter">← Data Analysis</a>
+    <a href="02-analysis-price.html"
+       title="previous chapter">← Exploratory data analysis - price</a>
   </li>
   <li class="next">
     <a href="04-sklearn-linear.html"
@@ -472,8 +478,80 @@ df.head()
   <tbody>
     <tr>
       <th>0</th>
+      <td>0</td>
+      <td>nissan</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>97.2</td>
+      <td>173.4</td>
+      <td>...</td>
+      <td>120</td>
+      <td>2bbl</td>
+      <td>3.33</td>
+      <td>3.47</td>
+      <td>8.5</td>
+      <td>97.0</td>
+      <td>5200.0</td>
+      <td>27</td>
+      <td>34</td>
+      <td>9549.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>volkswagen</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>two</td>
+      <td>hatchback</td>
+      <td>fwd</td>
+      <td>front</td>
+      <td>94.5</td>
+      <td>165.7</td>
+      <td>...</td>
+      <td>109</td>
+      <td>mpfi</td>
+      <td>3.19</td>
+      <td>3.40</td>
+      <td>8.5</td>
+      <td>90.0</td>
+      <td>5500.0</td>
+      <td>24</td>
+      <td>29</td>
+      <td>9980.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>bmw</td>
+      <td>gas</td>
+      <td>std</td>
+      <td>four</td>
+      <td>sedan</td>
+      <td>rwd</td>
+      <td>front</td>
+      <td>103.5</td>
+      <td>189.0</td>
+      <td>...</td>
+      <td>164</td>
+      <td>mpfi</td>
+      <td>3.31</td>
+      <td>3.19</td>
+      <td>9.0</td>
+      <td>121.0</td>
+      <td>4250.0</td>
+      <td>20</td>
+      <td>25</td>
+      <td>24565.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
       <td>2</td>
-      <td>mitsubishi</td>
+      <td>subaru</td>
       <td>gas</td>
       <td>std</td>
       <td>two</td>
@@ -481,114 +559,42 @@ df.head()
       <td>fwd</td>
       <td>front</td>
       <td>93.7</td>
-      <td>157.3</td>
+      <td>156.9</td>
       <td>...</td>
-      <td>92</td>
+      <td>97</td>
       <td>2bbl</td>
-      <td>2.97</td>
-      <td>3.23</td>
-      <td>9.4</td>
-      <td>68.0</td>
-      <td>5500.0</td>
-      <td>37</td>
-      <td>41</td>
-      <td>5389.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>dodge</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>fwd</td>
-      <td>front</td>
-      <td>93.7</td>
-      <td>157.3</td>
-      <td>...</td>
-      <td>90</td>
-      <td>2bbl</td>
-      <td>2.97</td>
-      <td>3.23</td>
-      <td>9.4</td>
-      <td>68.0</td>
-      <td>5500.0</td>
+      <td>3.62</td>
+      <td>2.36</td>
+      <td>9.0</td>
+      <td>69.0</td>
+      <td>4900.0</td>
       <td>31</td>
-      <td>38</td>
-      <td>6692.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>jaguar</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>two</td>
-      <td>sedan</td>
-      <td>rwd</td>
-      <td>front</td>
-      <td>102.0</td>
-      <td>191.7</td>
-      <td>...</td>
-      <td>326</td>
-      <td>mpfi</td>
-      <td>3.54</td>
-      <td>2.76</td>
-      <td>11.5</td>
-      <td>262.0</td>
-      <td>5000.0</td>
-      <td>13</td>
-      <td>17</td>
-      <td>36000.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>peugot</td>
-      <td>gas</td>
-      <td>std</td>
-      <td>four</td>
-      <td>sedan</td>
-      <td>rwd</td>
-      <td>front</td>
-      <td>107.9</td>
-      <td>186.7</td>
-      <td>...</td>
-      <td>120</td>
-      <td>mpfi</td>
-      <td>3.46</td>
-      <td>3.19</td>
-      <td>8.4</td>
-      <td>97.0</td>
-      <td>5000.0</td>
-      <td>19</td>
-      <td>24</td>
-      <td>11900.0</td>
+      <td>36</td>
+      <td>5118.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>subaru</td>
-      <td>gas</td>
-      <td>turbo</td>
+      <td>mazda</td>
+      <td>diesel</td>
+      <td>std</td>
       <td>four</td>
       <td>sedan</td>
-      <td>fwd</td>
+      <td>rwd</td>
       <td>front</td>
-      <td>97.0</td>
-      <td>172.0</td>
+      <td>104.9</td>
+      <td>175.0</td>
       <td>...</td>
-      <td>108</td>
-      <td>mpfi</td>
-      <td>3.62</td>
-      <td>2.64</td>
-      <td>7.7</td>
-      <td>111.0</td>
-      <td>4800.0</td>
-      <td>24</td>
-      <td>29</td>
-      <td>11259.0</td>
+      <td>134</td>
+      <td>idi</td>
+      <td>3.43</td>
+      <td>3.64</td>
+      <td>22.0</td>
+      <td>72.0</td>
+      <td>4200.0</td>
+      <td>31</td>
+      <td>39</td>
+      <td>18344.0</td>
     </tr>
   </tbody>
 </table>
@@ -674,7 +680,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 </ul>
 <div class="section" id="Selection-through-correlation">
 <h3>Selection through correlation<a class="headerlink" href="#Selection-through-correlation" title="Permalink to this headline">¶</a></h3>
-<p>We will start selecting features through their correlation with the dependent variable price: if it has correlation, the feature will be included in the model.</p>
+<p>As we want start trying out linear regression models, we will select features that have linear correlation with the dependent variable price.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -742,15 +748,15 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bore           0.598414
-wheel_base     0.613096
-length         0.771923
-city_mpg       0.786216
-highway_mpg    0.787066
-width          0.792462
-horsepower     0.825041
-engine_size    0.848821
-curb_weight    0.886872
+bore           0.590618
+wheel_base     0.637270
+length         0.780432
+city_mpg       0.785230
+highway_mpg    0.788294
+width          0.803110
+horsepower     0.827188
+engine_size    0.844736
+curb_weight    0.895085
 price          1.000000
 Name: price, dtype: float64
 </pre></div></div>
@@ -835,85 +841,85 @@ print(res.summary())
 ==============================================================================
 Dep. Variable:                  price   R-squared:                       0.969
 Model:                            OLS   Adj. R-squared:                  0.969
-Method:                 Least Squares   F-statistic:                     3974.
-Date:                Sun, 05 Jul 2020   Prob (F-statistic):               0.00
-Time:                        17:32:34   Log-Likelihood:                 7310.9
-No. Observations:                7000   AIC:                        -1.451e+04
-Df Residuals:                    6944   BIC:                        -1.413e+04
+Method:                 Least Squares   F-statistic:                     3976.
+Date:                Mon, 06 Jul 2020   Prob (F-statistic):               0.00
+Time:                        08:48:38   Log-Likelihood:                 7096.2
+No. Observations:                7000   AIC:                        -1.408e+04
+Df Residuals:                    6944   BIC:                        -1.370e+04
 Df Model:                          55
 Covariance Type:            nonrobust
 =================================================================================================
                                     coef    std err          t      P&gt;|t|      [0.025      0.975]
 -------------------------------------------------------------------------------------------------
-Intercept                         4.6632      0.069     68.022      0.000       4.529       4.798
-C(make)[T.audi]                   0.2956      0.019     15.375      0.000       0.258       0.333
-C(make)[T.bmw]                    0.3424      0.017     20.031      0.000       0.309       0.376
-C(make)[T.chevrolet]             -0.0681      0.017     -3.992      0.000      -0.102      -0.035
-C(make)[T.dodge]                 -0.1279      0.013     -9.512      0.000      -0.154      -0.102
-C(make)[T.honda]                  0.1801      0.017     10.442      0.000       0.146       0.214
-C(make)[T.isuzu]                 -0.4496      0.020    -21.959      0.000      -0.490      -0.409
-C(make)[T.jaguar]                -0.0461      0.023     -2.045      0.041      -0.090      -0.002
-C(make)[T.mazda]                 -0.0055      0.013     -0.415      0.678      -0.031       0.020
-C(make)[T.mercedes-benz]          0.0272      0.020      1.374      0.169      -0.012       0.066
-C(make)[T.mercury]               -0.0428      0.022     -1.935      0.053      -0.086       0.001
-C(make)[T.mitsubishi]            -0.1235      0.014     -8.977      0.000      -0.150      -0.097
-C(make)[T.nissan]                 0.0136      0.013      1.071      0.284      -0.011       0.038
-C(make)[T.peugot]                -0.2410      0.015    -16.161      0.000      -0.270      -0.212
-C(make)[T.plymouth]              -0.1567      0.013    -11.827      0.000      -0.183      -0.131
-C(make)[T.porsche]                0.3308      0.023     14.121      0.000       0.285       0.377
-C(make)[T.saab]                   0.1715      0.016     10.707      0.000       0.140       0.203
-C(make)[T.subaru]                -0.2159      0.013    -16.104      0.000      -0.242      -0.190
-C(make)[T.toyota]                -0.1388      0.012    -11.412      0.000      -0.163      -0.115
-C(make)[T.volkswagen]            -0.0227      0.014     -1.620      0.105      -0.050       0.005
-C(make)[T.volvo]                 -0.0245      0.016     -1.539      0.124      -0.056       0.007
-C(fuel_type)[T.gas]               2.2090      0.034     64.306      0.000       2.142       2.276
-C(aspiration)[T.turbo]            0.1450      0.006     23.509      0.000       0.133       0.157
-C(num_of_doors)[T.two]           -0.0467      0.004    -10.799      0.000      -0.055      -0.038
-C(body_style)[T.hardtop]         -0.1813      0.010    -18.215      0.000      -0.201      -0.162
-C(body_style)[T.hatchback]       -0.1730      0.009    -19.543      0.000      -0.190      -0.156
-C(body_style)[T.sedan]           -0.1713      0.010    -17.712      0.000      -0.190      -0.152
-C(body_style)[T.wagon]           -0.2424      0.010    -23.417      0.000      -0.263      -0.222
-C(drive_wheels)[T.rwd]            0.1974      0.006     30.737      0.000       0.185       0.210
-C(engine_location)[T.rear]        0.3251      0.016     19.825      0.000       0.293       0.357
-C(engine_type)[T.l]              -0.1174      0.013     -8.956      0.000      -0.143      -0.092
-C(engine_type)[T.ohc]            -0.0469      0.009     -5.183      0.000      -0.065      -0.029
-C(engine_type)[T.ohcf]            0.1092      0.008     12.869      0.000       0.093       0.126
-C(engine_type)[T.ohcv]           -0.0731      0.010     -7.206      0.000      -0.093      -0.053
-C(num_of_cylinders)[T.five]      -0.1078      0.023     -4.660      0.000      -0.153      -0.062
-C(num_of_cylinders)[T.four]      -0.0978      0.029     -3.387      0.001      -0.154      -0.041
-C(num_of_cylinders)[T.six]       -0.1420      0.021     -6.704      0.000      -0.184      -0.101
-C(num_of_cylinders)[T.three]      0.1236      0.023      5.424      0.000       0.079       0.168
-C(num_of_cylinders)[T.twelve]     0.0422      0.031      1.352      0.176      -0.019       0.103
-C(fuel_system)[T.2bbl]            0.2101      0.013     16.521      0.000       0.185       0.235
-C(fuel_system)[T.idi]             2.4543      0.036     68.950      0.000       2.384       2.524
-C(fuel_system)[T.mfi]             0.3084      0.022     13.772      0.000       0.264       0.352
-C(fuel_system)[T.mpfi]            0.3012      0.013     22.682      0.000       0.275       0.327
-C(fuel_system)[T.spdi]            0.2448      0.015     15.895      0.000       0.215       0.275
-C(fuel_system)[T.spfi]            0.6067      0.026     23.575      0.000       0.556       0.657
-C(symboling)[T.-1]                0.0912      0.010      8.811      0.000       0.071       0.111
-C(symboling)[T.0]                 0.0977      0.012      8.436      0.000       0.075       0.120
-C(symboling)[T.1]                 0.0058      0.012      0.475      0.635      -0.018       0.030
-C(symboling)[T.2]                -0.0021      0.013     -0.166      0.868      -0.027       0.023
-C(symboling)[T.3]                 0.0956      0.014      7.016      0.000       0.069       0.122
-bore                             -0.1315      0.015     -8.541      0.000      -0.162      -0.101
-wheel_base                        0.0075      0.001      9.770      0.000       0.006       0.009
-length                           -0.0031      0.000     -7.449      0.000      -0.004      -0.002
-city_mpg                         -0.0193      0.001    -18.415      0.000      -0.021      -0.017
-highway_mpg                       0.0134      0.001     14.778      0.000       0.012       0.015
-width                             0.0236      0.002     12.433      0.000       0.020       0.027
-horsepower                       -0.0004      0.000     -2.489      0.013      -0.001   -9.17e-05
-engine_size                       0.0014      0.000      6.032      0.000       0.001       0.002
-curb_weight                       0.0004   1.11e-05     36.620      0.000       0.000       0.000
+Intercept                         4.7194      0.071     66.565      0.000       4.580       4.858
+C(make)[T.audi]                   0.3223      0.019     16.807      0.000       0.285       0.360
+C(make)[T.bmw]                    0.3656      0.018     20.808      0.000       0.331       0.400
+C(make)[T.chevrolet]             -0.0854      0.018     -4.718      0.000      -0.121      -0.050
+C(make)[T.dodge]                 -0.1320      0.014     -9.546      0.000      -0.159      -0.105
+C(make)[T.honda]                  0.1660      0.017      9.787      0.000       0.133       0.199
+C(make)[T.isuzu]                 -0.4436      0.020    -22.238      0.000      -0.483      -0.405
+C(make)[T.jaguar]                -0.1599      0.021     -7.591      0.000      -0.201      -0.119
+C(make)[T.mazda]                 -0.0011      0.014     -0.084      0.933      -0.028       0.025
+C(make)[T.mercedes-benz]         -0.0189      0.020     -0.942      0.346      -0.058       0.020
+C(make)[T.mercury]               -0.0778      0.023     -3.320      0.001      -0.124      -0.032
+C(make)[T.mitsubishi]            -0.1376      0.014     -9.711      0.000      -0.165      -0.110
+C(make)[T.nissan]                 0.0138      0.013      1.062      0.288      -0.012       0.039
+C(make)[T.peugot]                -0.2821      0.016    -18.150      0.000      -0.313      -0.252
+C(make)[T.plymouth]              -0.1657      0.014    -12.015      0.000      -0.193      -0.139
+C(make)[T.porsche]                0.3364      0.022     14.997      0.000       0.292       0.380
+C(make)[T.saab]                   0.1741      0.016     10.705      0.000       0.142       0.206
+C(make)[T.subaru]                -0.1974      0.013    -14.770      0.000      -0.224      -0.171
+C(make)[T.toyota]                -0.1405      0.013    -11.237      0.000      -0.165      -0.116
+C(make)[T.volkswagen]            -0.0154      0.014     -1.066      0.286      -0.044       0.013
+C(make)[T.volvo]                 -0.0357      0.016     -2.168      0.030      -0.068      -0.003
+C(fuel_type)[T.gas]               2.2407      0.035     63.510      0.000       2.172       2.310
+C(aspiration)[T.turbo]            0.1349      0.006     21.058      0.000       0.122       0.147
+C(num_of_doors)[T.two]           -0.0474      0.004    -10.734      0.000      -0.056      -0.039
+C(body_style)[T.hardtop]         -0.1464      0.010    -14.358      0.000      -0.166      -0.126
+C(body_style)[T.hatchback]       -0.1858      0.009    -20.640      0.000      -0.203      -0.168
+C(body_style)[T.sedan]           -0.1872      0.010    -19.010      0.000      -0.207      -0.168
+C(body_style)[T.wagon]           -0.2630      0.010    -25.327      0.000      -0.283      -0.243
+C(drive_wheels)[T.rwd]            0.1927      0.007     29.121      0.000       0.180       0.206
+C(engine_location)[T.rear]        0.2984      0.016     18.586      0.000       0.267       0.330
+C(engine_type)[T.l]              -0.1144      0.014     -8.401      0.000      -0.141      -0.088
+C(engine_type)[T.ohc]            -0.0648      0.009     -7.108      0.000      -0.083      -0.047
+C(engine_type)[T.ohcf]            0.1011      0.008     12.244      0.000       0.085       0.117
+C(engine_type)[T.ohcv]           -0.1056      0.011    -10.014      0.000      -0.126      -0.085
+C(num_of_cylinders)[T.five]      -0.1452      0.024     -6.137      0.000      -0.192      -0.099
+C(num_of_cylinders)[T.four]      -0.0754      0.029     -2.586      0.010      -0.133      -0.018
+C(num_of_cylinders)[T.six]       -0.1888      0.022     -8.633      0.000      -0.232      -0.146
+C(num_of_cylinders)[T.three]      0.1677      0.024      6.972      0.000       0.121       0.215
+C(num_of_cylinders)[T.twelve]    -0.0545      0.030     -1.803      0.071      -0.114       0.005
+C(fuel_system)[T.2bbl]            0.2087      0.012     17.444      0.000       0.185       0.232
+C(fuel_system)[T.idi]             2.4787      0.037     67.266      0.000       2.406       2.551
+C(fuel_system)[T.mfi]             0.2890      0.022     13.203      0.000       0.246       0.332
+C(fuel_system)[T.mpfi]            0.2880      0.012     23.062      0.000       0.263       0.312
+C(fuel_system)[T.spdi]            0.2471      0.015     16.480      0.000       0.218       0.276
+C(fuel_system)[T.spfi]            0.5898      0.025     23.329      0.000       0.540       0.639
+C(symboling)[T.-1]                0.1008      0.011      9.326      0.000       0.080       0.122
+C(symboling)[T.0]                 0.1112      0.012      9.220      0.000       0.088       0.135
+C(symboling)[T.1]                 0.0327      0.013      2.581      0.010       0.008       0.058
+C(symboling)[T.2]              2.929e-05      0.013      0.002      0.998      -0.026       0.026
+C(symboling)[T.3]                 0.0828      0.014      5.826      0.000       0.055       0.111
+bore                             -0.1834      0.015    -12.535      0.000      -0.212      -0.155
+wheel_base                        0.0084      0.001     11.295      0.000       0.007       0.010
+length                           -0.0045      0.000    -10.618      0.000      -0.005      -0.004
+city_mpg                         -0.0178      0.001    -15.892      0.000      -0.020      -0.016
+highway_mpg                       0.0131      0.001     13.579      0.000       0.011       0.015
+width                             0.0231      0.002     11.809      0.000       0.019       0.027
+horsepower                       -0.0002      0.000     -0.887      0.375      -0.001       0.000
+engine_size                       0.0022      0.000     10.676      0.000       0.002       0.003
+curb_weight                       0.0005   1.25e-05     37.256      0.000       0.000       0.000
 ==============================================================================
-Omnibus:                       43.470   Durbin-Watson:                   2.040
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):               39.363
-Skew:                          -0.142   Prob(JB):                     2.83e-09
-Kurtosis:                       2.766   Cond. No.                     1.02e+16
+Omnibus:                        5.085   Durbin-Watson:                   1.999
+Prob(Omnibus):                  0.079   Jarque-Bera (JB):                5.197
+Skew:                          -0.044   Prob(JB):                       0.0744
+Kurtosis:                       3.100   Cond. No.                     1.02e+16
 ==============================================================================
 
 Warnings:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The smallest eigenvalue is 4.53e-22. This might indicate that there are
+[2] The smallest eigenvalue is 4.65e-22. This might indicate that there are
 strong multicollinearity problems or that the design matrix is singular.
 </pre></div></div>
 </div>
@@ -945,25 +951,159 @@ strong multicollinearity problems or that the design matrix is singular.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-C(make)[T.mazda]                 0.678023
-C(make)[T.mercedes-benz]         0.169382
-C(make)[T.mercury]               0.053000
-C(make)[T.nissan]                0.284175
-C(make)[T.volkswagen]            0.105253
-C(make)[T.volvo]                 0.123909
-C(num_of_cylinders)[T.twelve]    0.176399
-C(symboling)[T.1]                0.635092
-C(symboling)[T.2]                0.868250
+C(make)[T.mazda]                 0.932911
+C(make)[T.mercedes-benz]         0.346465
+C(make)[T.nissan]                0.288217
+C(make)[T.volkswagen]            0.286270
+C(num_of_cylinders)[T.twelve]    0.071427
+C(symboling)[T.2]                0.998247
+horsepower                       0.375116
 dtype: float64
 </pre></div></div>
 </div>
-<p>As we can see, only the p-values for some makers are larger than 5%. We are not removing this feature.</p>
-<p>All other p-values are smaller than 5%, so no additional feature selection will be done.</p>
+<p>As we can see, the p-values for some makers are larger than 5%. We are not removing this feature.</p>
+<p>Also, hypothesis testing for variable horsepower coefficient shows it could be zero.</p>
+<p>Lets remove this feature and fit the model again:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>correlated = correlated.tolist()
+correlated.remove(&#39;horsepower&#39;)
+num_formula = &#39; + &#39;.join(correlated)
+
+formula = f&#39;price ~ {cat_formula} + {num_formula}&#39;
+
+start = time.time()
+model = smf.ols(formula=formula, data=X_train)
+stop = time.time()
+
+elapsed = stop - start
+res = model.fit()
+print(res.summary())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+                            OLS Regression Results
+==============================================================================
+Dep. Variable:                  price   R-squared:                       0.969
+Model:                            OLS   Adj. R-squared:                  0.969
+Method:                 Least Squares   F-statistic:                     4050.
+Date:                Mon, 06 Jul 2020   Prob (F-statistic):               0.00
+Time:                        08:48:39   Log-Likelihood:                 7095.8
+No. Observations:                7000   AIC:                        -1.408e+04
+Df Residuals:                    6945   BIC:                        -1.370e+04
+Df Model:                          54
+Covariance Type:            nonrobust
+=================================================================================================
+                                    coef    std err          t      P&gt;|t|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------
+Intercept                         4.7214      0.071     66.632      0.000       4.583       4.860
+C(make)[T.audi]                   0.3190      0.019     16.970      0.000       0.282       0.356
+C(make)[T.bmw]                    0.3628      0.017     20.991      0.000       0.329       0.397
+C(make)[T.chevrolet]             -0.0893      0.018     -5.095      0.000      -0.124      -0.055
+C(make)[T.dodge]                 -0.1344      0.014     -9.895      0.000      -0.161      -0.108
+C(make)[T.honda]                  0.1620      0.016      9.903      0.000       0.130       0.194
+C(make)[T.isuzu]                 -0.4441      0.020    -22.269      0.000      -0.483      -0.405
+C(make)[T.jaguar]                -0.1556      0.021     -7.591      0.000      -0.196      -0.115
+C(make)[T.mazda]                 -0.0030      0.013     -0.227      0.821      -0.029       0.023
+C(make)[T.mercedes-benz]         -0.0196      0.020     -0.980      0.327      -0.059       0.020
+C(make)[T.mercury]               -0.0852      0.022     -3.889      0.000      -0.128      -0.042
+C(make)[T.mitsubishi]            -0.1401      0.014    -10.097      0.000      -0.167      -0.113
+C(make)[T.nissan]                 0.0110      0.013      0.869      0.385      -0.014       0.036
+C(make)[T.peugot]                -0.2786      0.015    -18.557      0.000      -0.308      -0.249
+C(make)[T.plymouth]              -0.1678      0.014    -12.348      0.000      -0.194      -0.141
+C(make)[T.porsche]                0.3321      0.022     15.155      0.000       0.289       0.375
+C(make)[T.saab]                   0.1705      0.016     10.833      0.000       0.140       0.201
+C(make)[T.subaru]                -0.1956      0.013    -14.798      0.000      -0.222      -0.170
+C(make)[T.toyota]                -0.1422      0.012    -11.502      0.000      -0.166      -0.118
+C(make)[T.volkswagen]            -0.0176      0.014     -1.236      0.217      -0.046       0.010
+C(make)[T.volvo]                 -0.0372      0.016     -2.277      0.023      -0.069      -0.005
+C(fuel_type)[T.gas]               2.2405      0.035     63.507      0.000       2.171       2.310
+C(aspiration)[T.turbo]            0.1312      0.005     26.932      0.000       0.122       0.141
+C(num_of_doors)[T.two]           -0.0475      0.004    -10.755      0.000      -0.056      -0.039
+C(body_style)[T.hardtop]         -0.1471      0.010    -14.469      0.000      -0.167      -0.127
+C(body_style)[T.hatchback]       -0.1869      0.009    -20.948      0.000      -0.204      -0.169
+C(body_style)[T.sedan]           -0.1883      0.010    -19.255      0.000      -0.207      -0.169
+C(body_style)[T.wagon]           -0.2639      0.010    -25.553      0.000      -0.284      -0.244
+C(drive_wheels)[T.rwd]            0.1912      0.006     29.961      0.000       0.179       0.204
+C(engine_location)[T.rear]        0.2957      0.016     18.758      0.000       0.265       0.327
+C(engine_type)[T.l]              -0.1142      0.014     -8.387      0.000      -0.141      -0.088
+C(engine_type)[T.ohc]            -0.0610      0.008     -7.567      0.000      -0.077      -0.045
+C(engine_type)[T.ohcf]            0.1001      0.008     12.235      0.000       0.084       0.116
+C(engine_type)[T.ohcv]           -0.1038      0.010    -10.035      0.000      -0.124      -0.084
+C(num_of_cylinders)[T.five]      -0.1495      0.023     -6.460      0.000      -0.195      -0.104
+C(num_of_cylinders)[T.four]      -0.0816      0.028     -2.880      0.004      -0.137      -0.026
+C(num_of_cylinders)[T.six]       -0.1940      0.021     -9.207      0.000      -0.235      -0.153
+C(num_of_cylinders)[T.three]      0.1644      0.024      6.919      0.000       0.118       0.211
+C(num_of_cylinders)[T.twelve]    -0.0667      0.027     -2.471      0.013      -0.120      -0.014
+C(fuel_system)[T.2bbl]            0.2077      0.012     17.438      0.000       0.184       0.231
+C(fuel_system)[T.idi]             2.4809      0.037     67.489      0.000       2.409       2.553
+C(fuel_system)[T.mfi]             0.2865      0.022     13.199      0.000       0.244       0.329
+C(fuel_system)[T.mpfi]            0.2854      0.012     23.486      0.000       0.262       0.309
+C(fuel_system)[T.spdi]            0.2449      0.015     16.551      0.000       0.216       0.274
+C(fuel_system)[T.spfi]            0.5884      0.025     23.320      0.000       0.539       0.638
+C(symboling)[T.-1]                0.1024      0.011      9.598      0.000       0.081       0.123
+C(symboling)[T.0]                 0.1131      0.012      9.544      0.000       0.090       0.136
+C(symboling)[T.1]                 0.0352      0.012      2.839      0.005       0.011       0.059
+C(symboling)[T.2]                 0.0023      0.013      0.179      0.858      -0.023       0.028
+C(symboling)[T.3]                 0.0857      0.014      6.180      0.000       0.058       0.113
+bore                             -0.1812      0.014    -12.565      0.000      -0.210      -0.153
+wheel_base                        0.0085      0.001     11.698      0.000       0.007       0.010
+length                           -0.0045      0.000    -10.611      0.000      -0.005      -0.004
+city_mpg                         -0.0176      0.001    -16.130      0.000      -0.020      -0.015
+highway_mpg                       0.0130      0.001     13.570      0.000       0.011       0.015
+width                             0.0228      0.002     11.846      0.000       0.019       0.027
+engine_size                       0.0021      0.000     11.974      0.000       0.002       0.002
+curb_weight                       0.0005   1.25e-05     37.323      0.000       0.000       0.000
+==============================================================================
+Omnibus:                        4.426   Durbin-Watson:                   1.999
+Prob(Omnibus):                  0.109   Jarque-Bera (JB):                4.512
+Skew:                          -0.040   Prob(JB):                        0.105
+Kurtosis:                       3.095   Cond. No.                     1.02e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 4.64e-22. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>res.pvalues[res.pvalues &gt; .05]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+C(make)[T.mazda]            0.820602
+C(make)[T.mercedes-benz]    0.327119
+C(make)[T.nissan]           0.385010
+C(make)[T.volkswagen]       0.216545
+C(symboling)[T.2]           0.857865
+dtype: float64
+</pre></div></div>
+</div>
+<p>Now we are done with feature selection.</p>
 </div>
 <div class="section" id="Model-Scoring-&amp;-Evaluation">
 <h2>Model Scoring &amp; Evaluation<a class="headerlink" href="#Model-Scoring-&-Evaluation" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -985,11 +1125,11 @@ print(f&#39;MSE: {mse:.4}&#39;)
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 R^2: 0.969
-MSE: 1.211e+06
+MSE: 2.175e+06
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1007,7 +1147,7 @@ score_df
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1039,9 +1179,9 @@ score_df
     <tr>
       <th>0</th>
       <td>ols</td>
-      <td>0.968962</td>
-      <td>1.211086e+06</td>
-      <td>0.701995</td>
+      <td>0.968982</td>
+      <td>2.175057e+06</td>
+      <td>0.791958</td>
     </tr>
   </tbody>
 </table>
@@ -1061,7 +1201,7 @@ score_df
 <div class="section" id="Residual-mean">
 <h3>Residual mean<a class="headerlink" href="#Residual-mean" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1070,19 +1210,19 @@ score_df
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-3.466027465037769e-13
+-2.431832513138943e-15
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Residuals-vs-fitted-values">
 <h3>Residuals vs fitted values<a class="headerlink" href="#Residuals-vs-fitted-values" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1103,19 +1243,19 @@ plt.legend(loc=2)
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x1a7827ec8c8&gt;
+&lt;matplotlib.legend.Legend at 0x188e7925fc8&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/03-ols_23_1.png" src="_images/03-ols_23_1.png" />
+<img alt="_images/03-ols_26_1.png" src="_images/03-ols_26_1.png" />
 </div>
 </div>
 </div>
@@ -1123,7 +1263,7 @@ plt.legend(loc=2)
 <h3>Correlation between residuals and <span class="math notranslate nohighlight">\(\hat y\)</span><a class="headerlink" href="#Correlation-between-residuals-and-\hat-y" title="Permalink to this headline">¶</a></h3>
 <p>In a good model, residuals cannot be correlated to the fitted values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1133,19 +1273,19 @@ pearsonr(res.predict(X_train), res.resid)
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(7.525074313674551e-13, 0.9999999999534074)
+(8.134968393358477e-13, 0.9999999999497379)
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Test-for-normality">
 <h3>Test for normality<a class="headerlink" href="#Test-for-normality" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1164,16 +1304,16 @@ C:\Users\BJ571WQ\Anaconda3\lib\site-packages\scipy\stats\morestats.py:1676: User
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(0.9936643838882446, 4.235666338594954e-17)
+(0.9971299767494202, 2.398374832068839e-10)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1187,7 +1327,7 @@ qqplot(res.resid, line=&#39;s&#39;);
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/03-ols_28_0.png" src="_images/03-ols_28_0.png" />
+<img alt="_images/03-ols_31_0.png" src="_images/03-ols_31_0.png" />
 </div>
 </div>
 </div>
@@ -1199,8 +1339,8 @@ qqplot(res.resid, line=&#39;s&#39;);
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="02-analysis.html"
-       title="previous chapter">← Data Analysis</a>
+    <a href="02-analysis-price.html"
+       title="previous chapter">← Exploratory data analysis - price</a>
   </li>
   <li class="next">
     <a href="04-sklearn-linear.html"

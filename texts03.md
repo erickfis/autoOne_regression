@@ -42,9 +42,12 @@ Therefore, let's look into the p-values for each coefficient for each regressor 
 
 *if a p-value of a given coefficient is larger than 5%, then we fail to reject the null hypothesis that the coefficient actually is zero*
 
-As we can see, only the p-values for some makers are larger than 5%. We are not removing this feature.
+As we can see, the p-values for some makers are larger than 5%. We are not removing this feature.
 
-All other p-values are smaller than 5%, so no additional feature selection will be done.
+Also, hypothesis testing for variable horsepower coefficient shows it could be zero.
+
+Lets remove this feature and fit the model again:
+
 
 
 ## Residual analysis
@@ -69,6 +72,11 @@ In this section, we will cover:
 - most important features
 - comparing the models: conclusions
 
+## Feature selection
+
+This time we will not be manually selecting features. Some sklearn linear regressor models uses regularization, and that should address the lack of feature selection.
+
+This has an important consequence, however: we will be using all features, even the ones which are not linearly correlated with the outcome. This means we will be trying to fit a linear model on a case that may be not strictly linear.
 
 ## Normalization and encoding of features
 
@@ -121,10 +129,13 @@ That said, lasso will perform feature selection and it is not a stable solution.
 
 Huber uses L2 and L1 penalty. This makes it specially strong against outliers:
 
-    ## Comparing the models - conclusions
 
-- MSE analysis shows better results for the Ridge model: smallest MSE
-- $R^2$ analysis shows a tie between Ridge, Hubber and Linear models
+## Comparing the models - conclusions
+
+- MSE analysis shows better results for the Linear model: smallest MSE
+- $R^2$ analysis shows a tie between Ridge and Linear models
+- Ridge model would be the safest choice:
+- OLS has a worse performance because it was built on the assumption of a linear phenomena, using only linearly correlated variables.
 
 
 ## Modeling with machine learning
@@ -178,3 +189,6 @@ Considering the computation time and the error measured on the test set, we can 
 - OLS, with proper feature selection, would be chosen over sklearn. However, its important to consider the time it takes to manually choose those features
 - Ridge Regression performs better than the alternative linear regressors: it produces the best model among them without, within a really good time while automatically adjusting the weights of each feature, so we don't need to manually select them
 - among the ML models, its important to note that the KNN model took 30x less time to produce a model as good as the alternatives.
+- among the ML models, its important to note that the KNN model took 10x less time to produce a model almost as good as the alternatives.
+- ML have 5x improved performance (RMSE) over Linear Models because it doesn't rely on the linear correlations between predictors and the outcome.
+- The linear models could have better performance if we added the contributions of interdependent terms or non-linear transformations of them.

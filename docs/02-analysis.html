@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>Data Analysis</title>
+      <title>Exploratory data analysis - features</title>
     
       <link rel="stylesheet" href="_static/pygments.css">
       <link rel="stylesheet" href="_static/theme.css">
@@ -26,7 +26,7 @@
     
   <link rel="index" title="Index" href="genindex.html" />
   <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="Linear regression - OLS Model" href="03-ols.html" />
+  <link rel="next" title="Exploratory data analysis - price" href="02-analysis-price.html" />
   <link rel="prev" title="Data cleaning" href="01-cleaning.html" /> 
   </head>
 
@@ -83,22 +83,22 @@
           </li>
 
         
-          <li class="toctree-l1 current"><a href="#" class="reference internal current">Data Analysis</a>
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Exploratory data analysis - features</a>
 
             
               <ul>
                 
+                  <li class="toctree-l2"><a href="#TODO" class="reference internal">TODO</a></li>
+                
                   <li class="toctree-l2"><a href="#Analysis-of-sample-distribution" class="reference internal">Analysis of sample distribution</a></li>
                 
-                  <li class="toctree-l2"><a href="#Discussion-about-outliers" class="reference internal">Discussion about outliers</a></li>
-                
-                  <li class="toctree-l2"><a href="#Log-transformation-on-prices" class="reference internal">Log transformation on prices</a></li>
-                
-                  <li class="toctree-l2"><a href="#Balancing-the-data" class="reference internal">Balancing the data</a></li>
-                
-                  <li class="toctree-l2"><a href="#Conclusion" class="reference internal">Conclusion</a></li>
-                
               </ul>
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis-price.html" class="reference internal ">Exploratory data analysis - price</a>
+
             
           </li>
 
@@ -139,7 +139,7 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>Data Analysis</li>
+    <li>Exploratory data analysis - features</li>
   </ul>
   
 
@@ -149,8 +149,8 @@
        title="previous chapter">← Data cleaning</a>
   </li>
   <li class="next">
-    <a href="03-ols.html"
-       title="next chapter">Linear regression - OLS Model →</a>
+    <a href="02-analysis-price.html"
+       title="next chapter">Exploratory data analysis - price →</a>
   </li>
 </ul>
   
@@ -391,8 +391,10 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<div class="section" id="Data-Analysis">
-<h1>Data Analysis<a class="headerlink" href="#Data-Analysis" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Exploratory-data-analysis---features">
+<h1>Exploratory data analysis - features<a class="headerlink" href="#Exploratory-data-analysis---features" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="TODO">
+<h2>TODO<a class="headerlink" href="#TODO" title="Permalink to this headline">¶</a></h2>
 <p>Now that our data is clean and ready, we will take a closer look on it.</p>
 <p>In this section, we will cover:</p>
 <ul class="simple">
@@ -446,6 +448,7 @@ all ok with object
 all ok with int64
 all ok with float64
 </pre></div></div>
+</div>
 </div>
 <div class="section" id="Analysis-of-sample-distribution">
 <h2>Analysis of sample distribution<a class="headerlink" href="#Analysis-of-sample-distribution" title="Permalink to this headline">¶</a></h2>
@@ -508,511 +511,6 @@ plt.legend()
 <img alt="_images/02-analysis_6_1.png" src="_images/02-analysis_6_1.png" />
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.price.plot(kind=&#39;hist&#39;, figsize=figsize, bins=20, title=&#39;Price Histogram&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e51fa08&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_7_1.png" src="_images/02-analysis_7_1.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mask = df.price &gt; 35000
-df.price[mask].plot(kind=&#39;hist&#39;, figsize=figsize, bins=20, title=&#39;Price Histogram - slice&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e417d48&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_8_1.png" src="_images/02-analysis_8_1.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, (ax, ax2, ax3) = plt.subplots(ncols=3, sharey=False)
-
-figsize = (14, 5)
-df.price.plot(kind=&#39;kde&#39;, legend=False, ax=ax,  figsize=figsize)
-ax.vlines(8500, 0, .0001, label=&#39;peak A&#39;)
-df.price.plot(kind=&#39;hist&#39;,ax=ax2, figsize=figsize)
-df.price.plot(kind=&#39;box&#39;, legend=False, ax=ax3, figsize=figsize)
-plt.show()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_9_0.png" src="_images/02-analysis_9_0.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># checking outliers through number of observations
-df[&#39;price_cats&#39;] = pd.cut(df.price, bins=20)
-df[&#39;price_cats&#39;].value_counts().sort_values()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(37343.6, 39357.7]     0
-(41371.8, 43385.9]     0
-(43385.9, 45400.0]     1
-(29287.2, 31301.3]     1
-(25259.0, 27273.1]     1
-(39357.7, 41371.8]     2
-(27273.1, 29287.2]     2
-(23244.9, 25259.0]     2
-(31301.3, 33315.4]     3
-(33315.4, 35329.5]     3
-(19216.7, 21230.8]     3
-(35329.5, 37343.6]     4
-(21230.8, 23244.9]     4
-(13174.4, 15188.5]    13
-(17202.6, 19216.7]    14
-(11160.3, 13174.4]    17
-(15188.5, 17202.6]    20
-(9146.2, 11160.3]     23
-(5077.718, 7132.1]    36
-(7132.1, 9146.2]      44
-Name: price_cats, dtype: int64
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>top_wisker = df.price.quantile(.75) + 1.5*(df.price.quantile(.75) - df.price.quantile(.25))
-print(f&#39;Wisker upper: {top_wisker}&#39;)
-
-# prob for y &gt; top_wisker
-import scipy.stats as st
-prob = 1 - st.norm.cdf(top_wisker, df.price.mean(), df.price.std())
-print(f&#39;prob for y &gt; top_wisker: {prob:.3}&#39;)
-
-#99% quantile
-qt = st.norm.ppf(.99, df.price.mean(), df.price.std()) # just exploring
-print(f&#39;99% quantile: {qt:4.3}&#39;)
-
-# prob for prices bellow 32k
-prob = st.norm.cdf(32000, df.price.mean(), df.price.std()) # just exploring
-print(f&#39;prob for prices bellow 32k: {prob:.3}&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Wisker upper: 29680.5
-prob for y &gt; top_wisker: 0.0213
-99% quantile: 3.21e+04
-prob for prices bellow 32k: 0.99
-</pre></div></div>
-</div>
-<p>Important characteristics of the prices distribution:</p>
-<ul class="simple">
-<li><p>mean: \$13285.02</p></li>
-<li><p>median: \$10245.00</p></li>
-<li><p>standard deviation: \$8089.08</p></li>
-<li><p>range: \$40282.00</p></li>
-</ul>
-<p>The prices distribution is bimodal with peaks around \$8500.00 and \$34000.00. However, in this study we will consider that this happens due to data skew.</p>
-<p>The prices go from \$5118.00 to \$45400.00.</p>
-<p>There are outliers included in this sample: prices above \$38000.00 have only two data points.</p>
-</div>
-<div class="section" id="Discussion-about-outliers">
-<h2>Discussion about outliers<a class="headerlink" href="#Discussion-about-outliers" title="Permalink to this headline">¶</a></h2>
-<p>There are 02 data points on the far right end of the observed data, above the \$38000.00 price point, which 01 observations each. For this exercise, we are assuming them to be outliers.</p>
-<p>Because those points could be highly influential points and could leverage predictive models. Therefore, we are removing them:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mask = df.price &lt; 38000
-df = df[mask].copy()
-df.price.describe()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-count      190.000000
-mean     12822.815789
-std       7251.943667
-min       5118.000000
-25%       7701.250000
-50%      10096.500000
-75%      16500.000000
-max      37028.000000
-Name: price, dtype: float64
-</pre></div></div>
-</div>
-</div>
-<div class="section" id="Log-transformation-on-prices">
-<h2>Log transformation on prices<a class="headerlink" href="#Log-transformation-on-prices" title="Permalink to this headline">¶</a></h2>
-<p>As we saw in data analysis, the price variable has a really wide range and its highly skewed. Linear regression predictive algorithms will have some trouble, sometimes even predicting negative prices.</p>
-<p>To better understand the patterns of the data and the correlation between the variable price and the independent variables, we will apply a log transformation on prices.</p>
-<p>This transformation reshapes the distribution reducing its skewness.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from scipy import stats
-import matplotlib.pyplot as plt
-%matplotlib inline
-
-fig, (ax, ax1) = plt.subplots(ncols=2, sharey=False, figsize=figsize)
-
-prob = stats.probplot(df.price, dist=stats.norm, plot=ax)
-ax.set_xlabel(&#39;&#39;)
-ax.set_title(&#39;Original&#39;)
-
-df[&#39;log_price&#39;] = np.log(df.price)
-prob = stats.probplot(df[&#39;log_price&#39;], dist=stats.norm, plot=ax1)
-ax1.set_title(&#39;log transformation&#39;)
-
-plt.show()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_15_0.png" src="_images/02-analysis_15_0.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, (ax, ax1) = plt.subplots(ncols=2, sharey=False)
-df.price.plot(kind=&#39;hist&#39;, legend=True, ax=ax, figsize=figsize)
-df.log_price.plot(kind=&#39;hist&#39;, legend=True, ax=ax1, figsize=figsize)
-
-plt.show()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_16_0.png" src="_images/02-analysis_16_0.png" />
-</div>
-</div>
-</div>
-<div class="section" id="Balancing-the-data">
-<h2>Balancing the data<a class="headerlink" href="#Balancing-the-data" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="Splitting-cars-in-classes-according-to-its-price">
-<h3>Splitting cars in classes according to its price<a class="headerlink" href="#Splitting-cars-in-classes-according-to-its-price" title="Permalink to this headline">¶</a></h3>
-<p>Just to take a look into the distribution of prices and into the samples available for each price range, lets define car classes according to price ranges:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>labels = [
-    &#39;almost-free&#39;, &#39;super-cheap&#39;, &#39;cheap&#39;,
-    &#39;normal&#39;, &#39;expensive&#39;, &#39;super-expensive&#39;
-]
-df[&quot;class_range&quot;] = pd.cut(df.price, 6, labels=labels)
-df.groupby(&#39;class_range&#39;)[[&#39;price&#39;]].min() # starting prices for each class
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>price</th>
-    </tr>
-    <tr>
-      <th>class_range</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>almost-free</th>
-      <td>5118.0</td>
-    </tr>
-    <tr>
-      <th>super-cheap</th>
-      <td>10595.0</td>
-    </tr>
-    <tr>
-      <th>cheap</th>
-      <td>15985.0</td>
-    </tr>
-    <tr>
-      <th>normal</th>
-      <td>21105.0</td>
-    </tr>
-    <tr>
-      <th>expensive</th>
-      <td>28176.0</td>
-    </tr>
-    <tr>
-      <th>super-expensive</th>
-      <td>32250.0</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.class_range.value_counts()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-almost-free        99
-super-cheap        39
-cheap              31
-super-expensive     9
-normal              8
-expensive           4
-Name: class_range, dtype: int64
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.class_range.value_counts(normalize=True).plot.bar(figsize=figsize)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34e778c88&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_20_1.png" src="_images/02-analysis_20_1.png" />
-</div>
-</div>
-</div>
-<div class="section" id="Balancing-the-data:-bootstrap">
-<h3>Balancing the data: bootstrap<a class="headerlink" href="#Balancing-the-data:-bootstrap" title="Permalink to this headline">¶</a></h3>
-<p>Our dataset has only 197 observations and some price ranges are not well represented here. We will fix this balance issue through bootstrap: lets get more samples for each price range through bootstrap:</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_old = df.copy()
-df = df.sample(10000, replace=True)
-df.shape
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-(10000, 28)
-</pre></div></div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, (ax, ax2) = plt.subplots(ncols=2, sharey=False, figsize=figsize)
-
-df_old.price.plot(kind=&#39;kde&#39;, legend=False, ax=ax, title=&quot;original&quot;)
-df.price.plot(kind=&#39;kde&#39;,ax=ax2, title=&quot;bootstrap&quot;)
-plt.show()
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_23_0.png" src="_images/02-analysis_23_0.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>fig, (ax, ax2) = plt.subplots(ncols=2, sharey=False, figsize=figsize)
-df_old.class_range.value_counts(normalize=True).plot.bar(ax=ax, title=&#39;original&#39;)
-df.class_range.value_counts(normalize=True).plot.bar(ax=ax2, title=&#39;bootstrap&#39;)
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x1d34f2f34c8&gt;
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/02-analysis_24_1.png" src="_images/02-analysis_24_1.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>print(
-    &#39;original\n&#39;,
-    df.class_range.value_counts(normalize=True),
-    &#39;\n#########\n&#39;,
-    &#39;bootstrap\n&#39;,
-    df_old.class_range.value_counts(normalize=True)
-)
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-original
- almost-free        0.5216
-super-cheap        0.2063
-cheap              0.1635
-super-expensive    0.0476
-normal             0.0417
-expensive          0.0193
-Name: class_range, dtype: float64
-#########
- bootstrap
- almost-free        0.521053
-super-cheap        0.205263
-cheap              0.163158
-super-expensive    0.047368
-normal             0.042105
-expensive          0.021053
-Name: class_range, dtype: float64
-</pre></div></div>
-</div>
-</div>
-</div>
-<div class="section" id="Conclusion">
-<h2>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this headline">¶</a></h2>
-<p>From this brief analysis about prices, we found out:</p>
-<ul class="simple">
-<li><p>the distribution is not normal - could be bimodal as well</p></li>
-<li><p>there are outliers and we have removed them</p></li>
-<li><p>a log transformation on prices would be useful for linear models, since it reduces the skewness in prices distribution</p></li>
-<li><p>there is no balance on price ranges: we addressed that through bootstrap.</p></li>
-</ul>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.drop([&#39;log_price&#39;, &#39;class_range&#39;, &#39;price_cats&#39;], axis=1).to_csv(&#39;data/df_resample.csv&#39;, index=False)
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
@@ -1025,8 +523,8 @@ Name: class_range, dtype: float64
        title="previous chapter">← Data cleaning</a>
   </li>
   <li class="next">
-    <a href="03-ols.html"
-       title="next chapter">Linear regression - OLS Model →</a>
+    <a href="02-analysis-price.html"
+       title="next chapter">Exploratory data analysis - price →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2020, Erick Medeiros Anastácio.

@@ -26,7 +26,7 @@
     
   <link rel="index" title="Index" href="genindex.html" />
   <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="Data Analysis" href="02-analysis.html" />
+  <link rel="next" title="Exploratory data analysis - features" href="02-analysis.html" />
   <link rel="prev" title="AutoOne Price Prediction" href="index.html" /> 
   </head>
 
@@ -93,7 +93,13 @@
           </li>
 
         
-          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Data Analysis</a>
+          <li class="toctree-l1 "><a href="02-analysis.html" class="reference internal ">Exploratory data analysis - features</a>
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 "><a href="02-analysis-price.html" class="reference internal ">Exploratory data analysis - price</a>
 
             
           </li>
@@ -146,7 +152,7 @@
   </li>
   <li class="next">
     <a href="02-analysis.html"
-       title="next chapter">Data Analysis →</a>
+       title="next chapter">Exploratory data analysis - features →</a>
   </li>
 </ul>
   
@@ -392,6 +398,7 @@ div.rendered_html tbody tr:hover {
 <p>In this notebook we will explore the dataset characteristics in order to clean and prepare it for analysis and modeling.</p>
 <div class="section" id="Getting-the-data">
 <h2>Getting the data<a class="headerlink" href="#Getting-the-data" title="Permalink to this headline">¶</a></h2>
+<p>This dataset has handled to me through e-mail. I not sure whether or where it can be found over the web. I saw Microsoft using the same dataset on a training. In the future I’ll try to include the source here.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -819,8 +826,21 @@ price                0.019512
 dtype: float64
 </pre></div></div>
 </div>
-<p>With 20% of missing data for normalized_losses, we will just drop this feature entirely as it won’t help us creating any prediction model.</p>
-<p>For the other features, as they have only a small portion of missing data, we will use them. However, we will drop the records containing missing data.</p>
+<div class="section" id="Strategies-for-dealing-with-missing-data">
+<h3>Strategies for dealing with missing data<a class="headerlink" href="#Strategies-for-dealing-with-missing-data" title="Permalink to this headline">¶</a></h3>
+<p>A number of different strategies can be used for dealing with missing data:</p>
+<ul class="simple">
+<li><p>data imputation, filling NANs through mean or median by feature</p></li>
+<li><p>same as above, but taking data structure in consideration, ie, the mean of normalized losses grouped by make</p></li>
+<li><p>just dropping the data</p></li>
+</ul>
+<p>It is important to notice that some knowledge on the business domain would be required for making the proper assumptions for executing data imputation.</p>
+<p>As this is not the case, we don’t have any understanding on the business rules here, we chose to deal with the missing data by just dropping it.</p>
+<p>Therefore:</p>
+<ul class="simple">
+<li><p>With 20% of missing data for normalized_losses, we will just drop this feature entirely</p></li>
+<li><p>for the other features, as they have only a small portion of missing data, 2% max, we will use them but we will drop the observations containing missing data.</p></li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -841,6 +861,7 @@ na_count[na_count &gt;0]
 <div class="highlight"><pre>
 Series([], dtype: float64)
 </pre></div></div>
+</div>
 </div>
 </div>
 <div class="section" id="Exploring-and-transforming-the-features">
@@ -1525,7 +1546,7 @@ temp_categories
   </li>
   <li class="next">
     <a href="02-analysis.html"
-       title="next chapter">Data Analysis →</a>
+       title="next chapter">Exploratory data analysis - features →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2020, Erick Medeiros Anastácio.

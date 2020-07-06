@@ -4,17 +4,31 @@ In this notebook we will explore the dataset characteristics in order to clean a
 
 ## Getting the data
 
+This dataset has handled to me through e-mail. I not sure whether or where it can be found over the web. I saw Microsoft using the same dataset on a training. In the future I'll try to include the source here.
+
 As we can see, the missing data is marked as '?' in this dataset.
 Lets start by replacing it with proper missing data indicators. After that we can check the data types for each feature.
 
 ## Missing data
 
-With proper missing data indicators, we can have a better understanding of the quality of each record in the dataset and in each one of its features.
+With proper missing data indicators, we can have a better understanding of the quality of each record in the dataset and in each one of its features
 
+### Strategies for dealing with missing data
 
-With 20% of missing data for normalized_losses, we will just drop this feature entirely as it won't help us creating any prediction model.
+A number of different strategies can be used for dealing with missing data:
 
-For the other features, as they have only a small portion of missing data, we will use them. However, we will drop the records containing missing data.
+- data imputation, filling NANs through mean or median by feature
+- same as above, but taking data structure in consideration, ie, the mean of normalized losses grouped by make
+- just dropping the data
+
+It is important to notice that some knowledge on the business domain would be required for making the proper assumptions for executing data imputation.
+
+As this is not the case, we don't have any understanding on the business rules here, we chose to deal with the missing data by just dropping it.
+
+Therefore:
+
+- With 20% of missing data for normalized_losses, we will just drop this feature entirely
+- for the other features, as they have only a small portion of missing data, 2% max, we will use them but we will drop the observations containing missing data.
 
 
 ## Exploring and transforming the features
@@ -64,7 +78,17 @@ Important characteristics of the prices distribution:
 - standard deviation: U$ 8089.08
 - range: U$ 40282.00
 
-The prices distribution is bimodal with peaks around U$8500.00 and U$34000.00 The prices go from $5118.00 to U$45400.00. There are outliers included in this sample: prices above U$38000.00 have only two data points.
+The prices distribution is bimodal with peaks around U$8500.00 and U$34000.00 The prices go from $5118.00 to U$45400.00.
+
+
+Prices above \\$38000.00 have only 03 observations. While it is very tempting to call them outliers, this is not really the case. We have sales at
+
+- \\$41315.00
+- \\$40960.00
+- \\$45400.00
+
+As those prices are in the same level as the prices of the regular sales, it becomes clear that they are not recorded by mistake. Those observations are just really rare on this sample.
+
 
 Lets take a look on some stats:
 
@@ -73,7 +97,7 @@ Lets take a look on some stats:
 
 There are 02 data points on the far end of the observed data which 01 observations each. For this exercise, we are assuming them to be outliers.
 
-Because those points could be highly influential points and could leverage predictive models. Therefore, we are removing them.
+If there was outliers among the observations we would remove them because outliers could be highly influential points and could leverage predictive models.
 
 
 ## Log transformation on prices
