@@ -28,3 +28,4 @@ We will address data cleaning, exploratory data analysis, linear regression and 
    04-sklearn-linear.ipynb
    05-machine.ipynb
    06-scripts.rst
+   07-about.md
