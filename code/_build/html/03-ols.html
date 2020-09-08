@@ -828,11 +828,7 @@ formula
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span>import statsmodels.formula.api as smf
 
-start = time.time()
 model = smf.ols(formula=formula, data=X_train)
-stop = time.time()
-
-elapsed = stop - start
 res = model.fit()
 print(res.summary())
 </pre></div>
@@ -848,8 +844,8 @@ print(res.summary())
 Dep. Variable:                  price   R-squared:                       0.969
 Model:                            OLS   Adj. R-squared:                  0.969
 Method:                 Least Squares   F-statistic:                     3976.
-Date:                Mon, 06 Jul 2020   Prob (F-statistic):               0.00
-Time:                        08:48:38   Log-Likelihood:                 7096.2
+Date:                Tue, 08 Sep 2020   Prob (F-statistic):               0.00
+Time:                        16:41:56   Log-Likelihood:                 7096.2
 No. Observations:                7000   AIC:                        -1.408e+04
 Df Residuals:                    6944   BIC:                        -1.370e+04
 Df Model:                          55
@@ -933,7 +929,7 @@ strong multicollinearity problems or that the design matrix is singular.
 </div>
 <div class="section" id="More-feature-selection:-p-values">
 <h2>More feature selection: p-values<a class="headerlink" href="#More-feature-selection:-p-values" title="Permalink to this headline">¶</a></h2>
-<p>When we fit a linear regression model, we have to test the hypothesis that the evaluated coefficients for each regressor is actually zero, meaning we don’t need the regressor at all.</p>
+<p>When we fit a linear regression model, we have to test the hypothesis that the evaluated coefficient for a given regressor is actually zero, meaning we don’t need that regressor at all.</p>
 <p>In other words, we have:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(H_0\)</span>: the coefficient is zero</p></li>
@@ -968,8 +964,8 @@ dtype: float64
 </pre></div></div>
 </div>
 <p>As we can see, the p-values for some makers are larger than 5%. We are not removing this feature.</p>
-<p>Also, hypothesis testing for variable horsepower coefficient shows it could be zero.</p>
-<p>Lets remove this feature and fit the model again:</p>
+<p>On the other hand, hypothesis testing for variable horsepower coefficient shows it could be zero.</p>
+<p>Therefore, lets remove this feature and fit the model again:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -983,10 +979,10 @@ formula = f&#39;price ~ {cat_formula} + {num_formula}&#39;
 
 start = time.time()
 model = smf.ols(formula=formula, data=X_train)
-stop = time.time()
-
-elapsed = stop - start
 res = model.fit()
+stop = time.time()
+elapsed = stop - start
+
 print(res.summary())
 </pre></div>
 </div>
@@ -1001,8 +997,8 @@ print(res.summary())
 Dep. Variable:                  price   R-squared:                       0.969
 Model:                            OLS   Adj. R-squared:                  0.969
 Method:                 Least Squares   F-statistic:                     4050.
-Date:                Mon, 06 Jul 2020   Prob (F-statistic):               0.00
-Time:                        08:48:39   Log-Likelihood:                 7095.8
+Date:                Tue, 08 Sep 2020   Prob (F-statistic):               0.00
+Time:                        16:41:57   Log-Likelihood:                 7095.8
 No. Observations:                7000   AIC:                        -1.408e+04
 Df Residuals:                    6945   BIC:                        -1.370e+04
 Df Model:                          54
@@ -1187,7 +1183,7 @@ score_df
       <td>ols</td>
       <td>0.968982</td>
       <td>2.175057e+06</td>
-      <td>0.791958</td>
+      <td>0.363137</td>
     </tr>
   </tbody>
 </table>
@@ -1254,7 +1250,7 @@ plt.legend(loc=2)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x188e7925fc8&gt;
+&lt;matplotlib.legend.Legend at 0x27afa2eeac8&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
