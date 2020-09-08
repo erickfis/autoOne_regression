@@ -277,7 +277,7 @@
     "\n",
     "In order to properly fit linear regression models with regularization, we must account for those differences.\n",
     "\n",
-    "Also, it is import to encode the categories, like fuel-type, to sklearn can use them."
+    "Also, it is import to encode the categories, like fuel-type, so sklearn can use them."
    ]
   },
   {
