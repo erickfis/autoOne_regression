@@ -171,21 +171,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -286,7 +300,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -352,6 +366,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -410,12 +425,12 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pandas as pd
-import numpy as np
-import pickle as pk
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="k">as</span> <span class="nn">pk</span>
 
-df_orign = pd.read_csv(&#39;data/Auto1-DS-TestData.csv&#39;)
-df_orign.head()
+<span class="n">df_orign</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/Auto1-DS-TestData.csv&#39;</span><span class="p">)</span>
+<span class="n">df_orign</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -599,9 +614,9 @@ df_orign.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = df_orign.copy()
-df = df.replace(to_replace=&#39;?&#39;, value= np.NaN)
-df.info()
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_orign</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -650,9 +665,9 @@ memory usage: 41.8+ KB
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># fixing columns names
-df.columns = df.columns.str.replace(&quot;-&quot;, &quot;_&quot;)
-df.describe()
+<span></span><span class="c1"># fixing columns names</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -809,10 +824,9 @@ df.describe()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># looking for NAs
-na_count = df.isnull().sum()/df.shape[0]
-na_count[na_count &gt;0]
-# No NAs here
+<span></span><span class="c1"># looking for NAs</span>
+<span class="n">na_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">na_count</span><span class="p">[</span><span class="n">na_count</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -853,10 +867,10 @@ dtype: float64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.drop(&#39;normalized_losses&#39;, axis=1, inplace=True)
-df.dropna(inplace=True)
-na_count = df.isnull().sum()/df.shape[0]
-na_count[na_count &gt;0]
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;normalized_losses&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">na_count</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">na_count</span><span class="p">[</span><span class="n">na_count</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -880,8 +894,8 @@ Series([], dtype: float64)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>temp_categories = df.select_dtypes(&#39;object&#39;).columns.tolist()
-temp_categories
+<span></span><span class="n">temp_categories</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">temp_categories</span>
 </pre></div>
 </div>
 </div>
@@ -913,9 +927,9 @@ temp_categories
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>for col in temp_categories:
-    print(col)
-    print(df[col].unique())
+<span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp_categories</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -993,15 +1007,15 @@ price
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># bore, stroke, horsepower, peak_rpm and price must be converted to numeric
-for col in [&#39;bore&#39;, &#39;stroke&#39;, &#39;horsepower&#39;, &#39;peak_rpm&#39;, &#39;price&#39;]:
-    df[col] = df[col].astype(&#39;float&#39;)
+<span></span><span class="c1"># bore, stroke, horsepower, peak_rpm and price must be converted to numeric</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;bore&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;horsepower&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_rpm&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">]:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
 
-# checking categories again
-temp_categories = df.select_dtypes(&#39;object&#39;).columns.tolist()
-for col in temp_categories:
-    print(col)
-    print(df[col].unique())
+<span class="c1"># checking categories again</span>
+<span class="n">temp_categories</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="s1">&#39;object&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp_categories</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1039,9 +1053,9 @@ fuel_system
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># lets replace drive_wheels 4wd with fwd
-df[&#39;drive_wheels&#39;].replace(&#39;4wd&#39;, &#39;fwd&#39;, inplace=True)
-df[&#39;drive_wheels&#39;].unique()
+<span></span><span class="c1"># lets replace drive_wheels 4wd with fwd</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;drive_wheels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;4wd&#39;</span><span class="p">,</span> <span class="s1">&#39;fwd&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;drive_wheels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1059,9 +1073,9 @@ array([&#39;rwd&#39;, &#39;fwd&#39;], dtype=object)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># now lets take a look on the &#39;numeric&#39; features
-temp_num = [col for col in df.columns if col not in temp_categories]
-df[temp_num].describe()
+<span></span><span class="c1"># now lets take a look on the &#39;numeric&#39; features</span>
+<span class="n">temp_num</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">temp_categories</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="n">temp_num</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1259,7 +1273,7 @@ df[temp_num].describe()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df[temp_num].sample(10)
+<span></span><span class="n">df</span><span class="p">[</span><span class="n">temp_num</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1305,151 +1319,151 @@ df[temp_num].describe()
   </thead>
   <tbody>
     <tr>
-      <th>204</th>
-      <td>-1</td>
-      <td>109.1</td>
-      <td>188.8</td>
-      <td>68.9</td>
-      <td>55.5</td>
-      <td>3062</td>
-      <td>141</td>
-      <td>3.78</td>
-      <td>3.15</td>
-      <td>9.5</td>
-      <td>114.0</td>
-      <td>5400.0</td>
-      <td>19</td>
-      <td>25</td>
-      <td>22625.0</td>
-    </tr>
-    <tr>
-      <th>146</th>
-      <td>0</td>
-      <td>97.0</td>
-      <td>173.5</td>
-      <td>65.4</td>
-      <td>53.0</td>
-      <td>2290</td>
-      <td>108</td>
-      <td>3.62</td>
-      <td>2.64</td>
-      <td>9.0</td>
-      <td>82.0</td>
-      <td>4800.0</td>
-      <td>28</td>
-      <td>32</td>
-      <td>7463.0</td>
-    </tr>
-    <tr>
-      <th>126</th>
-      <td>3</td>
-      <td>89.5</td>
-      <td>168.9</td>
-      <td>65.0</td>
-      <td>51.6</td>
-      <td>2756</td>
-      <td>194</td>
-      <td>3.74</td>
-      <td>2.90</td>
-      <td>9.5</td>
-      <td>207.0</td>
-      <td>5900.0</td>
-      <td>17</td>
-      <td>25</td>
-      <td>32528.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>2</td>
-      <td>99.4</td>
-      <td>176.6</td>
-      <td>66.4</td>
-      <td>54.3</td>
-      <td>2824</td>
-      <td>136</td>
-      <td>3.19</td>
-      <td>3.40</td>
-      <td>8.0</td>
-      <td>115.0</td>
+      <th>122</th>
+      <td>1</td>
+      <td>93.7</td>
+      <td>167.3</td>
+      <td>63.8</td>
+      <td>50.8</td>
+      <td>2191</td>
+      <td>98</td>
+      <td>2.97</td>
+      <td>3.23</td>
+      <td>9.4</td>
+      <td>68.0</td>
       <td>5500.0</td>
-      <td>18</td>
-      <td>22</td>
-      <td>17450.0</td>
+      <td>31</td>
+      <td>38</td>
+      <td>7609.0</td>
     </tr>
     <tr>
-      <th>35</th>
-      <td>0</td>
-      <td>96.5</td>
-      <td>163.4</td>
-      <td>64.0</td>
-      <td>54.5</td>
-      <td>2010</td>
-      <td>92</td>
-      <td>2.91</td>
-      <td>3.41</td>
-      <td>9.2</td>
-      <td>76.0</td>
-      <td>6000.0</td>
-      <td>30</td>
-      <td>34</td>
-      <td>7295.0</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>0</td>
-      <td>113.0</td>
-      <td>199.6</td>
-      <td>69.6</td>
-      <td>52.8</td>
-      <td>4066</td>
-      <td>258</td>
-      <td>3.63</td>
-      <td>4.17</td>
-      <td>8.1</td>
-      <td>176.0</td>
-      <td>4750.0</td>
-      <td>15</td>
-      <td>19</td>
-      <td>35550.0</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>2</td>
-      <td>88.4</td>
-      <td>141.1</td>
-      <td>60.3</td>
-      <td>53.2</td>
-      <td>1488</td>
-      <td>61</td>
-      <td>2.91</td>
+      <th>53</th>
+      <td>1</td>
+      <td>93.1</td>
+      <td>166.8</td>
+      <td>64.2</td>
+      <td>54.1</td>
+      <td>1945</td>
+      <td>91</td>
       <td>3.03</td>
-      <td>9.5</td>
-      <td>48.0</td>
-      <td>5100.0</td>
-      <td>47</td>
-      <td>53</td>
-      <td>5151.0</td>
+      <td>3.15</td>
+      <td>9.0</td>
+      <td>68.0</td>
+      <td>5000.0</td>
+      <td>31</td>
+      <td>38</td>
+      <td>6695.0</td>
     </tr>
     <tr>
-      <th>171</th>
-      <td>2</td>
-      <td>98.4</td>
-      <td>176.2</td>
-      <td>65.6</td>
+      <th>178</th>
+      <td>3</td>
+      <td>102.9</td>
+      <td>183.5</td>
+      <td>67.7</td>
       <td>52.0</td>
-      <td>2714</td>
-      <td>146</td>
-      <td>3.62</td>
-      <td>3.50</td>
+      <td>2976</td>
+      <td>171</td>
+      <td>3.27</td>
+      <td>3.35</td>
       <td>9.3</td>
-      <td>116.0</td>
-      <td>4800.0</td>
+      <td>161.0</td>
+      <td>5200.0</td>
+      <td>20</td>
       <td>24</td>
-      <td>30</td>
-      <td>11549.0</td>
+      <td>16558.0</td>
     </tr>
     <tr>
-      <th>61</th>
+      <th>187</th>
+      <td>2</td>
+      <td>97.3</td>
+      <td>171.7</td>
+      <td>65.5</td>
+      <td>55.7</td>
+      <td>2319</td>
+      <td>97</td>
+      <td>3.01</td>
+      <td>3.40</td>
+      <td>23.0</td>
+      <td>68.0</td>
+      <td>4500.0</td>
+      <td>37</td>
+      <td>42</td>
+      <td>9495.0</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>0</td>
+      <td>98.8</td>
+      <td>177.8</td>
+      <td>66.5</td>
+      <td>55.5</td>
+      <td>2425</td>
+      <td>122</td>
+      <td>3.39</td>
+      <td>3.39</td>
+      <td>8.6</td>
+      <td>84.0</td>
+      <td>4800.0</td>
+      <td>26</td>
+      <td>32</td>
+      <td>11245.0</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>1</td>
+      <td>96.3</td>
+      <td>172.4</td>
+      <td>65.4</td>
+      <td>51.6</td>
+      <td>2403</td>
+      <td>110</td>
+      <td>3.17</td>
+      <td>3.46</td>
+      <td>7.5</td>
+      <td>116.0</td>
+      <td>5500.0</td>
+      <td>23</td>
+      <td>30</td>
+      <td>9279.0</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>-1</td>
+      <td>110.0</td>
+      <td>190.9</td>
+      <td>70.3</td>
+      <td>58.7</td>
+      <td>3750</td>
+      <td>183</td>
+      <td>3.58</td>
+      <td>3.64</td>
+      <td>21.5</td>
+      <td>123.0</td>
+      <td>4350.0</td>
+      <td>22</td>
+      <td>25</td>
+      <td>28248.0</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>1</td>
+      <td>94.5</td>
+      <td>165.3</td>
+      <td>63.8</td>
+      <td>54.5</td>
+      <td>1889</td>
+      <td>97</td>
+      <td>3.15</td>
+      <td>3.29</td>
+      <td>9.4</td>
+      <td>69.0</td>
+      <td>5200.0</td>
+      <td>31</td>
+      <td>37</td>
+      <td>5499.0</td>
+    </tr>
+    <tr>
+      <th>59</th>
       <td>1</td>
       <td>98.8</td>
       <td>177.8</td>
@@ -1464,25 +1478,25 @@ df[temp_num].describe()
       <td>4800.0</td>
       <td>26</td>
       <td>32</td>
-      <td>10595.0</td>
+      <td>8845.0</td>
     </tr>
     <tr>
-      <th>111</th>
+      <th>36</th>
       <td>0</td>
-      <td>107.9</td>
-      <td>186.7</td>
-      <td>68.4</td>
-      <td>56.7</td>
-      <td>3075</td>
-      <td>120</td>
-      <td>3.46</td>
-      <td>2.19</td>
-      <td>8.4</td>
-      <td>95.0</td>
-      <td>5000.0</td>
-      <td>19</td>
-      <td>24</td>
-      <td>15580.0</td>
+      <td>96.5</td>
+      <td>157.1</td>
+      <td>63.9</td>
+      <td>58.3</td>
+      <td>2024</td>
+      <td>92</td>
+      <td>2.92</td>
+      <td>3.41</td>
+      <td>9.2</td>
+      <td>76.0</td>
+      <td>6000.0</td>
+      <td>30</td>
+      <td>34</td>
+      <td>7295.0</td>
     </tr>
   </tbody>
 </table>
@@ -1493,9 +1507,9 @@ df[temp_num].describe()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># symboling is discrete and clearly should be treated as category too
-temp_categories.append(&#39;symboling&#39;)
-temp_categories
+<span></span><span class="c1"># symboling is discrete and clearly should be treated as category too</span>
+<span class="n">temp_categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;symboling&#39;</span><span class="p">)</span>
+<span class="n">temp_categories</span>
 </pre></div>
 </div>
 </div>
@@ -1524,8 +1538,8 @@ temp_categories
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>with open(&#39;data/category_list&#39;, &#39;wb&#39;) as file:
-    pk.dump(temp_categories, file)
+<span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/category_list&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">pk</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">temp_categories</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1536,7 +1550,7 @@ temp_categories
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.to_csv(&#39;data/df_transformed.csv&#39;, index=False)
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/df_transformed.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1558,7 +1572,7 @@ temp_categories
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2020, Erick Medeiros Anastácio.
     <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
             </div>
           </div>

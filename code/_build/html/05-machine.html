@@ -181,21 +181,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -296,7 +310,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -362,6 +376,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -422,11 +437,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pandas as pd
-import numpy as np
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-df = pd.read_csv(&#39;data/df_resample.csv&#39;)
-df.head()
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/df_resample.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -607,16 +622,16 @@ df.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X = df.copy()
-X.drop(&#39;price&#39;, axis=1, inplace=True)
-y = np.log(df.price) # as discussed, we are going to use the log transform here
+<span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">price</span><span class="p">)</span> <span class="c1"># as discussed, we are going to use the log transform here</span>
 
-## Train-test split#
-from sklearn.model_selection import train_test_split
+<span class="c1">## Train-test split#</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=.3, random_state=95276
-)
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">95276</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -625,26 +640,26 @@ X_train, X_test, y_train, y_test = train_test_split(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># normalize and encode
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-import pickle
+<span></span><span class="c1"># normalize and encode</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 
-with open(&#39;data/category_list&#39;, &#39;rb&#39;) as file:
-    cat_cols = pickle.load(file)
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/category_list&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
-# numeric columns
-num_cols = [col for col in X_train.columns if col not in cat_cols]
+<span class="c1"># numeric columns</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">]</span>
 
-# normalize numeric features
-scaler = StandardScaler()
-num_scaled = scaler.fit_transform(X_train[num_cols])
+<span class="c1"># normalize numeric features</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">num_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">num_cols</span><span class="p">])</span>
 
-# encode categories
-encoder = OneHotEncoder(sparse=False)
-cat_encoded = encoder.fit_transform(X_train[cat_cols])
+<span class="c1"># encode categories</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cat_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">])</span>
 
-# all together
-X_train_proc = np.concatenate([cat_encoded, num_scaled] ,axis=1)
+<span class="c1"># all together</span>
+<span class="n">X_train_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cat_encoded</span><span class="p">,</span> <span class="n">num_scaled</span><span class="p">]</span> <span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -653,15 +668,15 @@ X_train_proc = np.concatenate([cat_encoded, num_scaled] ,axis=1)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># apply transformations on test set
-num_scaled = scaler.transform(X_test[num_cols])
+<span></span><span class="c1"># apply transformations on test set</span>
+<span class="n">num_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">num_cols</span><span class="p">])</span>
 
-# encode categories
-cat_encoded = encoder.transform(X_test[cat_cols])
+<span class="c1"># encode categories</span>
+<span class="n">cat_encoded</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">])</span>
 
-# all together
-X_test_proc = np.concatenate([cat_encoded, num_scaled] ,axis=1)
-X_test_proc.shape
+<span class="c1"># all together</span>
+<span class="n">X_test_proc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">cat_encoded</span><span class="p">,</span> <span class="n">num_scaled</span><span class="p">]</span> <span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_test_proc</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
@@ -686,10 +701,10 @@ X_test_proc.shape
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>%load_ext autoreload
-%autoreload 2
+<span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
+<span class="o">%</span><span class="k">autoreload</span> 2
 
-import aux_functions as aux
+<span class="kn">import</span> <span class="nn">aux_functions</span> <span class="k">as</span> <span class="nn">aux</span>
 </pre></div>
 </div>
 </div>
@@ -698,19 +713,19 @@ import aux_functions as aux
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.tree import DecisionTreeRegressor
+<span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
 
-model = DecisionTreeRegressor(random_state=95276)
+<span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">95276</span><span class="p">)</span>
 
-grid_params = {
-    &#39;min_samples_split&#39;: [2, 5],
-    &#39;min_samples_leaf&#39;: [2, 5],
-    &#39;max_depth&#39;: [20, 25, 30]
-}
-name = &#39;Decision tree&#39;
-data = (X_train_proc, y_train, X_test_proc, y_test)
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Decision tree&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train_proc</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test_proc</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
 
-dt_results = aux.make_regressor(name, model, grid_params, data)
+<span class="n">dt_results</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">make_regressor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -734,16 +749,16 @@ Time: 1.8e+01s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.neighbors import KNeighborsRegressor
+<span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
 
-model = KNeighborsRegressor()
+<span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">()</span>
 
-grid_params = {
-    &#39;n_neighbors&#39;: [5, 10],
-    &#39;p&#39;: [1, 2]
-    }
-name = &#39;knn&#39;
-knn_results = aux.make_regressor(name, model, grid_params, data)
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+    <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;knn&#39;</span>
+<span class="n">knn_results</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">make_regressor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -767,17 +782,17 @@ Time: 1.3s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.ensemble import RandomForestRegressor
-model = RandomForestRegressor()
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
 
-grid_params = {
-    &#39;max_features&#39;: [10, 15, 20],
-    &#39;max_depth&#39;: [20, 30],
-    &#39;min_samples_split&#39;: [2, 5],
-    &#39;min_samples_leaf&#39;: [2, 5],
-}
-name = &#39;RF&#39;
-rf_results = aux.make_regressor(name, model, grid_params, data)
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;max_features&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="s1">&#39;max_depth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="s1">&#39;min_samples_leaf&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RF&#39;</span>
+<span class="n">rf_results</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">make_regressor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -803,14 +818,14 @@ Time: 1.5e+01s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.ensemble import GradientBoostingRegressor
-model = GradientBoostingRegressor()
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">GradientBoostingRegressor</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">GradientBoostingRegressor</span><span class="p">()</span>
 
-grid_params = {
-    &#39;min_samples_split&#39;: [5],
-}
-name = &#39;Gradient Boost&#39;
-gb_results = aux.make_regressor(name, model, grid_params, data)
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;min_samples_split&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Gradient Boost&#39;</span>
+<span class="n">gb_results</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">make_regressor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
 </pre></div>
 </div>
@@ -838,14 +853,14 @@ Time: 3.6s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.ensemble import AdaBoostRegressor
-model = AdaBoostRegressor(random_state=95276, base_estimator=dt_results[0])
+<span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostRegressor</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AdaBoostRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">95276</span><span class="p">,</span> <span class="n">base_estimator</span><span class="o">=</span><span class="n">dt_results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-grid_params = {
-    &#39;learning_rate&#39;: [.5, 1],
-}
-name = &#39;AdaBoost&#39;
-ada_results = aux.make_regressor(name, model, grid_params, data)
+<span class="n">grid_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;AdaBoost&#39;</span>
+<span class="n">ada_results</span> <span class="o">=</span> <span class="n">aux</span><span class="o">.</span><span class="n">make_regressor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">grid_params</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -874,53 +889,53 @@ Time: 1.2s
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df_scores = pd.DataFrame({
-    &#39;MSE&#39;: [
-        dt_results[2][&#39;mse&#39;],
-        knn_results[2][&#39;mse&#39;],
-        rf_results[2][&#39;mse&#39;],
-        gb_results[2][&#39;mse&#39;],
-        ada_results[2][&#39;mse&#39;]
+<span></span><span class="n">df_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;MSE&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">dt_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
+        <span class="n">knn_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
+        <span class="n">rf_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
+        <span class="n">gb_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mse&#39;</span><span class="p">],</span>
+        <span class="n">ada_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mse&#39;</span><span class="p">]</span>
 
-        ],
-    &#39;r2&#39;: [
-        dt_results[2][&#39;r2&#39;],
-        knn_results[2][&#39;r2&#39;],
-        rf_results[2][&#39;r2&#39;],
-        gb_results[2][&#39;r2&#39;],
-        ada_results[2][&#39;r2&#39;]
-        ],
-    &#39;model name&#39;: [
-        dt_results[2][&#39;model name&#39;],
-        knn_results[2][&#39;model name&#39;],
-        rf_results[2][&#39;model name&#39;],
-        gb_results[2][&#39;model name&#39;],
-        ada_results[2][&#39;model name&#39;]
-        ],
-    &#39;time&#39;: [
-        dt_results[2][&#39;time&#39;],
-        knn_results[2][&#39;time&#39;],
-        rf_results[2][&#39;time&#39;],
-        gb_results[2][&#39;time&#39;],
-        ada_results[2][&#39;time&#39;],
-        ],
-    },
-#     index=[&#39;linear&#39;, &#39;ridge&#39;, &#39;lasso&#39;, &#39;hubber&#39;]
-)
+        <span class="p">],</span>
+    <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">dt_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="n">knn_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="n">rf_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="n">gb_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;r2&#39;</span><span class="p">],</span>
+        <span class="n">ada_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;r2&#39;</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;model name&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">dt_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;model name&#39;</span><span class="p">],</span>
+        <span class="n">knn_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;model name&#39;</span><span class="p">],</span>
+        <span class="n">rf_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;model name&#39;</span><span class="p">],</span>
+        <span class="n">gb_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;model name&#39;</span><span class="p">],</span>
+        <span class="n">ada_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;model name&#39;</span><span class="p">]</span>
+        <span class="p">],</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">dt_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="n">knn_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="n">rf_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="n">gb_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="n">ada_results</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+<span class="c1">#     index=[&#39;linear&#39;, &#39;ridge&#39;, &#39;lasso&#39;, &#39;hubber&#39;]</span>
+<span class="p">)</span>
 
-# load ols results
-df_scores_old = pd.read_csv(&#39;data/sk_scores.csv&#39;)
-df_scores = pd.concat([df_scores, df_scores_old], axis=0)
+<span class="c1"># load ols results</span>
+<span class="n">df_scores_old</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/sk_scores.csv&#39;</span><span class="p">)</span>
+<span class="n">df_scores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_scores</span><span class="p">,</span> <span class="n">df_scores_old</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-# lets get the rmse
-df_scores[&#39;rmse&#39;] = np.sqrt(df_scores[&#39;MSE&#39;])
+<span class="c1"># lets get the rmse</span>
+<span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;rmse&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;MSE&#39;</span><span class="p">])</span>
 
-# now lets measure the impact of processing time over RMSE
-df_scores = df_scores.sort_values(by=&#39;rmse&#39;, ascending=False)
-df_scores[&#39;dif_rmse&#39;] = df_scores[&#39;rmse&#39;].diff()
-df_scores[&#39;dif_time&#39;] = df_scores[&#39;time&#39;].diff()
-df_scores.to_csv(&#39;data/full_scores.csv&#39;, index=False)
-df_scores.set_index(&#39;model name&#39;).round(3)
+<span class="c1"># now lets measure the impact of processing time over RMSE</span>
+<span class="n">df_scores</span> <span class="o">=</span> <span class="n">df_scores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;rmse&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;dif_rmse&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;rmse&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;dif_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_scores</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+<span class="n">df_scores</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/full_scores.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_scores</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;model name&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1087,7 +1102,7 @@ df_scores.set_index(&#39;model name&#39;).round(3)
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2020, Erick Medeiros Anastácio.
     <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
             </div>
           </div>

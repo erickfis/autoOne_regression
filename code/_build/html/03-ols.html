@@ -177,21 +177,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -292,7 +306,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -358,6 +372,7 @@ div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
     padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -418,10 +433,10 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import pandas as pd
-import numpy as np
-import pickle
-import time
+<span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">time</span>
 </pre></div>
 </div>
 </div>
@@ -430,8 +445,8 @@ import time
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df = pd.read_csv(&#39;data/df_resample.csv&#39;)
-df.head()
+<span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/df_resample.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -612,7 +627,7 @@ df.head()
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>df.info()
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -664,15 +679,15 @@ memory usage: 1.9+ MB
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from sklearn.model_selection import train_test_split
+<span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
-X = df.copy()
-X.drop(&#39;price&#39;, axis=1, inplace=True)
-y = np.log(df.price) # as discussed, we are going to use the log transformation here
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">price</span><span class="p">)</span> <span class="c1"># as discussed, we are going to use the log transformation here</span>
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=.3, random_state=95276
-)
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=.</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">95276</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -692,13 +707,13 @@ X_train, X_test, y_train, y_test = train_test_split(
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span># categorical features
-with open(&#39;data/category_list&#39;, &#39;rb&#39;) as file:
-    cat_cols = pickle.load(file)
+<span></span><span class="c1"># categorical features</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;data/category_list&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">cat_cols</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
 
-# numeric columns
-num_cols = [col for col in X_train.columns if col not in cat_cols]
-num_cols
+<span class="c1"># numeric columns</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">]</span>
+<span class="n">num_cols</span>
 </pre></div>
 </div>
 </div>
@@ -728,10 +743,10 @@ num_cols
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>X_train[&#39;price&#39;] = y_train
-cols = num_cols + [&#39;price&#39;]
-cor = X_train[cols].corr().abs()
-cor.loc[cor.price &gt; .5, &#39;price&#39;].sort_values()
+<span></span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_train</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="n">num_cols</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span>
+<span class="n">cor</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+<span class="n">cor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">cor</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -772,12 +787,12 @@ Name: price, dtype: float64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>mask = (cor.price &gt; .5 ) &amp; (cor.price &lt; 1)
-correlated = cor[mask].sort_values(by=&#39;price&#39;).index
-not_correlated = [col for col in num_cols if col not in correlated]
+<span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">cor</span><span class="o">.</span><span class="n">price</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">5</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">cor</span><span class="o">.</span><span class="n">price</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">correlated</span> <span class="o">=</span> <span class="n">cor</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+<span class="n">not_correlated</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">num_cols</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">correlated</span><span class="p">]</span>
 
-print(&#39;correlated: &#39;, correlated)
-print(&#39;not correlated: &#39;, not_correlated)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;correlated: &#39;</span><span class="p">,</span> <span class="n">correlated</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not correlated: &#39;</span><span class="p">,</span> <span class="n">not_correlated</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -803,12 +818,12 @@ not correlated:  [&#39;height&#39;, &#39;stroke&#39;, &#39;compression_ratio&#39
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>cat_list = [f&#39;C({cat})&#39; for cat in cat_cols]
-cat_formula = &#39; + &#39;.join(cat_list)
-num_formula = &#39; + &#39;.join(correlated)
+<span></span><span class="n">cat_list</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;C(</span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s1">)&#39;</span> <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">cat_cols</span><span class="p">]</span>
+<span class="n">cat_formula</span> <span class="o">=</span> <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cat_list</span><span class="p">)</span>
+<span class="n">num_formula</span> <span class="o">=</span> <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">correlated</span><span class="p">)</span>
 
-formula = f&#39;price ~ {cat_formula} + {num_formula}&#39;
-formula
+<span class="n">formula</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;price ~ </span><span class="si">{</span><span class="n">cat_formula</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">num_formula</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">formula</span>
 </pre></div>
 </div>
 </div>
@@ -826,11 +841,11 @@ formula
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import statsmodels.formula.api as smf
+<span></span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
 
-model = smf.ols(formula=formula, data=X_train)
-res = model.fit()
-print(res.summary())
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -942,8 +957,8 @@ strong multicollinearity problems or that the design matrix is singular.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.pvalues[res.pvalues &gt; .05]
-# we are not taking out make just because a few rotten apples
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">pvalues</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">05</span><span class="p">]</span>
+<span class="c1"># we are not taking out make just because a few rotten apples</span>
 </pre></div>
 </div>
 </div>
@@ -971,19 +986,19 @@ dtype: float64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>correlated = correlated.tolist()
-correlated.remove(&#39;horsepower&#39;)
-num_formula = &#39; + &#39;.join(correlated)
+<span></span><span class="n">correlated</span> <span class="o">=</span> <span class="n">correlated</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">correlated</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;horsepower&#39;</span><span class="p">)</span>
+<span class="n">num_formula</span> <span class="o">=</span> <span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">correlated</span><span class="p">)</span>
 
-formula = f&#39;price ~ {cat_formula} + {num_formula}&#39;
+<span class="n">formula</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;price ~ </span><span class="si">{</span><span class="n">cat_formula</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="n">num_formula</span><span class="si">}</span><span class="s1">&#39;</span>
 
-start = time.time()
-model = smf.ols(formula=formula, data=X_train)
-res = model.fit()
-stop = time.time()
-elapsed = stop - start
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">elapsed</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
 
-print(res.summary())
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1082,7 +1097,7 @@ strong multicollinearity problems or that the design matrix is singular.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.pvalues[res.pvalues &gt; .05]
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">res</span><span class="o">.</span><span class="n">pvalues</span> <span class="o">&gt;</span> <span class="o">.</span><span class="mi">05</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1109,15 +1124,15 @@ dtype: float64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>r2 = res.rsquared_adj
+<span></span><span class="n">r2</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">rsquared_adj</span>
 
-predictions = np.exp(res.predict(X_test)) # back transformation
-mse = np.mean(
-    (predictions - np.exp(y_test))**2
-)
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span> <span class="c1"># back transformation</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">predictions</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+<span class="p">)</span>
 
-print(f&#39;R^2: {r2:.4}&#39;)
-print(f&#39;MSE: {mse:.4}&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;R^2: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.4</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1135,16 +1150,16 @@ MSE: 2.175e+06
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>data = {
-    &#39;model name&#39;: [&#39;ols&#39;],
-    &#39;r2&#39;: [r2],
-    &#39;MSE&#39;: [mse],
-    &#39;time&#39;: elapsed
-       }
+<span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;model name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;ols&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;r2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">r2</span><span class="p">],</span>
+    <span class="s1">&#39;MSE&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">mse</span><span class="p">],</span>
+    <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">elapsed</span>
+       <span class="p">}</span>
 
-score_df = pd.DataFrame(data)
-score_df.to_csv(&#39;data/scores.csv&#39;, index=False)
-score_df
+<span class="n">score_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">score_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;data/scores.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">score_df</span>
 </pre></div>
 </div>
 </div>
@@ -1207,7 +1222,7 @@ score_df
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>res.resid.mean() # good!
+<span></span><span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># good!</span>
 </pre></div>
 </div>
 </div>
@@ -1228,19 +1243,19 @@ score_df
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from numpy.polynomial.polynomial import polyfit
-import matplotlib.pyplot as plt
+<span></span><span class="kn">from</span> <span class="nn">numpy.polynomial.polynomial</span> <span class="kn">import</span> <span class="n">polyfit</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-%matplotlib inline
+<span class="o">%</span><span class="k">matplotlib</span> inline
 
-plt.figure(figsize=(12, 5))
-plt.title(&#39;fitted price vs resids&#39;)
-plt.scatter(res.fittedvalues, res.resid, c=&quot;g&quot;, alpha=0.5, label=&quot;OLS model&quot;)
-b, m = polyfit(res.fittedvalues, res.resid, 1)
-plt.plot(res.fittedvalues, b + m * res.fittedvalues, &#39;-&#39;)
-plt.xlabel(&quot;&quot;)
-plt.ylabel(&quot;&quot;)
-plt.legend(loc=2)
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;fitted price vs resids&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;OLS model&quot;</span><span class="p">)</span>
+<span class="n">b</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">polyfit</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">m</span> <span class="o">*</span> <span class="n">res</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1269,8 +1284,8 @@ plt.legend(loc=2)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from scipy.stats.stats import pearsonr
-pearsonr(res.predict(X_train), res.resid)
+<span></span><span class="kn">from</span> <span class="nn">scipy.stats.stats</span> <span class="kn">import</span> <span class="n">pearsonr</span>
+<span class="n">pearsonr</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">),</span> <span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1291,8 +1306,8 @@ pearsonr(res.predict(X_train), res.resid)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>import scipy.stats as st
-st.shapiro(res.resid)
+<span></span><span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="n">st</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1319,9 +1334,9 @@ C:\Users\BJ571WQ\Anaconda3\lib\site-packages\scipy\stats\morestats.py:1676: User
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>from statsmodels.graphics.gofplots import qqplot
+<span></span><span class="kn">from</span> <span class="nn">statsmodels.graphics.gofplots</span> <span class="kn">import</span> <span class="n">qqplot</span>
 
-qqplot(res.resid, line=&#39;s&#39;);
+<span class="n">qqplot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1351,7 +1366,7 @@ qqplot(res.resid, line=&#39;s&#39;);
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2020, Erick Medeiros Anastácio.
     <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.1 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.0 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a>.
 </div>
             </div>
           </div>
